@@ -1,0 +1,17 @@
+{
+  "appName": "ठोस अपशिष्ट संग्रह VLTS",
+  "home": "होम",
+  "login": "लॉगिन",
+  "profile": "प्रोफ़ाइल",
+  "mobileNumber": "मोबाइल नंबर",
+  "selectDate": "तारीख चुनें",
+  "selectULB": "ULB चुनें",
+  "district": "ज़िला",
+  "designation": "पदनाम",
+  "dumpingZone": "डंपिंग ज़ोन",
+  "uploadPictures": "तस्वीरें अपलोड करें",
+  "save": "सहेजें",
+  "switchLanguage": "भाषा बदलें",
+  "english": "अंग्रेज़ी",
+  "hindi": "हिंदी"
+}

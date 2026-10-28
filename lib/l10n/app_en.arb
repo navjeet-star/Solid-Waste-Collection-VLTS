@@ -1,0 +1,17 @@
+{
+  "appName": "Solid Waste Collection VLTS",
+  "home": "Home",
+  "login": "Login",
+  "profile": "Profile",
+  "mobileNumber": "Mobile Number",
+  "selectDate": "Select Date",
+  "selectULB": "Select ULB",
+  "district": "District",
+  "designation": "Designation",
+  "dumpingZone": "Dumping Zone",
+  "uploadPictures": "Upload Pictures",
+  "save": "Save",
+  "switchLanguage": "Switch Language",
+  "english": "English",
+  "hindi": "Hindi"
+}
