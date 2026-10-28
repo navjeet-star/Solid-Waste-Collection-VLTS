@@ -1,0 +1,93 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+*.tmp
+*.bak
+
+# Windows thumbnail and system caches
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+/build/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android build and local configuration
+/android/app/debug
+/android/app/profile
+/android/app/release
+local.properties
+**/local.properties
+.gradle/
+**/captures/
+**/.cxx/
+**/GeneratedPluginRegistrant.java
+
+# iOS ephemeral and generated files
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/ephemeral/
+**/ios/Pods/
+**/ios/.symlinks/
+**/GeneratedPluginRegistrant.h
+**/GeneratedPluginRegistrant.m
+
+# Widget Preview related
+.widget_preview/
+
+# Environment files and secrets
+.env*
+*.env
+!.env.example
+!.env*.example
+
+# Keystores, signing keys, and certificates
+*.keystore
+*.jks
+key.properties
+*.p8
+*.p12
+*.key
+*.pem
+*.cer
+*.crt
+*.der
+*.mobileprovision
