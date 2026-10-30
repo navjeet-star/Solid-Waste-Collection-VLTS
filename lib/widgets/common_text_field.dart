@@ -11,6 +11,7 @@ class CommonTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
+  final void Function(String)? onFieldSubmitted;
   final FocusNode? focusNode;
 
   const CommonTextField({
@@ -25,6 +26,7 @@ class CommonTextField extends StatelessWidget {
     this.validator,
     this.keyboardType,
     this.textInputAction,
+    this.onFieldSubmitted,
     this.focusNode,
   });
 
@@ -39,6 +41,7 @@ class CommonTextField extends StatelessWidget {
       validator: validator,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
       style: TextStyle(
         color: colorScheme.onSurface,
         fontSize: 15,

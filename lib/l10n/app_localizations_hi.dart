@@ -50,10 +50,52 @@ class AppLocalizationsHi extends AppLocalizations {
   String get loginSuccessfully => 'लॉगिन सफल रहा';
 
   @override
-  String get departmentName => 'नगर विकास एवं आवास विभाग';
+  String get dontHaveAccount => 'खाता नहीं है?';
 
   @override
-  String get footerTagline => 'फ्लीट ट्रैकिंग एवं रूट निगरानी • v1.0.4';
+  String get signUp => 'साइन अप करें';
+
+  @override
+  String get createAccount => 'खाता बनाएं';
+
+  @override
+  String get signUpToGetStarted => 'शुरू करने के लिए साइन अप करें';
+
+  @override
+  String get fullName => 'पूरा नाम';
+
+  @override
+  String get enterFullName => 'पूरा नाम दर्ज करें';
+
+  @override
+  String get enterYourFullName => 'अपना पूरा नाम दर्ज करें';
+
+  @override
+  String get confirmPassword => 'पासवर्ड की पुष्टि करें';
+
+  @override
+  String get enterConfirmPassword => 'पासवर्ड की पुष्टि करें';
+
+  @override
+  String get enterYourConfirmPassword => 'अपने पासवर्ड की पुष्टि करें';
+
+  @override
+  String get alreadyHaveAccount => 'क्या आपके पास पहले से एक खाता मौजूद है?';
+
+  @override
+  String get signIn => 'साइन इन करें';
+
+  @override
+  String get passwordsDoNotMatch => 'पासवर्ड मेल नहीं खाते';
+
+  @override
+  String get signUpSuccessfully => 'खाता सफलतापूर्वक बनाया गया';
+
+  @override
+  String get departmentName => 'शहरी विकास विभाग';
+
+  @override
+  String get footerTagline => 'फ्लीट ट्रैकिंग एवं रूट निगरानी • v1.0.0';
 
   @override
   String get switchToLightMode => 'लाइट मोड में बदलें';

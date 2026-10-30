@@ -50,10 +50,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginSuccessfully => 'Login successfully';
 
   @override
-  String get departmentName => 'Urban Development & Housing Department';
+  String get dontHaveAccount => 'Don\'t have an account?';
 
   @override
-  String get footerTagline => 'Fleet Tracking & Route Monitoring • v1.0.4';
+  String get signUp => 'Sign Up';
+
+  @override
+  String get createAccount => 'Create Account';
+
+  @override
+  String get signUpToGetStarted => 'Sign up to get started';
+
+  @override
+  String get fullName => 'Full Name';
+
+  @override
+  String get enterFullName => 'Enter full name';
+
+  @override
+  String get enterYourFullName => 'Enter your full name';
+
+  @override
+  String get confirmPassword => 'Confirm Password';
+
+  @override
+  String get enterConfirmPassword => 'Confirm password';
+
+  @override
+  String get enterYourConfirmPassword => 'Confirm your password';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account?';
+
+  @override
+  String get signIn => 'Sign In';
+
+  @override
+  String get passwordsDoNotMatch => 'Passwords do not match';
+
+  @override
+  String get signUpSuccessfully => 'Account created successfully';
+
+  @override
+  String get departmentName => 'Urban Development Department';
+
+  @override
+  String get footerTagline => 'Fleet Tracking & Route Monitoring • v1.0.0';
 
   @override
   String get switchToLightMode => 'Switch to Light Mode';

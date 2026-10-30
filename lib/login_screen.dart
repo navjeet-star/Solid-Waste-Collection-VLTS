@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 import 'package:solid_waste_collection_vlts/overview_screen.dart';
+import 'package:solid_waste_collection_vlts/signup_screen.dart';
 import 'package:solid_waste_collection_vlts/widgets/CommonSnackBar.dart';
 import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
 import 'package:solid_waste_collection_vlts/widgets/common_button.dart';
@@ -381,8 +382,46 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Sign In Button
                           CommonButton(
                             text: strings.login,
-                            icon: Icons.arrow_forward_rounded,
                             onPressed: _handleLogin,
+                          ),
+
+                          const SizedBox(height: 18),
+
+                          // Sign Up Link Row
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                strings.dontHaveAccount,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const SignUpScreen(),
+                                    ),
+                                  );
+                                },
+                                style: TextButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                                  minimumSize: Size.zero,
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                ),
+                                child: Text(
+                                  strings.signUp,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: colorScheme.primary,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
