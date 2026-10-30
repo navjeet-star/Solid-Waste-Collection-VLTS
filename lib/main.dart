@@ -5,7 +5,6 @@ import 'package:solid_waste_collection_vlts/core/theme/dark_theme.dart';
 import 'package:solid_waste_collection_vlts/core/theme/light_theme.dart';
 import 'package:solid_waste_collection_vlts/l10n/app_localizations.dart';
 import 'package:solid_waste_collection_vlts/overview_screen.dart';
-import 'login_screen.dart';
 
 void main() {
   runApp(const MyApp());

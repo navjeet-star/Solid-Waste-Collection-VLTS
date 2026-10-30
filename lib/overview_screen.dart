@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/home_screen.dart';
 import 'package:solid_waste_collection_vlts/login_screen.dart';
 import 'package:solid_waste_collection_vlts/overview/overview_page_one.dart';
 import 'package:solid_waste_collection_vlts/overview/overview_page_three.dart';
 import 'package:solid_waste_collection_vlts/overview/overview_page_two.dart';
+import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
 import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
 
 class OverviewScreen extends StatefulWidget {
@@ -63,6 +63,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final bool isFirstPage = _currentPage == 0;
     final bool isLastPage = _currentPage == _totalPages - 1;
 
@@ -71,18 +72,37 @@ class _OverviewScreenState extends State<OverviewScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Top Bar: Theme toggle and Skip button
+            // Top Bar: Theme toggle, Language Selector and Skip button
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const ThemeToggleButton(),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? colorScheme.surface
+                          : colorScheme.surface.withValues(alpha: 0.9),
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: colorScheme.outline.withValues(alpha: 0.35),
+                      ),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ThemeToggleButton(),
+                        SizedBox(width: 4),
+                        LanguageSelector(),
+                      ],
+                    ),
+                  ),
                   TextButton(
                     onPressed: _skipPages,
                     style: TextButton.styleFrom(
                       foregroundColor: colorScheme.primary,
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                     ),
                     child: Text(
                       strings.skip,
