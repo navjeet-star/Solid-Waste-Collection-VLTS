@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:solid_waste_collection_vlts/core/app_colors.dart';
+import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 
 class OverviewPageOne extends StatelessWidget {
   const OverviewPageOne({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const _OverviewContent(
+    final strings = context.l10n;
+
+    return _OverviewContent(
       icon: Icons.location_city_rounded,
-      title: 'Welcome to UDD',
-      description:
-      'Access urban development services and information in one place.',
+      title: strings.overviewTitle1,
+      description: strings.overviewDesc1,
     );
   }
 }

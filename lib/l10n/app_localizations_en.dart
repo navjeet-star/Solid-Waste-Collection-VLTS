@@ -31,6 +31,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
+  String get loginSuccessfully => 'Login successfully';
+
+  @override
   String get profileClicked => 'Profile clicked';
 
   @override
@@ -41,4 +44,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get language => 'Language';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get getStarted => 'Get Started';
+
+  @override
+  String get overviewTitle1 => 'Welcome to UDD';
+
+  @override
+  String get overviewDesc1 =>
+      'Access urban development services and information in one place.';
+
+  @override
+  String get overviewTitle2 => 'Manage Your Work';
+
+  @override
+  String get overviewDesc2 =>
+      'View schedules, manage activities, and track your daily tasks.';
+
+  @override
+  String get overviewTitle3 => 'Track Your Progress';
+
+  @override
+  String get overviewDesc3 =>
+      'Stay updated with reports, notifications, and important information.';
 }

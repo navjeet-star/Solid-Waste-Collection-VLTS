@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solid_waste_collection_vlts/core/app_colors.dart';
+import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 import 'package:solid_waste_collection_vlts/home_screen.dart';
 import 'package:solid_waste_collection_vlts/overview/overview_page_one.dart';
 import 'package:solid_waste_collection_vlts/overview/overview_page_three.dart';
@@ -64,6 +65,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final strings = context.l10n;
     final bool isFirstPage = _currentPage == 0;
     final bool isLastPage = _currentPage == _pages.length - 1;
 
@@ -79,9 +81,9 @@ class _OverviewScreenState extends State<OverviewScreen> {
                 padding: const EdgeInsets.only(right: 16, top: 8),
                 child: TextButton(
                   onPressed: _skipPages,
-                  child: const Text(
-                    'Skip',
-                    style: TextStyle(
+                  child: Text(
+                    strings.skip,
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Color(0xFF1769D2),
                     ),
@@ -110,7 +112,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 _pages.length,
-                    (index) {
+                (index) {
                   final bool isActive = _currentPage == index;
 
                   return AnimatedContainer(
@@ -150,7 +152,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text('Preview'),
+                      child: Text(strings.preview),
                     ),
                   ),
 
@@ -170,7 +172,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                         ),
                       ),
                       child: Text(
-                        isLastPage ? 'Get Started' : 'Next',
+                        isLastPage ? strings.getStarted : strings.next,
                       ),
                     ),
                   ),

@@ -1,5 +1,5 @@
-
 {
+  "@@locale": "en",
   "welcomeBack": "Welcome Back",
   "loginToYourAccount": "Login to your account",
   "enterEmail": "Enter email",
@@ -7,8 +7,19 @@
   "enterYourEmail": "Enter your email",
   "enterYourPassword": "Enter your password",
   "login": "Login",
+  "loginSuccessfully": "Login successfully",
   "profileClicked": "Profile clicked",
   "notificationsClicked": "Notifications clicked",
   "homeScreen": "Home Screen",
-  "language": "Language"
+  "language": "Language",
+  "skip": "Skip",
+  "preview": "Preview",
+  "next": "Next",
+  "getStarted": "Get Started",
+  "overviewTitle1": "Welcome to UDD",
+  "overviewDesc1": "Access urban development services and information in one place.",
+  "overviewTitle2": "Manage Your Work",
+  "overviewDesc2": "View schedules, manage activities, and track your daily tasks.",
+  "overviewTitle3": "Track Your Progress",
+  "overviewDesc3": "Stay updated with reports, notifications, and important information."
 }

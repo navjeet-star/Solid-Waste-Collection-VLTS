@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:solid_waste_collection_vlts/core/app_colors.dart';
+import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 import 'package:solid_waste_collection_vlts/l10n/app_localizations.dart';
 import 'login_screen.dart';
-
-// Shared app language
-final ValueNotifier<Locale> appLocale = ValueNotifier(const Locale('en'));
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Locale>(
@@ -23,20 +19,12 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           locale: locale,
-          title: 'Flutter Demo',
+          title: 'Solid Waste Collection VLTS',
           theme: ThemeData(
-            colorScheme: .fromSeed(seedColor: AppColors.primary),
+            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
           ),
-
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-
-          supportedLocales: const [Locale('en'), Locale('hi')],
-
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: const LoginScreen(),
         );
       },

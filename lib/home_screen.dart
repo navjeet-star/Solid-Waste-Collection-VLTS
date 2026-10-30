@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 import 'package:solid_waste_collection_vlts/widgets/CommonSnackBar.dart';
 import 'package:solid_waste_collection_vlts/widgets/common_header.dart';
-import 'package:solid_waste_collection_vlts/widgets/side_menu.dart';
 import 'package:solid_waste_collection_vlts/widgets/side_menu.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,33 +9,35 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = context.l10n;
+
     return Scaffold(
-      drawer: SideMenu(),
+      drawer: const SideMenu(),
       body: SafeArea(
         child: Builder(
           builder: (scaffoldContext) {
             return Column(
               children: [
                 CommonHeader(
-                  title: "",
+                  title: strings.homeScreen,
                   notificationCount: 2,
-                  onProfileTap:() {
+                  onProfileTap: () {
                     CommonSnackBar.show(
                       context,
-                      'Profile clicked',
+                      strings.profileClicked,
                     );
                     Scaffold.of(scaffoldContext).openDrawer();
                   },
-                  onNotificationTap:() {
+                  onNotificationTap: () {
                     CommonSnackBar.show(
                       context,
-                      'notification clicked',
+                      strings.notificationsClicked,
                     );
                   },
-                )
+                ),
               ],
             );
-          }
+          },
         ),
       ),
     );

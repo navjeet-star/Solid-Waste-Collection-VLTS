@@ -1,5 +1,5 @@
-
 {
+  "@@locale": "hi",
   "welcomeBack": "वापसी पर स्वागत है",
   "loginToYourAccount": "अपने खाते में लॉगिन करें",
   "enterEmail": "ईमेल दर्ज करें",
@@ -7,8 +7,19 @@
   "enterYourEmail": "अपना ईमेल दर्ज करें",
   "enterYourPassword": "अपना पासवर्ड दर्ज करें",
   "login": "लॉगिन करें",
+  "loginSuccessfully": "लॉगिन सफल रहा",
   "profileClicked": "प्रोफ़ाइल पर क्लिक किया",
   "notificationsClicked": "सूचनाओं पर क्लिक किया",
   "homeScreen": "होम स्क्रीन",
-  "language": "भाषा"
+  "language": "भाषा",
+  "skip": "छोड़ें",
+  "preview": "पिछला",
+  "next": "अगला",
+  "getStarted": "शुरू करें",
+  "overviewTitle1": "यूडीडी में आपका स्वागत है",
+  "overviewDesc1": "शहरी विकास सेवाओं और जानकारी को एक ही स्थान पर प्राप्त करें।",
+  "overviewTitle2": "अपना कार्य प्रबंधित करें",
+  "overviewDesc2": "शेड्यूल देखें, गतिविधियों को प्रबंधित करें और अपने दैनिक कार्यों को ट्रैक करें।",
+  "overviewTitle3": "अपनी प्रगति ट्रैक करें",
+  "overviewDesc3": "रिपोर्ट्स, सूचनाओं और महत्वपूर्ण जानकारी से अपडेट रहें।"
 }

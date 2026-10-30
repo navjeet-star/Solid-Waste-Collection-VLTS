@@ -67,8 +67,8 @@ abstract class AppLocalizations {
 
   final String localeName;
 
-  static AppLocalizations? of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate =
@@ -140,6 +140,12 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
+  /// No description provided for @loginSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Login successfully'**
+  String get loginSuccessfully;
+
   /// No description provided for @profileClicked.
   ///
   /// In en, this message translates to:
@@ -163,6 +169,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get language;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get preview;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
+
+  /// No description provided for @overviewTitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to UDD'**
+  String get overviewTitle1;
+
+  /// No description provided for @overviewDesc1.
+  ///
+  /// In en, this message translates to:
+  /// **'Access urban development services and information in one place.'**
+  String get overviewDesc1;
+
+  /// No description provided for @overviewTitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Your Work'**
+  String get overviewTitle2;
+
+  /// No description provided for @overviewDesc2.
+  ///
+  /// In en, this message translates to:
+  /// **'View schedules, manage activities, and track your daily tasks.'**
+  String get overviewDesc2;
+
+  /// No description provided for @overviewTitle3.
+  ///
+  /// In en, this message translates to:
+  /// **'Track Your Progress'**
+  String get overviewTitle3;
+
+  /// No description provided for @overviewDesc3.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay updated with reports, notifications, and important information.'**
+  String get overviewDesc3;
 }
 
 class _AppLocalizationsDelegate
