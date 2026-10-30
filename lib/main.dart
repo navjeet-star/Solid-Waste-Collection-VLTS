@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               locale: locale,
-              title: 'Solid Waste Collection VLTS',
+              onGenerateTitle: (context) => context.l10n.appTitle,
               theme: lightTheme,
               darkTheme: darkTheme,
               themeMode: themeMode,

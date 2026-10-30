@@ -10,6 +10,12 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get appTitle => 'Solid Waste Collection VLTS';
+
+  @override
+  String get vltsOnline => 'VLTS ONLINE';
+
+  @override
   String get welcomeBack => 'Welcome Back';
 
   @override
@@ -28,10 +34,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterYourPassword => 'Enter your password';
 
   @override
+  String get rememberMe => 'Remember me';
+
+  @override
+  String get forgotPassword => 'Forgot Password?';
+
+  @override
+  String get forgotPasswordPrompt =>
+      'Please contact your Fleet Supervisor or Administrator to reset your password.';
+
+  @override
   String get login => 'Login';
 
   @override
   String get loginSuccessfully => 'Login successfully';
+
+  @override
+  String get departmentName => 'Urban Development & Housing Department';
+
+  @override
+  String get footerTagline => 'Fleet Tracking & Route Monitoring • v1.0.4';
+
+  @override
+  String get switchToLightMode => 'Switch to Light Mode';
+
+  @override
+  String get switchToDarkMode => 'Switch to Dark Mode';
 
   @override
   String get profileClicked => 'Profile clicked';

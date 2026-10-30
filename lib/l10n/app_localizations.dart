@@ -98,6 +98,18 @@ abstract class AppLocalizations {
     Locale('hi'),
   ];
 
+  /// No description provided for @appTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Solid Waste Collection VLTS'**
+  String get appTitle;
+
+  /// No description provided for @vltsOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'VLTS ONLINE'**
+  String get vltsOnline;
+
   /// No description provided for @welcomeBack.
   ///
   /// In en, this message translates to:
@@ -134,6 +146,24 @@ abstract class AppLocalizations {
   /// **'Enter your password'**
   String get enterYourPassword;
 
+  /// No description provided for @rememberMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember me'**
+  String get rememberMe;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgotPassword;
+
+  /// No description provided for @forgotPasswordPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Please contact your Fleet Supervisor or Administrator to reset your password.'**
+  String get forgotPasswordPrompt;
+
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
@@ -145,6 +175,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login successfully'**
   String get loginSuccessfully;
+
+  /// No description provided for @departmentName.
+  ///
+  /// In en, this message translates to:
+  /// **'Urban Development & Housing Department'**
+  String get departmentName;
+
+  /// No description provided for @footerTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Fleet Tracking & Route Monitoring • v1.0.4'**
+  String get footerTagline;
+
+  /// No description provided for @switchToLightMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to Light Mode'**
+  String get switchToLightMode;
+
+  /// No description provided for @switchToDarkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to Dark Mode'**
+  String get switchToDarkMode;
 
   /// No description provided for @profileClicked.
   ///

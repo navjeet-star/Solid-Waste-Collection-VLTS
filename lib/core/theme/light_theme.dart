@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 class LightColors {
   LightColors._();
 
-  static const Color primary = Color(0xFF1769D2);
-  static const Color secondary = Color(0xFF03A9F4);
-  static const Color background = Color(0xFFF5F7FA);
+  // Modern Eco-Green Palette for Waste Management & VLTS
+  static const Color primary = Color(0xFF1B8E56); // Rich Emerald / Forest Green
+  static const Color secondary = Color(0xFF10B981); // Mint / Jade Green
+  static const Color background = Color(0xFFF7FAF8); // Clean fresh background
   static const Color surface = Color(0xFFFFFFFF);
-  static const Color textPrimary = Color(0xFF212121);
-  static const Color textSecondary = Color(0xFF757575);
-  static const Color border = Color(0xFFE0E0E0);
-  static const Color divider = Color(0xFFEEEEEE);
+  static const Color textPrimary = Color(0xFF1A2621);
+  static const Color textSecondary = Color(0xFF6B7D74);
+  static const Color border = Color(0xFFD6E2DA);
+  static const Color divider = Color(0xFFE8EFEA);
 
-  // Gradient colors
+  // Gradient colors (available if needed)
   static const Color gradientStart = Color(0xFFFFFFFF);
-  static const Color gradientMiddle = Color(0xFFEAF4FF);
-  static const Color gradientEnd = Color(0xFFD6E8FF);
+  static const Color gradientMiddle = Color(0xFFF0F7F3);
+  static const Color gradientEnd = Color(0xFFE2F0E7);
 }
 
 final ThemeData lightTheme = ThemeData(
@@ -37,4 +38,3 @@ final ThemeData lightTheme = ThemeData(
     elevation: 0,
   ),
 );
-

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 import 'package:solid_waste_collection_vlts/core/theme/app_theme_mode.dart';
 
 class ThemeToggleButton extends StatelessWidget {
@@ -6,6 +7,8 @@ class ThemeToggleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = context.l10n;
+
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: appThemeMode,
       builder: (context, mode, _) {
@@ -15,11 +18,10 @@ class ThemeToggleButton extends StatelessWidget {
 
         return IconButton(
           icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-          tooltip: isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode',
+          tooltip: isDark ? strings.switchToLightMode : strings.switchToDarkMode,
           onPressed: () => toggleTheme(context),
         );
       },
     );
   }
 }
-
