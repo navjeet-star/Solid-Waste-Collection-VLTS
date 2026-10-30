@@ -92,10 +92,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpSuccessfully => 'Account created successfully';
 
   @override
-  String get departmentName => 'Urban Development Department';
+  String get departmentName => 'Urban Development & Housing Department';
 
   @override
-  String get footerTagline => 'Fleet Tracking & Route Monitoring • v1.0.0';
+  String get footerTagline => 'Fleet Tracking & Route Monitoring • v1.0.4';
 
   @override
   String get switchToLightMode => 'Switch to Light Mode';
@@ -128,23 +128,78 @@ class AppLocalizationsEn extends AppLocalizations {
   String get getStarted => 'Get Started';
 
   @override
-  String get overviewTitle1 => 'Welcome to UDD';
+  String get overviewTitle1 =>
+      'Door-to-Door Waste Collection and Monitoring System';
 
   @override
   String get overviewDesc1 =>
-      'Access urban development services and information in one place.';
+      'A smart system designed to manage, monitor, and track door-to-door waste collection activities efficiently, ensuring cleaner surroundings and better waste management.';
 
   @override
-  String get overviewTitle2 => 'Manage Your Work';
+  String get overviewTitle2 => 'SBM Waste Collection Management System';
 
   @override
   String get overviewDesc2 =>
-      'View schedules, manage activities, and track your daily tasks.';
+      'An integrated waste collection management system that helps monitor collection activities, manage operations, and support the vision of a clean and sustainable India under the Swachh Bharat Mission (SBM).';
 
   @override
-  String get overviewTitle3 => 'Track Your Progress';
+  String get overviewTitle3 => 'Real-Time Vehicle Tracking & Route Analytics';
 
   @override
   String get overviewDesc3 =>
-      'Stay updated with reports, notifications, and important information.';
+      'Track waste collection vehicles in real time with GPS, optimize daily pickup routes, and monitor landfill operations with complete transparency.';
+
+  @override
+  String get doorToDoorService => 'DOOR-TO-DOOR SERVICE';
+
+  @override
+  String get collecting => 'COLLECTING';
+
+  @override
+  String get routeTracked => 'ROUTE TRACKED';
+
+  @override
+  String get wetWaste => 'WET';
+
+  @override
+  String get dryWaste => 'DRY';
+
+  @override
+  String get swachhBharatMission => 'SWACHH BHARAT MISSION (SBM)';
+
+  @override
+  String get bioWaste => 'BIO';
+
+  @override
+  String get recycleWaste => 'RECYCLE';
+
+  @override
+  String get hazardWaste => 'HAZARD';
+
+  @override
+  String get sbmHub => 'SBM VLTS HUB';
+
+  @override
+  String get cleanCityKpi => 'Clean City KPI';
+
+  @override
+  String get smartSanitation => 'SMART SANITATION';
+
+  @override
+  String get realTimeTracking => 'REAL-TIME GPS TRACKING';
+
+  @override
+  String get activeFleet => 'ACTIVE FLEET';
+
+  @override
+  String get onRoute => 'ON ROUTE';
+
+  @override
+  String get routeOptimized => 'ROUTE OPTIMIZED';
+
+  @override
+  String get transferStation => 'TRANSFER STATION';
+
+  @override
+  String get fleetTrackingSample => 'Fleet #08 • Sector 4B';
 }

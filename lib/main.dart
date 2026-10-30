@@ -4,6 +4,7 @@ import 'package:solid_waste_collection_vlts/core/theme/app_theme_mode.dart';
 import 'package:solid_waste_collection_vlts/core/theme/dark_theme.dart';
 import 'package:solid_waste_collection_vlts/core/theme/light_theme.dart';
 import 'package:solid_waste_collection_vlts/l10n/app_localizations.dart';
+import 'package:solid_waste_collection_vlts/overview_screen.dart';
 import 'login_screen.dart';
 
 void main() {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
               themeMode: themeMode,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
-              home: const LoginScreen(),
+              home: const OverviewScreen(),
             );
           },
         );

@@ -263,13 +263,13 @@ abstract class AppLocalizations {
   /// No description provided for @departmentName.
   ///
   /// In en, this message translates to:
-  /// **'Urban Development Department'**
+  /// **'Urban Development & Housing Department'**
   String get departmentName;
 
   /// No description provided for @footerTagline.
   ///
   /// In en, this message translates to:
-  /// **'Fleet Tracking & Route Monitoring • v1.0.0'**
+  /// **'Fleet Tracking & Route Monitoring • v1.0.4'**
   String get footerTagline;
 
   /// No description provided for @switchToLightMode.
@@ -335,38 +335,146 @@ abstract class AppLocalizations {
   /// No description provided for @overviewTitle1.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to UDD'**
+  /// **'Door-to-Door Waste Collection and Monitoring System'**
   String get overviewTitle1;
 
   /// No description provided for @overviewDesc1.
   ///
   /// In en, this message translates to:
-  /// **'Access urban development services and information in one place.'**
+  /// **'A smart system designed to manage, monitor, and track door-to-door waste collection activities efficiently, ensuring cleaner surroundings and better waste management.'**
   String get overviewDesc1;
 
   /// No description provided for @overviewTitle2.
   ///
   /// In en, this message translates to:
-  /// **'Manage Your Work'**
+  /// **'SBM Waste Collection Management System'**
   String get overviewTitle2;
 
   /// No description provided for @overviewDesc2.
   ///
   /// In en, this message translates to:
-  /// **'View schedules, manage activities, and track your daily tasks.'**
+  /// **'An integrated waste collection management system that helps monitor collection activities, manage operations, and support the vision of a clean and sustainable India under the Swachh Bharat Mission (SBM).'**
   String get overviewDesc2;
 
   /// No description provided for @overviewTitle3.
   ///
   /// In en, this message translates to:
-  /// **'Track Your Progress'**
+  /// **'Real-Time Vehicle Tracking & Route Analytics'**
   String get overviewTitle3;
 
   /// No description provided for @overviewDesc3.
   ///
   /// In en, this message translates to:
-  /// **'Stay updated with reports, notifications, and important information.'**
+  /// **'Track waste collection vehicles in real time with GPS, optimize daily pickup routes, and monitor landfill operations with complete transparency.'**
   String get overviewDesc3;
+
+  /// No description provided for @doorToDoorService.
+  ///
+  /// In en, this message translates to:
+  /// **'DOOR-TO-DOOR SERVICE'**
+  String get doorToDoorService;
+
+  /// No description provided for @collecting.
+  ///
+  /// In en, this message translates to:
+  /// **'COLLECTING'**
+  String get collecting;
+
+  /// No description provided for @routeTracked.
+  ///
+  /// In en, this message translates to:
+  /// **'ROUTE TRACKED'**
+  String get routeTracked;
+
+  /// No description provided for @wetWaste.
+  ///
+  /// In en, this message translates to:
+  /// **'WET'**
+  String get wetWaste;
+
+  /// No description provided for @dryWaste.
+  ///
+  /// In en, this message translates to:
+  /// **'DRY'**
+  String get dryWaste;
+
+  /// No description provided for @swachhBharatMission.
+  ///
+  /// In en, this message translates to:
+  /// **'SWACHH BHARAT MISSION (SBM)'**
+  String get swachhBharatMission;
+
+  /// No description provided for @bioWaste.
+  ///
+  /// In en, this message translates to:
+  /// **'BIO'**
+  String get bioWaste;
+
+  /// No description provided for @recycleWaste.
+  ///
+  /// In en, this message translates to:
+  /// **'RECYCLE'**
+  String get recycleWaste;
+
+  /// No description provided for @hazardWaste.
+  ///
+  /// In en, this message translates to:
+  /// **'HAZARD'**
+  String get hazardWaste;
+
+  /// No description provided for @sbmHub.
+  ///
+  /// In en, this message translates to:
+  /// **'SBM VLTS HUB'**
+  String get sbmHub;
+
+  /// No description provided for @cleanCityKpi.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean City KPI'**
+  String get cleanCityKpi;
+
+  /// No description provided for @smartSanitation.
+  ///
+  /// In en, this message translates to:
+  /// **'SMART SANITATION'**
+  String get smartSanitation;
+
+  /// No description provided for @realTimeTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'REAL-TIME GPS TRACKING'**
+  String get realTimeTracking;
+
+  /// No description provided for @activeFleet.
+  ///
+  /// In en, this message translates to:
+  /// **'ACTIVE FLEET'**
+  String get activeFleet;
+
+  /// No description provided for @onRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'ON ROUTE'**
+  String get onRoute;
+
+  /// No description provided for @routeOptimized.
+  ///
+  /// In en, this message translates to:
+  /// **'ROUTE OPTIMIZED'**
+  String get routeOptimized;
+
+  /// No description provided for @transferStation.
+  ///
+  /// In en, this message translates to:
+  /// **'TRANSFER STATION'**
+  String get transferStation;
+
+  /// No description provided for @fleetTrackingSample.
+  ///
+  /// In en, this message translates to:
+  /// **'Fleet #08 • Sector 4B'**
+  String get fleetTrackingSample;
 }
 
 class _AppLocalizationsDelegate

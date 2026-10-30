@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
+import 'package:solid_waste_collection_vlts/home_screen.dart';
 import 'package:solid_waste_collection_vlts/overview_screen.dart';
 import 'package:solid_waste_collection_vlts/widgets/CommonSnackBar.dart';
 import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
@@ -51,7 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const OverviewScreen(),
+        builder: (context) => const HomeScreen(),
       ),
     );
   }
@@ -111,6 +112,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Icons.arrow_back_ios_new_rounded,
                             color: colorScheme.onSurface,
                             size: 20,
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: isDark
+                                ? colorScheme.surface
+                                : colorScheme.surface.withValues(alpha: 0.9),
+                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(
+                              color: colorScheme.outline.withValues(alpha: 0.4),
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              ThemeToggleButton(),
+                              SizedBox(width: 2),
+                              LanguageSelector(),
+                            ],
                           ),
                         ),
 

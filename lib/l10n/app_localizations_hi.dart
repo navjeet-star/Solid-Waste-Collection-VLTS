@@ -92,10 +92,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get signUpSuccessfully => 'खाता सफलतापूर्वक बनाया गया';
 
   @override
-  String get departmentName => 'शहरी विकास विभाग';
+  String get departmentName => 'नगर विकास एवं आवास विभाग';
 
   @override
-  String get footerTagline => 'फ्लीट ट्रैकिंग एवं रूट निगरानी • v1.0.0';
+  String get footerTagline => 'फ्लीट ट्रैकिंग एवं रूट निगरानी • v1.0.4';
 
   @override
   String get switchToLightMode => 'लाइट मोड में बदलें';
@@ -128,23 +128,77 @@ class AppLocalizationsHi extends AppLocalizations {
   String get getStarted => 'शुरू करें';
 
   @override
-  String get overviewTitle1 => 'यूडीडी में आपका स्वागत है';
+  String get overviewTitle1 => 'घर-घर अपशिष्ट संग्रह एवं निगरानी प्रणाली';
 
   @override
   String get overviewDesc1 =>
-      'शहरी विकास सेवाओं और जानकारी को एक ही स्थान पर प्राप्त करें।';
+      'घर-घर कचरा संग्रहण गतिविधियों को कुशलतापूर्वक प्रबंधित, मॉनिटर और ट्रैक करने के लिए डिज़ाइन किया गया एक स्मार्ट सिस्टम, जो स्वच्छ परिवेश और बेहतर कचरा प्रबंधन सुनिश्चित करता है।';
 
   @override
-  String get overviewTitle2 => 'अपना कार्य प्रबंधित करें';
+  String get overviewTitle2 => 'एसबीएम अपशिष्ट संग्रह प्रबंधन प्रणाली';
 
   @override
   String get overviewDesc2 =>
-      'शेड्यूल देखें, गतिविधियों को प्रबंधित करें और अपने दैनिक कार्यों को ट्रैक करें।';
+      'एक एकीकृत अपशिष्ट संग्रह प्रबंधन प्रणाली जो संग्रह गतिविधियों की निगरानी करने, संचालन प्रबंधित करने और स्वच्छ भारत मिशन (एसबीएम) के तहत स्वच्छ और सतत भारत के दृष्टिकोण का समर्थन करने में मदद करती है।';
 
   @override
-  String get overviewTitle3 => 'अपनी प्रगति ट्रैक करें';
+  String get overviewTitle3 => 'वास्तविक समय वाहन ट्रैकिंग एवं रूट विश्लेषण';
 
   @override
   String get overviewDesc3 =>
-      'रिपोर्ट्स, सूचनाओं और महत्वपूर्ण जानकारी से अपडेट रहें।';
+      'जीपीएस के साथ वास्तविक समय में अपशिष्ट संग्रहण वाहनों को ट्रैक करें, दैनिक पिकअप मार्गों को अनुकूलित करें, और पूर्ण पारदर्शिता के लिए लैंडफिल व ट्रांसफर स्टेशन संचालन की निगरानी करें।';
+
+  @override
+  String get doorToDoorService => 'घर-घर सेवा';
+
+  @override
+  String get collecting => 'संग्रह जारी';
+
+  @override
+  String get routeTracked => 'रूट ट्रैक किया गया';
+
+  @override
+  String get wetWaste => 'गीला';
+
+  @override
+  String get dryWaste => 'सूखा';
+
+  @override
+  String get swachhBharatMission => 'स्वच्छ भारत मिशन (एसबीएम)';
+
+  @override
+  String get bioWaste => 'जैविक';
+
+  @override
+  String get recycleWaste => 'पुनर्चक्रण';
+
+  @override
+  String get hazardWaste => 'खतरनाक';
+
+  @override
+  String get sbmHub => 'एसबीएम वीएलटीएस हब';
+
+  @override
+  String get cleanCityKpi => 'स्वच्छ शहर सूचकांक';
+
+  @override
+  String get smartSanitation => 'स्मार्ट स्वच्छता';
+
+  @override
+  String get realTimeTracking => 'वास्तविक समय जीपीएस ट्रैकिंग';
+
+  @override
+  String get activeFleet => 'सक्रिय फ्लीट';
+
+  @override
+  String get onRoute => 'रूट पर';
+
+  @override
+  String get routeOptimized => 'रूट अनुकूलित';
+
+  @override
+  String get transferStation => 'ट्रांसफर स्टेशन';
+
+  @override
+  String get fleetTrackingSample => 'फ्लीट #08 • सेक्टर 4B';
 }

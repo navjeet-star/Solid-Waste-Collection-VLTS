@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
+import 'package:solid_waste_collection_vlts/home_screen.dart';
 import 'package:solid_waste_collection_vlts/overview_screen.dart';
 import 'package:solid_waste_collection_vlts/signup_screen.dart';
 import 'package:solid_waste_collection_vlts/widgets/CommonSnackBar.dart';
@@ -42,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const OverviewScreen(),
+        builder: (context) => const HomeScreen(),
       ),
     );
   }
