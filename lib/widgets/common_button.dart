@@ -1,38 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_colors.dart';
-
 
 class CommonButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
 
-  CommonButton({
+  const CommonButton({
     super.key,
     required this.text,
-    this.onPressed
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return SizedBox(
       width: double.infinity,
       height: 50,
       child: ElevatedButton(
-          onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              foregroundColor: AppColors.white,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)
-              )
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
           ),
-          child: Text(text, style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,),
-          )
+        ),
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
     );
   }
-
 }

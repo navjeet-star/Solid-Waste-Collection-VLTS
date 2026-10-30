@@ -15,19 +15,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: Listenable.merge([appLocale, appThemeMode]),
-      builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          locale: appLocale.value,
-          themeMode: appThemeMode.value,
-          theme: lightTheme,
-          darkTheme: darkTheme,
-          title: 'Solid Waste Collection VLTS',
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          home: const LoginScreen(),
+    return ValueListenableBuilder<Locale>(
+      valueListenable: appLocale,
+      builder: (context, locale, child) {
+        return ValueListenableBuilder<ThemeMode>(
+          valueListenable: appThemeMode,
+          builder: (context, themeMode, _) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              locale: locale,
+              title: 'Solid Waste Collection VLTS',
+              theme: lightTheme,
+              darkTheme: darkTheme,
+              themeMode: themeMode,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              home: const LoginScreen(),
+            );
+          },
         );
       },
     );

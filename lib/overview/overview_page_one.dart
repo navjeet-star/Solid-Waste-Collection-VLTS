@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_colors.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 
 class OverviewPageOne extends StatelessWidget {
@@ -30,6 +29,8 @@ class _OverviewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.all(28),
       child: Column(
@@ -38,34 +39,34 @@ class _OverviewContent extends StatelessWidget {
           Container(
             height: 200,
             width: 200,
-            decoration: const BoxDecoration(
-              color: AppColors.white,
+            decoration: BoxDecoration(
+              color: colorScheme.primary.withValues(alpha: 0.12),
               shape: BoxShape.circle,
             ),
             child: Icon(
               icon,
               size: 100,
-              color: AppColors.primary,
+              color: colorScheme.primary,
             ),
           ),
           const SizedBox(height: 40),
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
-              color: AppColors.primary,
+              color: colorScheme.primary,
             ),
           ),
           const SizedBox(height: 16),
           Text(
             description,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               height: 1.6,
-              color: AppColors.textPrimary,
+              color: colorScheme.onSurface,
             ),
           ),
         ],

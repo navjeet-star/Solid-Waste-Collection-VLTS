@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_colors.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 import 'package:solid_waste_collection_vlts/home_screen.dart';
 import 'package:solid_waste_collection_vlts/overview/overview_page_one.dart';
 import 'package:solid_waste_collection_vlts/overview/overview_page_three.dart';
 import 'package:solid_waste_collection_vlts/overview/overview_page_two.dart';
+import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
 
 class OverviewScreen extends StatefulWidget {
   const OverviewScreen({super.key});
@@ -66,29 +66,33 @@ class _OverviewScreenState extends State<OverviewScreen> {
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n;
+    final colorScheme = Theme.of(context).colorScheme;
     final bool isFirstPage = _currentPage == 0;
     final bool isLastPage = _currentPage == _pages.length - 1;
 
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: colorScheme.surface,
       body: SafeArea(
         child: Column(
           children: [
-            // Skip button
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 16, top: 8),
-                child: TextButton(
-                  onPressed: _skipPages,
-                  child: Text(
-                    strings.skip,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFF1769D2),
+            // Top Bar: Theme toggle and Skip button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const ThemeToggleButton(),
+                  TextButton(
+                    onPressed: _skipPages,
+                    child: Text(
+                      strings.skip,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: colorScheme.primary,
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
 
@@ -123,8 +127,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                     width: isActive ? 24 : 8,
                     decoration: BoxDecoration(
                       color: isActive
-                          ? const Color(0xFF1769D2)
-                          : const Color(0xFFD6E4F5),
+                          ? colorScheme.primary
+                          : colorScheme.outline.withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(20),
                     ),
                   );
@@ -144,9 +148,12 @@ class _OverviewScreenState extends State<OverviewScreen> {
                     child: OutlinedButton(
                       onPressed: isFirstPage ? null : _previousPage,
                       style: OutlinedButton.styleFrom(
+                        foregroundColor: colorScheme.primary,
                         minimumSize: const Size(0, 52),
-                        side: const BorderSide(
-                          color: Color(0xFF1769D2),
+                        side: BorderSide(
+                          color: isFirstPage
+                              ? colorScheme.outline.withValues(alpha: 0.3)
+                              : colorScheme.primary,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -163,8 +170,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
                     child: ElevatedButton(
                       onPressed: _nextPage,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF1769D2),
-                        foregroundColor: AppColors.white,
+                        backgroundColor: colorScheme.primary,
+                        foregroundColor: colorScheme.onPrimary,
                         minimumSize: const Size(0, 52),
                         elevation: 0,
                         shape: RoundedRectangleBorder(

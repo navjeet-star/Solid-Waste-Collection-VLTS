@@ -28,6 +28,8 @@ final ThemeData lightTheme = ThemeData(
     surface: LightColors.surface,
     onPrimary: Colors.white,
     onSurface: LightColors.textPrimary,
+    onSurfaceVariant: LightColors.textSecondary,
+    outline: LightColors.border,
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: LightColors.surface,
