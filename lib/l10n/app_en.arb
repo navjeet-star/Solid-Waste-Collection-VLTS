@@ -1,17 +1,14 @@
+
 {
-  "appName": "Solid Waste Collection VLTS",
-  "home": "Home",
+  "welcomeBack": "Welcome Back",
+  "loginToYourAccount": "Login to your account",
+  "enterEmail": "Enter email",
+  "enterPassword": "Enter password",
+  "enterYourEmail": "Enter your email",
+  "enterYourPassword": "Enter your password",
   "login": "Login",
-  "profile": "Profile",
-  "mobileNumber": "Mobile Number",
-  "selectDate": "Select Date",
-  "selectULB": "Select ULB",
-  "district": "District",
-  "designation": "Designation",
-  "dumpingZone": "Dumping Zone",
-  "uploadPictures": "Upload Pictures",
-  "save": "Save",
-  "switchLanguage": "Switch Language",
-  "english": "English",
-  "hindi": "Hindi"
+  "profileClicked": "Profile clicked",
+  "notificationsClicked": "Notifications clicked",
+  "homeScreen": "Home Screen",
+  "language": "Language"
 }

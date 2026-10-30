@@ -10,47 +10,35 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Solid Waste Collection VLTS';
+  String get welcomeBack => 'Welcome Back';
 
   @override
-  String get home => 'Home';
+  String get loginToYourAccount => 'Login to your account';
+
+  @override
+  String get enterEmail => 'Enter email';
+
+  @override
+  String get enterPassword => 'Enter password';
+
+  @override
+  String get enterYourEmail => 'Enter your email';
+
+  @override
+  String get enterYourPassword => 'Enter your password';
 
   @override
   String get login => 'Login';
 
   @override
-  String get profile => 'Profile';
+  String get profileClicked => 'Profile clicked';
 
   @override
-  String get mobileNumber => 'Mobile Number';
+  String get notificationsClicked => 'Notifications clicked';
 
   @override
-  String get selectDate => 'Select Date';
+  String get homeScreen => 'Home Screen';
 
   @override
-  String get selectULB => 'Select ULB';
-
-  @override
-  String get district => 'District';
-
-  @override
-  String get designation => 'Designation';
-
-  @override
-  String get dumpingZone => 'Dumping Zone';
-
-  @override
-  String get uploadPictures => 'Upload Pictures';
-
-  @override
-  String get save => 'Save';
-
-  @override
-  String get switchLanguage => 'Switch Language';
-
-  @override
-  String get english => 'English';
-
-  @override
-  String get hindi => 'Hindi';
+  String get language => 'Language';
 }

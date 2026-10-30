@@ -98,17 +98,41 @@ abstract class AppLocalizations {
     Locale('hi'),
   ];
 
-  /// No description provided for @appName.
+  /// No description provided for @welcomeBack.
   ///
   /// In en, this message translates to:
-  /// **'Solid Waste Collection VLTS'**
-  String get appName;
+  /// **'Welcome Back'**
+  String get welcomeBack;
 
-  /// No description provided for @home.
+  /// No description provided for @loginToYourAccount.
   ///
   /// In en, this message translates to:
-  /// **'Home'**
-  String get home;
+  /// **'Login to your account'**
+  String get loginToYourAccount;
+
+  /// No description provided for @enterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter email'**
+  String get enterEmail;
+
+  /// No description provided for @enterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter password'**
+  String get enterPassword;
+
+  /// No description provided for @enterYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enterYourEmail;
+
+  /// No description provided for @enterYourPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enterYourPassword;
 
   /// No description provided for @login.
   ///
@@ -116,77 +140,29 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
-  /// No description provided for @profile.
+  /// No description provided for @profileClicked.
   ///
   /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
+  /// **'Profile clicked'**
+  String get profileClicked;
 
-  /// No description provided for @mobileNumber.
+  /// No description provided for @notificationsClicked.
   ///
   /// In en, this message translates to:
-  /// **'Mobile Number'**
-  String get mobileNumber;
+  /// **'Notifications clicked'**
+  String get notificationsClicked;
 
-  /// No description provided for @selectDate.
+  /// No description provided for @homeScreen.
   ///
   /// In en, this message translates to:
-  /// **'Select Date'**
-  String get selectDate;
+  /// **'Home Screen'**
+  String get homeScreen;
 
-  /// No description provided for @selectULB.
+  /// No description provided for @language.
   ///
   /// In en, this message translates to:
-  /// **'Select ULB'**
-  String get selectULB;
-
-  /// No description provided for @district.
-  ///
-  /// In en, this message translates to:
-  /// **'District'**
-  String get district;
-
-  /// No description provided for @designation.
-  ///
-  /// In en, this message translates to:
-  /// **'Designation'**
-  String get designation;
-
-  /// No description provided for @dumpingZone.
-  ///
-  /// In en, this message translates to:
-  /// **'Dumping Zone'**
-  String get dumpingZone;
-
-  /// No description provided for @uploadPictures.
-  ///
-  /// In en, this message translates to:
-  /// **'Upload Pictures'**
-  String get uploadPictures;
-
-  /// No description provided for @save.
-  ///
-  /// In en, this message translates to:
-  /// **'Save'**
-  String get save;
-
-  /// No description provided for @switchLanguage.
-  ///
-  /// In en, this message translates to:
-  /// **'Switch Language'**
-  String get switchLanguage;
-
-  /// No description provided for @english.
-  ///
-  /// In en, this message translates to:
-  /// **'English'**
-  String get english;
-
-  /// No description provided for @hindi.
-  ///
-  /// In en, this message translates to:
-  /// **'Hindi'**
-  String get hindi;
+  /// **'Language'**
+  String get language;
 }
 
 class _AppLocalizationsDelegate

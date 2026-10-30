@@ -10,47 +10,35 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
-  String get appName => 'ठोस अपशिष्ट संग्रह VLTS';
+  String get welcomeBack => 'वापसी पर स्वागत है';
 
   @override
-  String get home => 'होम';
+  String get loginToYourAccount => 'अपने खाते में लॉगिन करें';
 
   @override
-  String get login => 'लॉगिन';
+  String get enterEmail => 'ईमेल दर्ज करें';
 
   @override
-  String get profile => 'प्रोफ़ाइल';
+  String get enterPassword => 'पासवर्ड दर्ज करें';
 
   @override
-  String get mobileNumber => 'मोबाइल नंबर';
+  String get enterYourEmail => 'अपना ईमेल दर्ज करें';
 
   @override
-  String get selectDate => 'तारीख चुनें';
+  String get enterYourPassword => 'अपना पासवर्ड दर्ज करें';
 
   @override
-  String get selectULB => 'ULB चुनें';
+  String get login => 'लॉगिन करें';
 
   @override
-  String get district => 'ज़िला';
+  String get profileClicked => 'प्रोफ़ाइल पर क्लिक किया';
 
   @override
-  String get designation => 'पदनाम';
+  String get notificationsClicked => 'सूचनाओं पर क्लिक किया';
 
   @override
-  String get dumpingZone => 'डंपिंग ज़ोन';
+  String get homeScreen => 'होम स्क्रीन';
 
   @override
-  String get uploadPictures => 'तस्वीरें अपलोड करें';
-
-  @override
-  String get save => 'सहेजें';
-
-  @override
-  String get switchLanguage => 'भाषा बदलें';
-
-  @override
-  String get english => 'अंग्रेज़ी';
-
-  @override
-  String get hindi => 'हिंदी';
+  String get language => 'भाषा';
 }
