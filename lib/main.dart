@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_colors.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
+import 'package:solid_waste_collection_vlts/core/theme/app_theme_mode.dart';
+import 'package:solid_waste_collection_vlts/core/theme/dark_theme.dart';
+import 'package:solid_waste_collection_vlts/core/theme/light_theme.dart';
 import 'package:solid_waste_collection_vlts/l10n/app_localizations.dart';
 import 'login_screen.dart';
 
@@ -13,16 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Locale>(
-      valueListenable: appLocale,
-      builder: (context, locale, child) {
+    return ListenableBuilder(
+      listenable: Listenable.merge([appLocale, appThemeMode]),
+      builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          locale: locale,
+          locale: appLocale.value,
+          themeMode: appThemeMode.value,
+          theme: lightTheme,
+          darkTheme: darkTheme,
           title: 'Solid Waste Collection VLTS',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
-          ),
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           home: const LoginScreen(),
