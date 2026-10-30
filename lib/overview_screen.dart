@@ -79,9 +79,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const ThemeToggleButton(),
                   TextButton(
                     onPressed: _skipPages,
                     child: Text(
