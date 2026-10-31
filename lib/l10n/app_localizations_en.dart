@@ -202,4 +202,101 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fleetTrackingSample => 'Fleet #08 • Sector 4B';
+
+  @override
+  String get wasteCollectedThisMonth => 'Waste Collected This Month';
+
+  @override
+  String get targetProgressSummary =>
+      'of 3,500 MT Target • 67% • 8 Zones Active';
+
+  @override
+  String get totalUlbs => 'Total ULB(s)';
+
+  @override
+  String get totalWards => 'Total Wards';
+
+  @override
+  String get registeredFleet => 'Registered Fleet';
+
+  @override
+  String get collectionTrend => 'Collection Trend • October';
+
+  @override
+  String get collectionTrendRange => '0 — 140 MT daily';
+
+  @override
+  String get categories => 'Categories';
+
+  @override
+  String get viewAll => 'View All';
+
+  @override
+  String get wetWasteTitle => 'Wet / Organic Waste';
+
+  @override
+  String get wetWasteSubtitle => 'Kitchen, food & market organic waste';
+
+  @override
+  String get dryWasteTitle => 'Dry / Recyclable Waste';
+
+  @override
+  String get dryWasteSubtitle => 'Plastic, paper, metal & glass items';
+
+  @override
+  String get hazardousWasteTitle => 'Hazardous & Sanitary';
+
+  @override
+  String get hazardousWasteSubtitle => 'Chemical, medical & sanitary waste';
+
+  @override
+  String get inertWasteTitle => 'Inert & Construction Debris';
+
+  @override
+  String get inertWasteSubtitle => 'Road dust, silt, building rubble';
+
+  @override
+  String get fleetOperations => 'Live Fleet & Ward Status';
+
+  @override
+  String get wardNorth => 'Ward 12 • North Zone';
+
+  @override
+  String get wardCentral => 'Ward 07 • Central Market';
+
+  @override
+  String get wardEast => 'Ward 04 • East Enclave';
+
+  @override
+  String get truckCollectingStatus => 'Collecting • 88% complete';
+
+  @override
+  String get truckEnRouteStatus => 'En route to Transfer Station';
+
+  @override
+  String get truckCompletedStatus => 'Route Completed • 24.2 MT';
+
+  @override
+  String get monthSelector => 'October 2026';
+
+  @override
+  String get compactHeaderTitle => 'Waste Summary • 2,348 MT';
+
+  @override
+  String get profileRole => 'Fleet Operations Manager';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get dashboard => 'Dashboard';
+
+  @override
+  String get routeAnalytics => 'Route Analytics';
+
+  @override
+  String get vehicleTracking => 'Vehicle Tracking';
+
+  @override
+  String get reports => 'Reports';
 }

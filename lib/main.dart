@@ -3,8 +3,8 @@ import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 import 'package:solid_waste_collection_vlts/core/theme/app_theme_mode.dart';
 import 'package:solid_waste_collection_vlts/core/theme/dark_theme.dart';
 import 'package:solid_waste_collection_vlts/core/theme/light_theme.dart';
+import 'package:solid_waste_collection_vlts/ui/home/home_screen.dart';
 import 'package:solid_waste_collection_vlts/l10n/app_localizations.dart';
-import 'package:solid_waste_collection_vlts/overview_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
               themeMode: themeMode,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
-              home: const OverviewScreen(),
+              home: const HomeScreen(),
             );
           },
         );

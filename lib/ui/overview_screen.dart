@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/login_screen.dart';
-import 'package:solid_waste_collection_vlts/overview/overview_page_one.dart';
-import 'package:solid_waste_collection_vlts/overview/overview_page_three.dart';
-import 'package:solid_waste_collection_vlts/overview/overview_page_two.dart';
+import 'package:solid_waste_collection_vlts/ui/login_screen.dart';
+import 'package:solid_waste_collection_vlts/ui/overview/overview_page_one.dart';
+import 'package:solid_waste_collection_vlts/ui/overview/overview_page_three.dart';
+import 'package:solid_waste_collection_vlts/ui/overview/overview_page_two.dart';
 import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
 import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
 

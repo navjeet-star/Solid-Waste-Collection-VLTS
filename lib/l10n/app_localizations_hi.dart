@@ -201,4 +201,101 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get fleetTrackingSample => 'फ्लीट #08 • सेक्टर 4B';
+
+  @override
+  String get wasteCollectedThisMonth => 'इस माह संग्रहित कुल कचरा';
+
+  @override
+  String get targetProgressSummary =>
+      '3,500 मीट्रिक टन लक्ष्य • 67% • 8 ज़ोन सक्रिय';
+
+  @override
+  String get totalUlbs => 'कुल नगरीय निकाय';
+
+  @override
+  String get totalWards => 'कुल वार्ड';
+
+  @override
+  String get registeredFleet => 'पंजीकृत वाहन';
+
+  @override
+  String get collectionTrend => 'संग्रह रुझान • अक्टूबर';
+
+  @override
+  String get collectionTrendRange => '0 — 140 मीट्रिक टन प्रतिदिन';
+
+  @override
+  String get categories => 'श्रेणियां';
+
+  @override
+  String get viewAll => 'सभी देखें';
+
+  @override
+  String get wetWasteTitle => 'गीला / जैविक कचरा';
+
+  @override
+  String get wetWasteSubtitle => 'रसोई, भोजन व मंडी का जैविक अपशिष्ट';
+
+  @override
+  String get dryWasteTitle => 'सूखा / पुनर्चक्रण योग्य';
+
+  @override
+  String get dryWasteSubtitle => 'प्लास्टिक, कागज, धातु व कांच की वस्तुएं';
+
+  @override
+  String get hazardousWasteTitle => 'हानिकारक व स्वच्छता अपशिष्ट';
+
+  @override
+  String get hazardousWasteSubtitle => 'रासायनिक, चिकित्सीय व सैनिटरी कचरा';
+
+  @override
+  String get inertWasteTitle => 'निष्क्रिय व निर्माण मलबा';
+
+  @override
+  String get inertWasteSubtitle => 'सड़क की धूल, गाद व निर्माण अपशिष्ट';
+
+  @override
+  String get fleetOperations => 'लाइव फ्लीट व वार्ड स्थिति';
+
+  @override
+  String get wardNorth => 'वार्ड 12 • उत्तर ज़ोन';
+
+  @override
+  String get wardCentral => 'वार्ड 07 • सेंट्रल मार्केट';
+
+  @override
+  String get wardEast => 'वार्ड 04 • ईस्ट एन्क्लेव';
+
+  @override
+  String get truckCollectingStatus => 'संग्रह जारी • 88% पूर्ण';
+
+  @override
+  String get truckEnRouteStatus => 'ट्रांसफर स्टेशन के रास्ते में';
+
+  @override
+  String get truckCompletedStatus => 'रूट पूर्ण • 24.2 मीट्रिक टन';
+
+  @override
+  String get monthSelector => 'अक्टूबर 2026';
+
+  @override
+  String get compactHeaderTitle => 'अपशिष्ट सारांश • 2,348 MT';
+
+  @override
+  String get profileRole => 'फ्लीट संचालन प्रबंधक';
+
+  @override
+  String get logout => 'लॉग आउट';
+
+  @override
+  String get dashboard => 'डैशबोर्ड';
+
+  @override
+  String get routeAnalytics => 'रूट विश्लेषण';
+
+  @override
+  String get vehicleTracking => 'वाहन ट्रैकिंग';
+
+  @override
+  String get reports => 'रिपोर्ट';
 }

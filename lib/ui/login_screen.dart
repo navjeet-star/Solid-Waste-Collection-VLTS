@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/home_screen.dart';
-import 'package:solid_waste_collection_vlts/signup_screen.dart';
+import 'package:solid_waste_collection_vlts/ui/home/home_screen.dart';
+import 'package:solid_waste_collection_vlts/ui/signup_screen.dart';
 import 'package:solid_waste_collection_vlts/widgets/CommonSnackBar.dart';
 import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
 import 'package:solid_waste_collection_vlts/widgets/common_button.dart';

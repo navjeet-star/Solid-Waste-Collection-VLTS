@@ -475,6 +475,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fleet #08 • Sector 4B'**
   String get fleetTrackingSample;
+
+  /// No description provided for @wasteCollectedThisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Waste Collected This Month'**
+  String get wasteCollectedThisMonth;
+
+  /// No description provided for @targetProgressSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'of 3,500 MT Target • 67% • 8 Zones Active'**
+  String get targetProgressSummary;
+
+  /// No description provided for @totalUlbs.
+  ///
+  /// In en, this message translates to:
+  /// **'Total ULB(s)'**
+  String get totalUlbs;
+
+  /// No description provided for @totalWards.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Wards'**
+  String get totalWards;
+
+  /// No description provided for @registeredFleet.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered Fleet'**
+  String get registeredFleet;
+
+  /// No description provided for @collectionTrend.
+  ///
+  /// In en, this message translates to:
+  /// **'Collection Trend • October'**
+  String get collectionTrend;
+
+  /// No description provided for @collectionTrendRange.
+  ///
+  /// In en, this message translates to:
+  /// **'0 — 140 MT daily'**
+  String get collectionTrendRange;
+
+  /// No description provided for @categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// No description provided for @viewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'View All'**
+  String get viewAll;
+
+  /// No description provided for @wetWasteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wet / Organic Waste'**
+  String get wetWasteTitle;
+
+  /// No description provided for @wetWasteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kitchen, food & market organic waste'**
+  String get wetWasteSubtitle;
+
+  /// No description provided for @dryWasteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dry / Recyclable Waste'**
+  String get dryWasteTitle;
+
+  /// No description provided for @dryWasteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Plastic, paper, metal & glass items'**
+  String get dryWasteSubtitle;
+
+  /// No description provided for @hazardousWasteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hazardous & Sanitary'**
+  String get hazardousWasteTitle;
+
+  /// No description provided for @hazardousWasteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Chemical, medical & sanitary waste'**
+  String get hazardousWasteSubtitle;
+
+  /// No description provided for @inertWasteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Inert & Construction Debris'**
+  String get inertWasteTitle;
+
+  /// No description provided for @inertWasteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Road dust, silt, building rubble'**
+  String get inertWasteSubtitle;
+
+  /// No description provided for @fleetOperations.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Fleet & Ward Status'**
+  String get fleetOperations;
+
+  /// No description provided for @wardNorth.
+  ///
+  /// In en, this message translates to:
+  /// **'Ward 12 • North Zone'**
+  String get wardNorth;
+
+  /// No description provided for @wardCentral.
+  ///
+  /// In en, this message translates to:
+  /// **'Ward 07 • Central Market'**
+  String get wardCentral;
+
+  /// No description provided for @wardEast.
+  ///
+  /// In en, this message translates to:
+  /// **'Ward 04 • East Enclave'**
+  String get wardEast;
+
+  /// No description provided for @truckCollectingStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Collecting • 88% complete'**
+  String get truckCollectingStatus;
+
+  /// No description provided for @truckEnRouteStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'En route to Transfer Station'**
+  String get truckEnRouteStatus;
+
+  /// No description provided for @truckCompletedStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Route Completed • 24.2 MT'**
+  String get truckCompletedStatus;
+
+  /// No description provided for @monthSelector.
+  ///
+  /// In en, this message translates to:
+  /// **'October 2026'**
+  String get monthSelector;
+
+  /// No description provided for @compactHeaderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Waste Summary • 2,348 MT'**
+  String get compactHeaderTitle;
+
+  /// No description provided for @profileRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Fleet Operations Manager'**
+  String get profileRole;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @dashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get dashboard;
+
+  /// No description provided for @routeAnalytics.
+  ///
+  /// In en, this message translates to:
+  /// **'Route Analytics'**
+  String get routeAnalytics;
+
+  /// No description provided for @vehicleTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Tracking'**
+  String get vehicleTracking;
+
+  /// No description provided for @reports.
+  ///
+  /// In en, this message translates to:
+  /// **'Reports'**
+  String get reports;
 }
 
 class _AppLocalizationsDelegate
