@@ -41,7 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   // Layer 1: Natural-height Hero Header at the top
                   HeroHeaderContent(
-                    onProfileTap: () => _scaffoldKey.currentState?.openDrawer(),
+                    // onProfileTap: () => _scaffoldKey.currentState?.openDrawer(),
+                    onProfileTap:() {},
                     onNotificationTap: () => CommonSnackBar.show(
                       context,
                       strings.notificationsClicked,
