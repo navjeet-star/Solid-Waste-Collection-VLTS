@@ -95,5 +95,9 @@
   "dashboard": "Dashboard",
   "routeAnalytics": "Route Analytics",
   "vehicleTracking": "Vehicle Tracking",
-  "reports": "Reports"
+  "reports": "Reports",
+  "dashboardModules": "Dashboard Modules",
+  "attendanceDashboard": "Attendance Dashboard",
+  "ulbProgressReport": "ULB-wise Progress Report",
+  "swachhtaAppComplaints": "Swachhta App Complaints"
 }

@@ -667,6 +667,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reports'**
   String get reports;
+
+  /// No description provided for @dashboardModules.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard Modules'**
+  String get dashboardModules;
+
+  /// No description provided for @attendanceDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendance Dashboard'**
+  String get attendanceDashboard;
+
+  /// No description provided for @ulbProgressReport.
+  ///
+  /// In en, this message translates to:
+  /// **'ULB-wise Progress Report'**
+  String get ulbProgressReport;
+
+  /// No description provided for @swachhtaAppComplaints.
+  ///
+  /// In en, this message translates to:
+  /// **'Swachhta App Complaints'**
+  String get swachhtaAppComplaints;
 }
 
 class _AppLocalizationsDelegate

@@ -210,13 +210,13 @@ class AppLocalizationsHi extends AppLocalizations {
       '3,500 मीट्रिक टन लक्ष्य • 67% • 8 ज़ोन सक्रिय';
 
   @override
-  String get totalUlbs => 'कुल नगरीय निकाय';
+  String get totalUlbs => 'Total ULB(s)';
 
   @override
-  String get totalWards => 'कुल वार्ड';
+  String get totalWards => 'Total Wards';
 
   @override
-  String get registeredFleet => 'पंजीकृत वाहन';
+  String get registeredFleet => 'Registered Fleet';
 
   @override
   String get collectionTrend => 'संग्रह रुझान • अक्टूबर';
@@ -298,4 +298,16 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get reports => 'रिपोर्ट';
+
+  @override
+  String get dashboardModules => 'डैशबोर्ड मॉड्यूल';
+
+  @override
+  String get attendanceDashboard => 'उपस्थिति डैशबोर्ड';
+
+  @override
+  String get ulbProgressReport => 'निकायवार प्रगति रिपोर्ट';
+
+  @override
+  String get swachhtaAppComplaints => 'स्वच्छता ऐप शिकायतें';
 }

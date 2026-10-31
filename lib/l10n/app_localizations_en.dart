@@ -299,4 +299,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reports => 'Reports';
+
+  @override
+  String get dashboardModules => 'Dashboard Modules';
+
+  @override
+  String get attendanceDashboard => 'Attendance Dashboard';
+
+  @override
+  String get ulbProgressReport => 'ULB-wise Progress Report';
+
+  @override
+  String get swachhtaAppComplaints => 'Swachhta App Complaints';
 }
