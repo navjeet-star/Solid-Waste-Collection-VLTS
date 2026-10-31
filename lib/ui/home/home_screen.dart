@@ -126,6 +126,18 @@ class _HomeBodyContent extends StatelessWidget {
         color: const Color(0xFFEF4444),
         onTap: () => CommonSnackBar.show(context, strings.swachhtaAppComplaints),
       ),
+      ModuleItem(
+        title: strings.ulbProgressReport,
+        icon: Icons.pie_chart_rounded,
+        color: const Color(0xFFF59E0B),
+        onTap: () => CommonSnackBar.show(context, strings.ulbProgressReport),
+      ),
+      ModuleItem(
+        title: strings.swachhtaAppComplaints,
+        icon: Icons.mark_chat_unread_rounded,
+        color: const Color(0xFFEF4444),
+        onTap: () => CommonSnackBar.show(context, strings.swachhtaAppComplaints),
+      ),
     ];
 
     return Column(

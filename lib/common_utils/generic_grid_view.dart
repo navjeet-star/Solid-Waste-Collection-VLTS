@@ -43,7 +43,7 @@ class GenericGridView<T> extends StatelessWidget {
     this.crossAxisSpacing = 12.0,
     this.mainAxisSpacing = 12.0,
     this.childAspectRatio = 1.05,
-    this.padding,
+    this.padding = EdgeInsets.zero,
     this.physics = const NeverScrollableScrollPhysics(),
     this.shrinkWrap = true,
     this.wideBreakpoint = 600.0,
@@ -64,20 +64,24 @@ class GenericGridView<T> extends StatelessWidget {
                 ? wideCrossAxisCount
                 : crossAxisCount;
 
-        return GridView.builder(
-          padding: padding,
-          shrinkWrap: shrinkWrap,
-          physics: physics,
-          itemCount: items.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: effectiveCrossAxisCount,
-            crossAxisSpacing: crossAxisSpacing,
-            mainAxisSpacing: mainAxisSpacing,
-            childAspectRatio: childAspectRatio,
+        return MediaQuery.removePadding(
+          context: context,
+          removeTop: true,
+          child: GridView.builder(
+            padding:  EdgeInsets.zero,
+            shrinkWrap: shrinkWrap,
+            physics: physics,
+            itemCount: items.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: effectiveCrossAxisCount,
+              crossAxisSpacing: crossAxisSpacing,
+              mainAxisSpacing: mainAxisSpacing,
+              childAspectRatio: childAspectRatio,
+            ),
+            itemBuilder: (context, index) {
+              return itemBuilder(context, items[index], index);
+            },
           ),
-          itemBuilder: (context, index) {
-            return itemBuilder(context, items[index], index);
-          },
         );
       },
     );

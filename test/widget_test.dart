@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:solid_waste_collection_vlts/common_utils/generic_grid_view.dart';
 import 'package:solid_waste_collection_vlts/main.dart';
 import 'package:solid_waste_collection_vlts/models/module_item.dart';
-import 'package:solid_waste_collection_vlts/ui/home/dashboard_modules_grid.dart';
 import 'package:solid_waste_collection_vlts/ui/home/home_screen.dart';
-import 'package:solid_waste_collection_vlts/common_utils/generic_grid_view.dart';
+import 'package:solid_waste_collection_vlts/ui/home/module_card_item.dart';
 
 void main() {
   testWidgets('HomeScreen renders cleanly on modern phone (390x844)', (tester) async {
@@ -18,6 +18,7 @@ void main() {
 
     expect(find.byType(HomeScreen), findsOneWidget);
     expect(find.byType(GenericGridView<ModuleItem>), findsOneWidget);
+    expect(find.byType(ModuleCardItem), findsNWidgets(4));
     expect(tester.takeException(), isNull);
   });
 
@@ -47,7 +48,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('GenericGridView dynamically generates items from data list', (tester) async {
+  testWidgets('GenericGridView and ModuleCardItem dynamically generate items from data list', (tester) async {
     String? tappedModuleId;
 
     final testModules = [
@@ -94,6 +95,7 @@ void main() {
     expect(find.text('Attendance Dashboard'), findsOneWidget);
     expect(find.text('ULB-wise Progress Report'), findsNWidgets(2));
     expect(find.text('Swachhta App Complaints'), findsOneWidget);
+    expect(find.byType(ModuleCardItem), findsNWidgets(4));
 
     await tester.tap(find.text('Attendance Dashboard'));
     await tester.pumpAndSettle();
