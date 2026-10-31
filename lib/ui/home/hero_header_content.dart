@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:solid_waste_collection_vlts/core/app_locale.dart';
 import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
 
-/// Rich Hero Header with ambient gradients, app title, and 3-metric card
+/// Rich Hero Header with solid waste management background image,
+/// semi-transparent black overlay, app title, and 3-metric card
 class HeroHeaderContent extends StatelessWidget {
   final VoidCallback onProfileTap;
   final VoidCallback onNotificationTap;
@@ -20,16 +21,34 @@ class HeroHeaderContent extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: colorScheme.primary
+        color: colorScheme.primary,
       ),
       child: Stack(
         children: [
-          // Safe area header content
+          // Background JPEG image related to solid waste management
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/waste_management_bg.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          // Semi-transparent black overlay on top of the image
+          Positioned.fill(
+            child: Container(
+              color: Colors.black.withValues(alpha: 0.55),
+            ),
+          ),
+
+          // Safe area header content (existing text and positions kept unchanged)
           SafeArea(
             bottom: false,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 28),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
                 // Top Navigation Bar
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -199,6 +218,8 @@ class HeroHeaderContent extends StatelessWidget {
                           letterSpacing: 0.1,
                         ),
                       ),
+
+
                       const SizedBox(height: 18),
 
                       // 3-Column Translucent Metric Card (ULBs, Wards, Registered Fleet)
@@ -324,9 +345,9 @@ class HeroHeaderContent extends StatelessWidget {
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
 }
-
+}

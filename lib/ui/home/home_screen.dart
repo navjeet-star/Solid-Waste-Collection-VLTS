@@ -18,43 +18,66 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    const overlap = 24.0;
 
     return Scaffold(
       key: _scaffoldKey,
       drawer: const SideMenu(),
       backgroundColor: colorScheme.surface,
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(
-          parent: AlwaysScrollableScrollPhysics(),
-        ),
-        slivers: [
-          // Hero Header
-          SliverToBoxAdapter(
-            child: HeroHeaderContent(
-              onProfileTap: () => _scaffoldKey.currentState?.openDrawer(),
-              onNotificationTap: () => CommonSnackBar.show(
-                context,
-                strings.notificationsClicked,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Layer 1: Natural-height Hero Header at the top
+                  HeroHeaderContent(
+                    onProfileTap: () => _scaffoldKey.currentState?.openDrawer(),
+                    onNotificationTap: () => CommonSnackBar.show(
+                      context,
+                      strings.notificationsClicked,
+                    ),
+                  ),
+
+                  // Layer 2: Body card placed ON TOP of header with top curve,
+                  // overlap, elevation shadow, and filling all remaining height
+                  Transform.translate(
+                    offset: const Offset(0, -overlap),
+                    child: Container(
+                      width: double.infinity,
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight * 0.6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: colorScheme.surface,
+                        borderRadius: const BorderRadius.vertical(
+                          top: Radius.circular(32),
+                        ),
+                      ),
+                      padding: const EdgeInsets.fromLTRB(18, 20, 18, 36),
+                      child: _HomeBodyContent(
+                        onViewAllCategories: () =>
+                            CommonSnackBar.show(context, strings.categories),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-
-          // Categories Sheet filling all the remaining height
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: _HomeBodyContent(
-              onViewAllCategories: () =>
-                  CommonSnackBar.show(context, strings.categories),
-            ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
 }
 
-/// Categories Sheet with top curve placed directly above the background
-/// and expanding to fill all remaining height
+/// Categories Sheet Content with Trend Card, Header, and Category List
 class _HomeBodyContent extends StatelessWidget {
   final VoidCallback onViewAllCategories;
 
@@ -64,124 +87,96 @@ class _HomeBodyContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    final heroBottomColor = colorScheme.primary;
-
-    return Stack(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Green background strip placed behind the top curve
-        Container(
-          color: heroBottomColor,
+        const SizedBox(height: 20),
+
+        // Waste Categories Header
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              strings.categories,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.onSurface,
+              ),
+            ),
+            GestureDetector(
+              onTap: onViewAllCategories,
+              child: Text(
+                strings.viewAll,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: colorScheme.primary,
+                ),
+              ),
+            ),
+          ],
         ),
 
-        // White categories container filling all remaining vertical height
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: colorScheme.surface,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(36)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: isDark ? 0.45 : 0.09),
-                blurRadius: 18,
-                offset: const Offset(0, -6),
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.fromLTRB(20, 30, 20, 36),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    strings.categories,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.onSurface,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: onViewAllCategories,
-                    child: Text(
-                      strings.viewAll,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+        const SizedBox(height: 14),
 
-              const SizedBox(height: 16),
+        // Category 1: Wet / Organic Waste
+        _CategoryItem(
+          icon: Icons.compost_rounded,
+          iconColor: const Color(0xFF10B981),
+          iconBgColor: const Color(0xFF10B981).withValues(alpha: 0.12),
+          title: strings.wetWasteTitle,
+          subtitle: strings.wetWasteSubtitle,
+          weight: '1,420.5 MT',
+          percentage: '60.5%',
+          progress: 0.605,
+          progressColor: const Color(0xFF10B981),
+        ),
 
-              // Category 1: Wet / Organic Waste
-              _CategoryItem(
-                icon: Icons.compost_rounded,
-                iconColor: const Color(0xFF10B981),
-                iconBgColor: const Color(0xFF10B981).withValues(alpha: 0.12),
-                title: strings.wetWasteTitle,
-                subtitle: strings.wetWasteSubtitle,
-                weight: '1,420.5 MT',
-                percentage: '60.5%',
-                progress: 0.605,
-                progressColor: const Color(0xFF10B981),
-              ),
+        const SizedBox(height: 12),
 
-              const SizedBox(height: 12),
+        // Category 2: Dry / Recyclable Waste
+        _CategoryItem(
+          icon: Icons.recycling_rounded,
+          iconColor: const Color(0xFF3B82F6),
+          iconBgColor: const Color(0xFF3B82F6).withValues(alpha: 0.12),
+          title: strings.dryWasteTitle,
+          subtitle: strings.dryWasteSubtitle,
+          weight: '682.3 MT',
+          percentage: '29.1%',
+          progress: 0.291,
+          progressColor: const Color(0xFF3B82F6),
+        ),
 
-              // Category 2: Dry / Recyclable Waste
-              _CategoryItem(
-                icon: Icons.recycling_rounded,
-                iconColor: const Color(0xFF3B82F6),
-                iconBgColor: const Color(0xFF3B82F6).withValues(alpha: 0.12),
-                title: strings.dryWasteTitle,
-                subtitle: strings.dryWasteSubtitle,
-                weight: '682.3 MT',
-                percentage: '29.1%',
-                progress: 0.291,
-                progressColor: const Color(0xFF3B82F6),
-              ),
+        const SizedBox(height: 12),
 
-              const SizedBox(height: 12),
+        // Category 3: Hazardous & Sanitary
+        _CategoryItem(
+          icon: Icons.warning_amber_rounded,
+          iconColor: const Color(0xFFF59E0B),
+          iconBgColor: const Color(0xFFF59E0B).withValues(alpha: 0.12),
+          title: strings.hazardousWasteTitle,
+          subtitle: strings.hazardousWasteSubtitle,
+          weight: '164.8 MT',
+          percentage: '7.0%',
+          progress: 0.07,
+          progressColor: const Color(0xFFF59E0B),
+        ),
 
-              // Category 3: Hazardous & Sanitary
-              _CategoryItem(
-                icon: Icons.warning_amber_rounded,
-                iconColor: const Color(0xFFF59E0B),
-                iconBgColor: const Color(0xFFF59E0B).withValues(alpha: 0.12),
-                title: strings.hazardousWasteTitle,
-                subtitle: strings.hazardousWasteSubtitle,
-                weight: '164.8 MT',
-                percentage: '7.0%',
-                progress: 0.07,
-                progressColor: const Color(0xFFF59E0B),
-              ),
+        const SizedBox(height: 12),
 
-              const SizedBox(height: 12),
-
-              // Category 4: Inert & Construction Debris
-              _CategoryItem(
-                icon: Icons.foundation_rounded,
-                iconColor: const Color(0xFF14B8A6),
-                iconBgColor: const Color(0xFF14B8A6).withValues(alpha: 0.12),
-                title: strings.inertWasteTitle,
-                subtitle: strings.inertWasteSubtitle,
-                weight: '81.0 MT',
-                percentage: '3.4%',
-                progress: 0.034,
-                progressColor: const Color(0xFF14B8A6),
-              ),
-
-              const SizedBox(height: 24),
-            ],
-          ),
+        // Category 4: Inert & Construction Debris
+        _CategoryItem(
+          icon: Icons.foundation_rounded,
+          iconColor: const Color(0xFF14B8A6),
+          iconBgColor: const Color(0xFF14B8A6).withValues(alpha: 0.12),
+          title: strings.inertWasteTitle,
+          subtitle: strings.inertWasteSubtitle,
+          weight: '81.0 MT',
+          percentage: '3.4%',
+          progress: 0.034,
+          progressColor: const Color(0xFF14B8A6),
         ),
       ],
     );
