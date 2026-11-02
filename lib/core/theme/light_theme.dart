@@ -12,6 +12,15 @@ class LightColors {
   static const Color textSecondary = Color(0xFF6B7D74);
   static const Color border = Color(0xFFD6E2DA);
   static const Color divider = Color(0xFFE8EFEA);
+
+  // 7 Additional Semantic & Feature Colors
+  static const Color tertiary = Color(0xFFF59E0B); // Amber / Highlight
+  static const Color error = Color(0xFFEF4444); // Red / Alert
+  static const Color success = Color(0xFF16A34A); // Vibrant Green / Operational Status
+  static const Color warning = Color(0xFFD97706); // Dark Amber / Warning
+  static const Color info = Color(0xFF2563EB); // Telemetry Blue / Info
+  static const Color cardBackground = Color(0xFFFFFFFF); // Elevated Card Surface
+  static const Color accent = Color(0xFF6366F1); // Indigo / Attendance & Analytics
 }
 
 final ThemeData lightTheme = ThemeData(
@@ -22,7 +31,6 @@ final ThemeData lightTheme = ThemeData(
     primary: LightColors.primary,
     secondary: LightColors.secondary,
     surface: LightColors.surface,
-    onPrimary: Colors.white,
     onSurface: LightColors.textPrimary,
     onSurfaceVariant: LightColors.textSecondary,
     outline: LightColors.border,

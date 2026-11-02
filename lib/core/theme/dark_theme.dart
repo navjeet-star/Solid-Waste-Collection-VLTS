@@ -11,8 +11,16 @@ class DarkColors {
   static const Color textPrimary = Color(0xFFF0FDF4); // High contrast light text
   static const Color textSecondary = Color(0xFF9EABA2); // Muted sage text
   static const Color border = Color(0xFF28382F); // Subtle dark outline
-  static const Color divider = Color(0xFF233129);
+  static const Color divider = Color(0xFF233129); // Dark divider
 
+  // 7 Additional Semantic & Feature Colors
+  static const Color tertiary = Color(0xFFFBBF24); // Amber / Highlight
+  static const Color error = Color(0xFFF87171); // Soft Red / Alert
+  static const Color success = Color(0xFF4ADE80); // Bright Green / Operational Status
+  static const Color warning = Color(0xFFFBBF24); // Warm Amber / Caution
+  static const Color info = Color(0xFF60A5FA); // Sky Blue / Telemetry
+  static const Color cardBackground = Color(0xFF1F2B25); // Elevated Card Surface
+  static const Color accent = Color(0xFF818CF8); // Soft Indigo / Attendance & Analytics
 }
 
 final ThemeData darkTheme = ThemeData(
@@ -23,7 +31,6 @@ final ThemeData darkTheme = ThemeData(
     primary: DarkColors.primary,
     secondary: DarkColors.secondary,
     surface: DarkColors.surface,
-    onPrimary: Color(0xFF06331C), // High-contrast dark text on bright green primary
     onSurface: DarkColors.textPrimary,
     onSurfaceVariant: DarkColors.textSecondary,
     outline: DarkColors.border,
