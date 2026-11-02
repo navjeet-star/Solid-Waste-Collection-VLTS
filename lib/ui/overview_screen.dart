@@ -5,6 +5,7 @@ import 'package:solid_waste_collection_vlts/ui/overview/overview_page_one.dart';
 import 'package:solid_waste_collection_vlts/ui/overview/overview_page_three.dart';
 import 'package:solid_waste_collection_vlts/ui/overview/overview_page_two.dart';
 import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
+import 'package:solid_waste_collection_vlts/widgets/common_button.dart';
 import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
 
 class OverviewScreen extends StatefulWidget {
@@ -170,71 +171,23 @@ class _OverviewScreenState extends State<OverviewScreen> {
                   AnimatedOpacity(
                     duration: const Duration(milliseconds: 250),
                     opacity: isFirstPage ? 0.35 : 1.0,
-                    child: OutlinedButton(
+                    child: CommonOutlinedButton(
+                      text: strings.preview,
+                      width: 100,
                       onPressed: isFirstPage ? null : _previousPage,
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: colorScheme.primary,
-                        disabledForegroundColor: colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
-                        minimumSize: const Size(100, 52),
-                        side: BorderSide(
-                          color: isFirstPage
-                              ? colorScheme.outline.withValues(alpha: 0.25)
-                              : colorScheme.primary,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      child: Text(strings.preview),
                     ),
                   ),
 
                   const SizedBox(width: 16),
 
-                  // Next / Get Started button with smooth transition
+                  // Next / Get Started button with CommonButton
                   Expanded(
-                    child: ElevatedButton(
+                    child: CommonButton(
+                      text: isLastPage ? strings.getStarted : strings.next,
+                      icon: isLastPage
+                          ? Icons.check_circle_outline_rounded
+                          : Icons.arrow_forward_rounded,
                       onPressed: _nextPage,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: colorScheme.primary,
-                        foregroundColor: colorScheme.onPrimary,
-                        minimumSize: const Size(0, 52),
-                        elevation: 2,
-                        shadowColor: colorScheme.primary.withValues(alpha: 0.35),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      child: AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 250),
-                        transitionBuilder: (child, animation) {
-                          return FadeTransition(
-                            opacity: animation,
-                            child: ScaleTransition(scale: animation, child: child),
-                          );
-                        },
-                        child: Row(
-                          key: ValueKey<bool>(isLastPage),
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              isLastPage ? strings.getStarted : strings.next,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 0.3,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Icon(
-                              isLastPage
-                                  ? Icons.check_circle_outline_rounded
-                                  : Icons.arrow_forward_rounded,
-                              size: 18,
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
                   ),
                 ],

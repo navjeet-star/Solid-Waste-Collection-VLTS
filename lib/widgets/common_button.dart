@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+export 'common_outlined_button.dart';
+
 class CommonButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
