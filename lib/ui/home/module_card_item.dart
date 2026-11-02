@@ -14,20 +14,17 @@ class ModuleCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final isDark = theme.brightness == Brightness.dark;
     final itemColor = item.color ?? colorScheme.primary;
 
     return Card(
       margin: EdgeInsets.zero,
       elevation: 2.5,
-      shadowColor: itemColor.withValues(alpha: isDark ? 0.25 : 0.12),
-      color: isDark ? colorScheme.surface : Colors.white,
+      shadowColor: colorScheme.shadow.withValues(alpha: 0.12),
+      color: colorScheme.surface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18),
         side: BorderSide(
-          color: colorScheme.outline.withValues(
-            alpha: isDark ? 0.22 : 0.12,
-          ),
+          color: colorScheme.outline.withValues(alpha: 0.35),
           width: 1.2,
         ),
       ),
@@ -43,7 +40,7 @@ class ModuleCardItem extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                itemColor.withValues(alpha: isDark ? 0.08 : 0.035),
+                itemColor.withValues(alpha: 0.06),
                 Colors.transparent,
               ],
             ),
@@ -67,15 +64,13 @@ class ModuleCardItem extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          itemColor.withValues(alpha: isDark ? 0.28 : 0.16),
-                          itemColor.withValues(alpha: isDark ? 0.14 : 0.07),
+                          itemColor.withValues(alpha: 0.18),
+                          itemColor.withValues(alpha: 0.08),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(13),
                       border: Border.all(
-                        color: itemColor.withValues(
-                          alpha: isDark ? 0.35 : 0.22,
-                        ),
+                        color: itemColor.withValues(alpha: 0.28),
                         width: 1,
                       ),
                     ),
@@ -92,9 +87,7 @@ class ModuleCardItem extends StatelessWidget {
                     height: 28,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: itemColor.withValues(
-                        alpha: isDark ? 0.16 : 0.08,
-                      ),
+                      color: itemColor.withValues(alpha: 0.12),
                     ),
                     child: Icon(
                       Icons.arrow_outward_rounded,

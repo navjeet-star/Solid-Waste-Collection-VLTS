@@ -68,7 +68,7 @@ class GenericGridView<T> extends StatelessWidget {
           context: context,
           removeTop: true,
           child: GridView.builder(
-            padding:  EdgeInsets.zero,
+            padding: padding ?? EdgeInsets.zero,
             shrinkWrap: shrinkWrap,
             physics: physics,
             itemCount: items.length,

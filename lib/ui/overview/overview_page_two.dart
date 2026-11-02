@@ -136,7 +136,6 @@ class _SbmManagementIllustration extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       width: 290,
@@ -149,9 +148,7 @@ class _SbmManagementIllustration extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: isDark
-                ? Colors.black.withValues(alpha: 0.35)
-                : colorScheme.primary.withValues(alpha: 0.12),
+            color: colorScheme.shadow.withValues(alpha: 0.12),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -182,16 +179,14 @@ class _SbmManagementIllustration extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: isDark
-                      ? colorScheme.surface.withValues(alpha: 0.88)
-                      : Colors.white.withValues(alpha: 0.92),
+                  color: colorScheme.surface.withValues(alpha: 0.90),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
                     color: colorScheme.primary.withValues(alpha: 0.3),
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.08),
+                      color: colorScheme.shadow.withValues(alpha: 0.08),
                       blurRadius: 6,
                     ),
                   ],

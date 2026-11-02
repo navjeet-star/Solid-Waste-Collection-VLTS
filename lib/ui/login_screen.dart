@@ -51,7 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
@@ -67,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 240,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: colorScheme.primary.withValues(alpha: isDark ? 0.08 : 0.07),
+                  color: colorScheme.primary.withValues(alpha: 0.08),
                 ),
               ),
             ),
@@ -79,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 220,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: colorScheme.secondary.withValues(alpha: isDark ? 0.05 : 0.05),
+                  color: colorScheme.secondary.withValues(alpha: 0.05),
                 ),
               ),
             ),
@@ -96,9 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.centerRight,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: isDark
-                              ? colorScheme.surface
-                              : colorScheme.surface.withValues(alpha: 0.9),
+                          color: colorScheme.surface,
                           borderRadius: BorderRadius.circular(30),
                           border: Border.all(
                             color: colorScheme.outline.withValues(alpha: 0.4),
@@ -157,9 +154,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ],
                                 ),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.local_shipping_rounded, // Waste Collection Vehicle
-                                  color: Colors.white,
+                                  color: colorScheme.onPrimary,
                                   size: 42,
                                 ),
                               ),
@@ -223,20 +220,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       padding: const EdgeInsets.all(22),
                       decoration: BoxDecoration(
-                        color: isDark
-                            ? colorScheme.surface
-                            : Colors.white,
+                        color: colorScheme.surface,
                         borderRadius: BorderRadius.circular(24),
                         border: Border.all(
                           color: colorScheme.outline.withValues(alpha: 0.5),
                         ),
                         boxShadow: [
-                          if (!isDark)
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.04),
-                              blurRadius: 20,
-                              offset: const Offset(0, 10),
-                            ),
+                          BoxShadow(
+                            color: colorScheme.shadow.withValues(alpha: 0.06),
+                            blurRadius: 20,
+                            offset: const Offset(0, 10),
+                          ),
                         ],
                       ),
                       child: Column(

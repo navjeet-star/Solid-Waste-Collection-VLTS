@@ -12,11 +12,6 @@ class LightColors {
   static const Color textSecondary = Color(0xFF6B7D74);
   static const Color border = Color(0xFFD6E2DA);
   static const Color divider = Color(0xFFE8EFEA);
-
-  // Gradient colors (available if needed)
-  static const Color gradientStart = Color(0xFFFFFFFF);
-  static const Color gradientMiddle = Color(0xFFF0F7F3);
-  static const Color gradientEnd = Color(0xFFE2F0E7);
 }
 
 final ThemeData lightTheme = ThemeData(
@@ -31,6 +26,7 @@ final ThemeData lightTheme = ThemeData(
     onSurface: LightColors.textPrimary,
     onSurfaceVariant: LightColors.textSecondary,
     outline: LightColors.border,
+    shadow: Colors.black,
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: LightColors.surface,

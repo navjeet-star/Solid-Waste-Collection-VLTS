@@ -13,10 +13,6 @@ class DarkColors {
   static const Color border = Color(0xFF28382F); // Subtle dark outline
   static const Color divider = Color(0xFF233129);
 
-  // Gradient colors (available if needed)
-  static const Color gradientStart = Color(0xFF101713);
-  static const Color gradientMiddle = Color(0xFF14201A);
-  static const Color gradientEnd = Color(0xFF1A2A22);
 }
 
 final ThemeData darkTheme = ThemeData(
@@ -31,6 +27,7 @@ final ThemeData darkTheme = ThemeData(
     onSurface: DarkColors.textPrimary,
     onSurfaceVariant: DarkColors.textSecondary,
     outline: DarkColors.border,
+    shadow: Colors.black,
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: DarkColors.surface,

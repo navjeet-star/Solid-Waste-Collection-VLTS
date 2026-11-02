@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:solid_waste_collection_vlts/common_utils/generic_grid_view.dart';
-import 'package:solid_waste_collection_vlts/main.dart';
+import 'package:solid_waste_collection_vlts/core/theme/dark_theme.dart';
+import 'package:solid_waste_collection_vlts/core/theme/light_theme.dart';
+import 'package:solid_waste_collection_vlts/l10n/app_localizations.dart';
 import 'package:solid_waste_collection_vlts/models/module_item.dart';
 import 'package:solid_waste_collection_vlts/ui/home/home_screen.dart';
 import 'package:solid_waste_collection_vlts/ui/home/module_card_item.dart';
+
+Widget _buildTestApp({required Widget home}) {
+  return MaterialApp(
+    theme: lightTheme,
+    darkTheme: darkTheme,
+    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    supportedLocales: AppLocalizations.supportedLocales,
+    home: home,
+  );
+}
 
 void main() {
   testWidgets('HomeScreen renders cleanly on modern phone (390x844)', (tester) async {
@@ -13,7 +25,7 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(_buildTestApp(home: const HomeScreen()));
     await tester.pumpAndSettle();
 
     expect(find.byType(HomeScreen), findsOneWidget);
@@ -28,7 +40,7 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(_buildTestApp(home: const HomeScreen()));
     await tester.pumpAndSettle();
 
     expect(find.byType(HomeScreen), findsOneWidget);
@@ -41,7 +53,7 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(_buildTestApp(home: const HomeScreen()));
     await tester.pumpAndSettle();
 
     expect(find.byType(HomeScreen), findsOneWidget);

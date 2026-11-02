@@ -12,7 +12,7 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Drawer(
       backgroundColor: colorScheme.surface,
@@ -28,7 +28,7 @@ class SideMenu extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
               decoration: BoxDecoration(
-                color: colorScheme.primary.withValues(alpha: isDark ? 0.12 : 0.08),
+                color: colorScheme.primary.withValues(alpha: 0.08),
                 border: Border(
                   bottom: BorderSide(
                     color: colorScheme.outline.withValues(alpha: 0.3),
@@ -45,10 +45,10 @@ class SideMenu extends StatelessWidget {
                           CircleAvatar(
                             radius: 30,
                             backgroundColor: colorScheme.primary,
-                            child: const Text(
+                            child: Text(
                               'TU',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: colorScheme.onPrimary,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
@@ -188,7 +188,7 @@ class SideMenu extends StatelessWidget {
                             Icon(Icons.brightness_6_rounded, size: 20, color: colorScheme.onSurfaceVariant),
                             const SizedBox(width: 12),
                             Text(
-                              isDark ? strings.switchToLightMode : strings.switchToDarkMode,
+                              isDarkMode ? strings.switchToLightMode : strings.switchToDarkMode,
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
@@ -219,11 +219,11 @@ class SideMenu extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                leading: const Icon(Icons.logout_rounded, color: Colors.redAccent),
+                leading: Icon(Icons.logout_rounded, color: colorScheme.error),
                 title: Text(
                   strings.logout,
-                  style: const TextStyle(
-                    color: Colors.redAccent,
+                  style: TextStyle(
+                    color: colorScheme.error,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),

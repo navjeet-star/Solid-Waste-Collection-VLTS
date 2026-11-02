@@ -21,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     const overlap = 24.0;
 
     return Scaffold(
@@ -65,9 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withValues(
-                              alpha: isDark ? 0.45 : 0.08,
-                            ),
+                            color: colorScheme.shadow.withValues(alpha: 0.12),
                             blurRadius: 18,
                             offset: const Offset(0, -6),
                           ),
@@ -101,42 +98,30 @@ class _HomeBodyContent extends StatelessWidget {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
 
-    // Create the dynamic list of ModuleItem objects
+    // Create the dynamic list of ModuleItem objects derived from theme colorScheme
     final List<ModuleItem> moduleList = [
       ModuleItem(
         title: strings.attendanceDashboard,
         icon: Icons.how_to_reg_rounded,
-        color: const Color(0xFF6366F1),
+        color: colorScheme.primary,
         onTap: () => CommonSnackBar.show(context, strings.attendanceDashboard),
       ),
       ModuleItem(
         title: strings.ulbProgressReport,
         icon: Icons.bar_chart_rounded,
-        color: const Color(0xFF10B981),
+        color: colorScheme.secondary,
         onTap: () => CommonSnackBar.show(context, strings.ulbProgressReport),
       ),
       ModuleItem(
         title: strings.ulbProgressReport,
         icon: Icons.pie_chart_rounded,
-        color: const Color(0xFFF59E0B),
+        color: colorScheme.tertiary,
         onTap: () => CommonSnackBar.show(context, strings.ulbProgressReport),
       ),
       ModuleItem(
         title: strings.swachhtaAppComplaints,
         icon: Icons.mark_chat_unread_rounded,
-        color: const Color(0xFFEF4444),
-        onTap: () => CommonSnackBar.show(context, strings.swachhtaAppComplaints),
-      ),
-      ModuleItem(
-        title: strings.ulbProgressReport,
-        icon: Icons.pie_chart_rounded,
-        color: const Color(0xFFF59E0B),
-        onTap: () => CommonSnackBar.show(context, strings.ulbProgressReport),
-      ),
-      ModuleItem(
-        title: strings.swachhtaAppComplaints,
-        icon: Icons.mark_chat_unread_rounded,
-        color: const Color(0xFFEF4444),
+        color: colorScheme.error,
         onTap: () => CommonSnackBar.show(context, strings.swachhtaAppComplaints),
       ),
     ];

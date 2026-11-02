@@ -60,7 +60,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
@@ -76,7 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 240,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: colorScheme.primary.withValues(alpha: isDark ? 0.08 : 0.07),
+                  color: colorScheme.primary.withValues(alpha: 0.08),
                 ),
               ),
             ),
@@ -88,7 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 220,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: colorScheme.secondary.withValues(alpha: isDark ? 0.05 : 0.05),
+                  color: colorScheme.secondary.withValues(alpha: 0.05),
                 ),
               ),
             ),
@@ -115,9 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            color: isDark
-                                ? colorScheme.surface
-                                : colorScheme.surface.withValues(alpha: 0.9),
+                            color: colorScheme.surface,
                             borderRadius: BorderRadius.circular(30),
                             border: Border.all(
                               color: colorScheme.outline.withValues(alpha: 0.4),
@@ -164,9 +161,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ],
                             ),
-                            child: const Icon(
+                            child: Icon(
                               Icons.person_add_rounded,
-                              color: Colors.white,
+                              color: colorScheme.onPrimary,
                               size: 36,
                             ),
                           ),
@@ -200,18 +197,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Container(
                       padding: const EdgeInsets.all(22),
                       decoration: BoxDecoration(
-                        color: isDark ? colorScheme.surface : Colors.white,
+                        color: colorScheme.surface,
                         borderRadius: BorderRadius.circular(24),
                         border: Border.all(
                           color: colorScheme.outline.withValues(alpha: 0.5),
                         ),
                         boxShadow: [
-                          if (!isDark)
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.04),
-                              blurRadius: 20,
-                              offset: const Offset(0, 10),
-                            ),
+                          BoxShadow(
+                            color: colorScheme.shadow.withValues(alpha: 0.06),
+                            blurRadius: 20,
+                            offset: const Offset(0, 10),
+                          ),
                         ],
                       ),
                       child: Column(

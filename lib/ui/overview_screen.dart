@@ -63,7 +63,6 @@ class _OverviewScreenState extends State<OverviewScreen> {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     final bool isFirstPage = _currentPage == 0;
     final bool isLastPage = _currentPage == _totalPages - 1;
 
@@ -80,9 +79,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: isDark
-                          ? colorScheme.surface
-                          : colorScheme.surface.withValues(alpha: 0.9),
+                      color: colorScheme.surface,
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
                         color: colorScheme.outline.withValues(alpha: 0.35),

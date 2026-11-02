@@ -60,9 +60,9 @@ class CommonHeader extends StatelessWidget {
                 right: 5,
                 top: 3,
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.red,
+                    color: colorScheme.error,
                   ),
                   constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
                   child: Center(
@@ -70,8 +70,8 @@ class CommonHeader extends StatelessWidget {
                       notificationCount > 99
                           ? '99+'
                           : notificationCount.toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: colorScheme.onError,
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
