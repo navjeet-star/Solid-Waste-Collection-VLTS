@@ -38,6 +38,7 @@ class CommonOutlinedButton extends StatelessWidget {
         disabledForegroundColor:
             colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
         minimumSize: Size(width ?? 0, height),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         side: BorderSide(color: effectiveBorderColor),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
@@ -51,12 +52,16 @@ class CommonOutlinedButton extends StatelessWidget {
             Icon(icon, size: 20),
             const SizedBox(width: 8),
           ],
-          Text(
-            text,
-            style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.3,
+          Flexible(
+            child: Text(
+              text,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.3,
+              ),
             ),
           ),
         ],

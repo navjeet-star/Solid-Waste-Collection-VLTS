@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/ui/home/home_screen.dart';
-import 'package:solid_waste_collection_vlts/widgets/CommonSnackBar.dart';
-import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
-import 'package:solid_waste_collection_vlts/widgets/common_button.dart';
-import 'package:solid_waste_collection_vlts/widgets/common_text.dart';
-import 'package:solid_waste_collection_vlts/widgets/common_text_field.dart';
-import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
+import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/features/home/home_screen.dart';
+import 'package:vlts_swc/widgets/CommonSnackBar.dart';
+import 'package:vlts_swc/widgets/LanguageSelector.dart';
+import 'package:vlts_swc/widgets/common_button.dart';
+import 'package:vlts_swc/widgets/common_text.dart';
+import 'package:vlts_swc/widgets/common_text_field.dart';
+import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

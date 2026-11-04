@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/core/theme/app_theme_mode.dart';
+import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/core/theme/app_theme_mode.dart';
 
 class ThemeToggleButton extends StatelessWidget {
   const ThemeToggleButton({super.key});

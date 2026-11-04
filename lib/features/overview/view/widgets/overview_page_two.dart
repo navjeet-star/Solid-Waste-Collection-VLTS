@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
+import 'package:vlts_swc/core/app_locale.dart';
 
-class OverviewPageOne extends StatelessWidget {
+class OverviewPageTwo extends StatelessWidget {
   final bool isActive;
 
-  const OverviewPageOne({
+  const OverviewPageTwo({
     super.key,
     this.isActive = true,
   });
@@ -35,7 +35,7 @@ class OverviewPageOne extends StatelessWidget {
                 ),
               );
             },
-            child: const _DoorToDoorIllustration(),
+            child: const _SbmManagementIllustration(),
           ),
 
           const SizedBox(height: 36),
@@ -56,7 +56,7 @@ class OverviewPageOne extends StatelessWidget {
             },
             child: Column(
               children: [
-                // Badge
+                // SBM Tag Badge
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                   decoration: BoxDecoration(
@@ -70,13 +70,13 @@ class OverviewPageOne extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(
-                        Icons.home_work_rounded,
+                        Icons.recycling_rounded,
                         size: 14,
                         color: colorScheme.primary,
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        strings.doorToDoorService,
+                        strings.swachhBharatMission,
                         style: TextStyle(
                           color: colorScheme.primary,
                           fontSize: 11,
@@ -92,7 +92,7 @@ class OverviewPageOne extends StatelessWidget {
 
                 // Title
                 Text(
-                  strings.overviewTitle1,
+                  strings.overviewTitle2,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24,
@@ -107,7 +107,7 @@ class OverviewPageOne extends StatelessWidget {
 
                 // Description
                 Text(
-                  strings.overviewDesc1,
+                  strings.overviewDesc2,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
@@ -126,11 +126,11 @@ class OverviewPageOne extends StatelessWidget {
   }
 }
 
-/// Illustration for Door-to-Door Waste Collection & Monitoring:
-/// Displays the custom isometric artwork depicting a waste collection truck,
-/// residential houses, segregated dustbins, sanitation worker, and clean green environment.
-class _DoorToDoorIllustration extends StatelessWidget {
-  const _DoorToDoorIllustration();
+/// Illustration for SBM Waste Collection Management System:
+/// Displays the custom isometric artwork depicting Swachh Bharat Mission smart
+/// waste segregation, digital dashboard metrics, eco-friendly green city, and electric collection truck.
+class _SbmManagementIllustration extends StatelessWidget {
+  const _SbmManagementIllustration();
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +160,7 @@ class _DoorToDoorIllustration extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Image.asset(
-              'assets/images/door_to_door_collection.jpg',
+              'assets/images/sbm_waste_management.jpg',
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Center(
@@ -172,7 +172,7 @@ class _DoorToDoorIllustration extends StatelessWidget {
                 );
               },
             ),
-            // Floating Live Tracking Status Badge
+            // Floating Smart Sanitation Badge
             Positioned(
               top: 12,
               right: 12,
@@ -194,17 +194,14 @@ class _DoorToDoorIllustration extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(
-                      width: 6,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: colorScheme.primary,
-                      ),
+                    Icon(
+                      Icons.energy_savings_leaf_rounded,
+                      color: colorScheme.primary,
+                      size: 12,
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      strings.routeTracked,
+                      strings.smartSanitation,
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/ui/login_screen.dart';
-import 'package:solid_waste_collection_vlts/ui/overview/overview_page_one.dart';
-import 'package:solid_waste_collection_vlts/ui/overview/overview_page_three.dart';
-import 'package:solid_waste_collection_vlts/ui/overview/overview_page_two.dart';
-import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
-import 'package:solid_waste_collection_vlts/widgets/common_button.dart';
-import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
+import 'package:get/get.dart';
+import 'package:vlts_swc/app/routes/app_pages.dart';
+import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/features/overview/view/widgets/overview_page_one.dart';
+import 'package:vlts_swc/features/overview/view/widgets/overview_page_three.dart';
+import 'package:vlts_swc/features/overview/view/widgets/overview_page_two.dart';
+import 'package:vlts_swc/widgets/LanguageSelector.dart';
+import 'package:vlts_swc/widgets/common_button.dart';
+import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
 class OverviewScreen extends StatefulWidget {
   const OverviewScreen({super.key});
@@ -46,12 +47,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
   }
 
   void _goToHome() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const LoginScreen(),
-      ),
-    );
+    Get.offNamed(Routes.login);
   }
 
   @override
@@ -173,7 +169,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                     opacity: isFirstPage ? 0.35 : 1.0,
                     child: CommonOutlinedButton(
                       text: strings.preview,
-                      width: 100,
+                      width: 110,
                       onPressed: isFirstPage ? null : _previousPage,
                     ),
                   ),

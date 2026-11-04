@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
+import 'package:vlts_swc/core/app_locale.dart';
 
 class LanguageSelector extends StatelessWidget {
   const LanguageSelector({super.key});

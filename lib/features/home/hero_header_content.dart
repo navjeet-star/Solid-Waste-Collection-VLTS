@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
+import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
 /// Rich Hero Header with solid waste management background image,
 /// semi-transparent black overlay, app title, and 3-metric card

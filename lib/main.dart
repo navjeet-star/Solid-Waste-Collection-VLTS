@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/core/theme/app_theme_mode.dart';
-import 'package:solid_waste_collection_vlts/core/theme/dark_theme.dart';
-import 'package:solid_waste_collection_vlts/core/theme/light_theme.dart';
-import 'package:solid_waste_collection_vlts/l10n/app_localizations.dart';
-import 'package:solid_waste_collection_vlts/ui/overview_screen.dart';
+import 'package:get/get.dart';
+import 'package:vlts_swc/app/bindings/initial_binding.dart';
+import 'package:vlts_swc/app/routes/app_pages.dart';
+import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/core/theme/app_theme_mode.dart';
+import 'package:vlts_swc/core/theme/dark_theme.dart';
+import 'package:vlts_swc/core/theme/light_theme.dart';
+import 'package:vlts_swc/features/overview/view/overview_screen.dart';
+import 'package:vlts_swc/l10n/app_localizations.dart';
 
-void main() {
+Future<void> main() async {
+
+
   runApp(const MyApp());
 }
 
@@ -21,7 +26,7 @@ class MyApp extends StatelessWidget {
         return ValueListenableBuilder<ThemeMode>(
           valueListenable: appThemeMode,
           builder: (context, themeMode, _) {
-            return MaterialApp(
+            return GetMaterialApp(
               debugShowCheckedModeBanner: false,
               locale: locale,
               onGenerateTitle: (context) => context.l10n.appTitle,
@@ -30,7 +35,9 @@ class MyApp extends StatelessWidget {
               themeMode: themeMode,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
-              home: const OverviewScreen(),
+              initialBinding: InitialBinding(),
+              getPages: AppPages.routes,
+              initialRoute: AppPages.initial,
             );
           },
         );

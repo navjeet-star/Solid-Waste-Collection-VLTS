@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/models/module_item.dart';
+import 'package:vlts_swc/models/module_item.dart';
 
 /// Clean, modern CardView item for each module in the dashboard grid
 class ModuleCardItem extends StatelessWidget {

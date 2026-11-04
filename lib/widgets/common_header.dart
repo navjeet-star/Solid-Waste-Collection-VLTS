@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
+import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
 class CommonHeader extends StatelessWidget {
   final String title;

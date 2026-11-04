@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/models/module_item.dart';
-import 'package:solid_waste_collection_vlts/ui/home/hero_header_content.dart';
-import 'package:solid_waste_collection_vlts/ui/home/module_card_item.dart';
-import 'package:solid_waste_collection_vlts/widgets/CommonSnackBar.dart';
-import 'package:solid_waste_collection_vlts/common_utils/generic_grid_view.dart';
-import 'package:solid_waste_collection_vlts/widgets/side_menu.dart';
+import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/models/module_item.dart';
+import 'package:vlts_swc/features/home/hero_header_content.dart';
+import 'package:vlts_swc/features/home/module_card_item.dart';
+import 'package:vlts_swc/widgets/CommonSnackBar.dart';
+import 'package:vlts_swc/common_utils/generic_grid_view.dart';
+import 'package:vlts_swc/widgets/side_menu.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

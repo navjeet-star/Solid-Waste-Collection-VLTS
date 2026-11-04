@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/ui/login_screen.dart';
-import 'package:solid_waste_collection_vlts/widgets/CommonSnackBar.dart';
-import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
-import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
+import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/widgets/CommonSnackBar.dart';
+import 'package:vlts_swc/widgets/LanguageSelector.dart';
+import 'package:vlts_swc/widgets/theme_toggle_button.dart';
+
+import '../features/login/views/login_view.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({super.key});

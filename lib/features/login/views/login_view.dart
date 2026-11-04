@@ -1,54 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:solid_waste_collection_vlts/core/app_locale.dart';
-import 'package:solid_waste_collection_vlts/ui/home/home_screen.dart';
-import 'package:solid_waste_collection_vlts/ui/signup_screen.dart';
-import 'package:solid_waste_collection_vlts/widgets/CommonSnackBar.dart';
-import 'package:solid_waste_collection_vlts/widgets/LanguageSelector.dart';
-import 'package:solid_waste_collection_vlts/widgets/common_button.dart';
-import 'package:solid_waste_collection_vlts/widgets/common_text.dart';
-import 'package:solid_waste_collection_vlts/widgets/common_text_field.dart';
-import 'package:solid_waste_collection_vlts/widgets/theme_toggle_button.dart';
+import 'package:get/get.dart';
+import '../../../core/app_locale.dart';
+import '../../../widgets/CommonSnackBar.dart';
+import '../../../widgets/LanguageSelector.dart';
+import '../../../widgets/common_button.dart';
+import '../../../widgets/common_text.dart';
+import '../../../widgets/common_text_field.dart';
+import '../../../widgets/theme_toggle_button.dart';
+import '../../signUp/view/signup_screen.dart';
+import '../bindings/login_binding.dart';
+import '../viewModels/login_view_model.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  bool _obscurePassword = true;
-  bool _rememberMe = true;
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  void _handleLogin() {
-    if (!(_formKey.currentState?.validate() ?? false)) {
-      return;
-    }
-
-    final strings = context.l10n;
-    CommonSnackBar.show(context, strings.loginSuccessfully);
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
-      ),
-    );
-  }
+class LoginView extends GetView<LoginViewModel> {
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Ensure all dependencies (Repository, ViewModel) are registered
+    if (!Get.isRegistered<LoginViewModel>()) {
+      LoginBinding().dependencies();
+    }
+    final controller = Get.find<LoginViewModel>();
+
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -88,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               physics: const BouncingScrollPhysics(),
               child: Form(
-                key: _formKey,
+                key: controller.formKey,
                 child: Column(
                   children: [
                     Align(
@@ -102,9 +75,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                        child: Row(
+                        child: const Row(
                           mainAxisSize: MainAxisSize.min,
-                          children: const [
+                          children: [
                             ThemeToggleButton(),
                             SizedBox(width: 2),
                             LanguageSelector(),
@@ -155,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ],
                                 ),
                                 child: Icon(
-                                  Icons.local_shipping_rounded, // Waste Collection Vehicle
+                                  Icons.local_shipping_rounded,
                                   color: colorScheme.onPrimary,
                                   size: 42,
                                 ),
@@ -184,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
 
-                          const SizedBox(height: 20),
+                          SizedBox(height: 20),
 
                           // Enterprise System Tag
                           Text(
@@ -198,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
 
-                          const SizedBox(height: 36),
+                          SizedBox(height: 36),
 
                           // Subtitle
                           Text(
@@ -214,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
 
                     // Login Card Container
                     Container(
@@ -229,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           BoxShadow(
                             color: colorScheme.shadow.withValues(alpha: 0.06),
                             blurRadius: 20,
-                            offset: const Offset(0, 10),
+                            offset: Offset(0, 10),
                           ),
                         ],
                       ),
@@ -242,11 +215,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             prefixIcon: Icons.email_outlined,
                           ),
 
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8),
 
                           // Email Input
                           CommonTextField(
-                            controller: _emailController,
+                            controller: controller.emailController,
                             hintText: strings.enterYourEmail,
                             prefixIcon: Icons.badge_outlined,
                             keyboardType: TextInputType.emailAddress,
@@ -259,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
 
-                          const SizedBox(height: 20),
+                          SizedBox(height: 20),
 
                           // Password Field Label
                           CommonText(
@@ -267,38 +240,36 @@ class _LoginScreenState extends State<LoginScreen> {
                             prefixIcon: Icons.lock_outline_rounded,
                           ),
 
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8),
 
                           // Password Input with Visibility Toggle
-                          CommonTextField(
-                            controller: _passwordController,
-                            hintText: strings.enterYourPassword,
-                            prefixIcon: Icons.key_outlined,
-                            obscureText: _obscurePassword,
-                            textInputAction: TextInputAction.done,
-                            validator: (value) {
-                              if (value == null || value.trim().isEmpty) {
-                                return strings.enterYourPassword;
-                              }
-                              return null;
-                            },
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _obscurePassword
-                                    ? Icons.visibility_off_outlined
-                                    : Icons.visibility_outlined,
-                                color: colorScheme.onSurfaceVariant,
-                                size: 20,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _obscurePassword = !_obscurePassword;
-                                });
+                          Obx(
+                            () => CommonTextField(
+                              controller: controller.passwordController,
+                              hintText: strings.enterYourPassword,
+                              prefixIcon: Icons.key_outlined,
+                              obscureText: controller.isPasswordHidden.value,
+                              textInputAction: TextInputAction.done,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return strings.enterYourPassword;
+                                }
+                                return null;
                               },
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  controller.isPasswordHidden.value
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined,
+                                  color: colorScheme.onSurfaceVariant,
+                                  size: 20,
+                                ),
+                                onPressed: controller.togglePasswordVisibility,
+                              ),
                             ),
                           ),
 
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12),
 
                           // Remember Me & Forgot Password Row
                           Row(
@@ -306,11 +277,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               // Remember Me Checkbox
                               InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    _rememberMe = !_rememberMe;
-                                  });
-                                },
+                                onTap: controller.toggleRememberMe,
                                 borderRadius: BorderRadius.circular(6),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 4),
@@ -320,17 +287,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                       SizedBox(
                                         height: 20,
                                         width: 20,
-                                        child: Checkbox(
-                                          value: _rememberMe,
-                                          activeColor: colorScheme.primary,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(4),
+                                        child: Obx(
+                                          () => Checkbox(
+                                            value: controller.rememberMe.value,
+                                            activeColor: colorScheme.primary,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(4),
+                                            ),
+                                            onChanged: controller.toggleRememberMe,
                                           ),
-                                          onChanged: (val) {
-                                            setState(() {
-                                              _rememberMe = val ?? false;
-                                            });
-                                          },
                                         ),
                                       ),
                                       const SizedBox(width: 8),
@@ -371,15 +336,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
 
-                          const SizedBox(height: 24),
+                          SizedBox(height: 24),
 
                           // Sign In Button
-                          CommonButton(
-                            text: strings.login,
-                            onPressed: _handleLogin,
+                          Obx(
+                            () => CommonButton(
+                              text: controller.isLoading.value
+                                  ? 'Loading...'
+                                  : strings.login,
+                              onPressed: controller.isLoading.value
+                                  ? null
+                                  : controller.login,
+                            ),
                           ),
 
-                          const SizedBox(height: 18),
+                          SizedBox(height: 18),
 
                           // Sign Up Link Row
                           Row(
@@ -417,11 +388,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ],
                           ),
+
                         ],
                       ),
                     ),
 
-                    const SizedBox(height: 36),
+                    SizedBox(height: 36),
 
                     // Official Trust & Footer Info
                     Center(
@@ -458,7 +430,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
                   ],
                 ),
               ),
@@ -469,3 +441,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+/// Backwards compatibility alias for LoginScreen
+typedef LoginScreen = LoginView;
+
