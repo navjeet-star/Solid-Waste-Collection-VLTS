@@ -178,7 +178,7 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
 
         const SizedBox(height: 10),
 
-        // Employee type rows (Uses CommonStatCard - untouched)
+        // Employee type rows
         Row(
           children: [
             Expanded(
@@ -235,7 +235,7 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
 
         const SizedBox(height: 10),
 
-        // Vehicle type rows (Uses specialized VehicleStatCard with icons & dedicated styling)
+        // Vehicle type rows
         Row(
           children: [
             Expanded(
@@ -313,7 +313,7 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
 
         const SizedBox(height: 12),
 
-        // Display either the exact Dashboard Table or the Mobile Cards
+        // Display Cards
           ...UlbProgressItem.sampleList.map((ulb) {
             return UlbProgressListItem(
               item: ulb,
