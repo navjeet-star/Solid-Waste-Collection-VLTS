@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
 import 'package:vlts_swc/models/module_item.dart';
 
-class ModuleCardItem extends StatelessWidget {
+class DashboardCardItem extends StatelessWidget {
   final ModuleItem item;
   final String imagePath;
 
-  const ModuleCardItem({super.key, required this.item, this.imagePath = ''});
+  const DashboardCardItem({super.key, required this.item, this.imagePath = ''});
 
   @override
   Widget build(BuildContext context) {

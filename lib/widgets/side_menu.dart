@@ -147,6 +147,15 @@ class SideMenu extends StatelessWidget {
                       CommonSnackBar.show(context, strings.reports);
                     },
                   ),
+                  _buildMenuItem(
+                    context: context,
+                    icon: Icons.leaderboard_rounded,
+                    title: strings.ulbProgressReport,
+                    onTap: () {
+                      Navigator.pop(context);
+                      CommonSnackBar.show(context, strings.ulbProgressReport);
+                    },
+                  ),
 
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 8),

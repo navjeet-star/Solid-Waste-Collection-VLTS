@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
 import 'package:vlts_swc/models/module_item.dart';
+import 'package:vlts_swc/models/ulb_progress_item.dart';
 import 'package:vlts_swc/features/home/hero_header_content.dart';
-import 'package:vlts_swc/features/home/module_card_item.dart';
+import 'package:vlts_swc/features/home/items/dashboard_card_item.dart';
+import 'package:vlts_swc/features/home/items/ulb_progress_list_item.dart';
 import 'package:vlts_swc/widgets/CommonSnackBar.dart';
 import 'package:vlts_swc/common_utils/generic_grid_view.dart';
 import 'package:vlts_swc/widgets/common_stat_card.dart';
@@ -42,8 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   // Layer 1: Natural-height Hero Header at the top
                   HeroHeaderContent(
-                    // onProfileTap: () => _scaffoldKey.currentState?.openDrawer(),
-                    onProfileTap:() {},
+                    onProfileTap: () => _scaffoldKey.currentState?.openDrawer(),
                     onNotificationTap: () => CommonSnackBar.show(
                       context,
                       strings.notificationsClicked,
@@ -148,9 +149,9 @@ class _HomeBodyContent extends StatelessWidget {
         // Generic GridView builder used directly in HomeScreen
         GenericGridView<ModuleItem>(
           items: moduleList,
-          childAspectRatio: 1.8,
+          childAspectRatio: 1.5,
           itemBuilder: (context, module, index) {
-            return ModuleCardItem(item: module);
+            return DashboardCardItem(item: module);
           },
         ),
 
@@ -169,7 +170,7 @@ class _HomeBodyContent extends StatelessWidget {
 
         const SizedBox(height: 10),
 
-        //employee type rows
+        // Employee type rows
         Row(
           children: [
             Expanded(
@@ -178,9 +179,7 @@ class _HomeBodyContent extends StatelessWidget {
                 value: '921',
                 title: 'Driver',
                 accentColor: colorScheme.blue,
-                onTap: () {
-                  // Tap action
-                },
+                onTap: () {},
               ),
             ),
             Expanded(
@@ -189,9 +188,7 @@ class _HomeBodyContent extends StatelessWidget {
                 value: '875',
                 title: 'Helper',
                 accentColor: colorScheme.green,
-                onTap: () {
-                  // Tap action
-                },
+                onTap: () {},
               ),
             ),
             Expanded(
@@ -200,9 +197,7 @@ class _HomeBodyContent extends StatelessWidget {
                 value: '3997',
                 title: 'Sanitary worker',
                 accentColor: colorScheme.red,
-                onTap: () {
-                  // Tap action
-                },
+                onTap: () {},
               ),
             ),
             Expanded(
@@ -211,9 +206,7 @@ class _HomeBodyContent extends StatelessWidget {
                 value: '346',
                 title: 'Others',
                 accentColor: colorScheme.yellow,
-                onTap: () {
-                  // Tap action
-                },
+                onTap: () {},
               ),
             )
           ],
@@ -234,7 +227,7 @@ class _HomeBodyContent extends StatelessWidget {
 
         const SizedBox(height: 10),
 
-        //employee type rows
+        // Vehicle type rows
         Row(
           children: [
             Expanded(
@@ -243,9 +236,7 @@ class _HomeBodyContent extends StatelessWidget {
                 value: '623',
                 title: 'D2D Tipper',
                 accentColor: colorScheme.cardBg,
-                onTap: () {
-                  // Tap action
-                },
+                onTap: () {},
               ),
             ),
             Expanded(
@@ -254,9 +245,7 @@ class _HomeBodyContent extends StatelessWidget {
                 value: '3',
                 title: 'Tractor',
                 accentColor: colorScheme.cardBg,
-                onTap: () {
-                  // Tap action
-                },
+                onTap: () {},
               ),
             ),
             Expanded(
@@ -265,16 +254,53 @@ class _HomeBodyContent extends StatelessWidget {
                 value: '20',
                 title: 'Others',
                 accentColor: colorScheme.cardBg,
-                onTap: () {
-                  // Tap action
-                },
+                onTap: () {},
               ),
             )
           ],
         ),
 
+        const SizedBox(height: 24),
+
+        // ULB-wise Progress Report Section Header
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Text(
+                strings.ulbProgressReport,
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.onSurface,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Text("View all",
+              style: TextStyle(
+                fontSize: 11.5,
+                fontWeight: FontWeight.w600,
+                color: colorScheme.primary,
+              ),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 12),
+
+        // Vertical List of ULB Progress Report items
+        ...UlbProgressItem.sampleList.map((ulb) {
+          return UlbProgressListItem(
+            item: ulb,
+            onTap: () => CommonSnackBar.show(
+              context,
+              '${ulb.ulbName} • Score: ${ulb.score}',
+            ),
+          );
+        }),
       ],
     );
   }
 }
-
