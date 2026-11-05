@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
 
 /// A reusable statistic / metric card displaying an accent top stripe,
 /// a prominent value/count, and a descriptive label below.
@@ -50,10 +51,14 @@ class CommonStatCard extends StatelessWidget {
       margin: EdgeInsets.all(1),
       child: Card(
         elevation: 2,
-        color: Colors.white,
-        shadowColor: effectiveAccent,
+        color: colorScheme.cardBg,
+        shadowColor: Colors.black.withValues(alpha: 0.12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
+          side: BorderSide(
+            color: colorScheme.outline.withValues(alpha: 0.35),
+            width: 1,
+          ),
         ),
         child: Material(
           color: Colors.transparent,
@@ -73,7 +78,7 @@ class CommonStatCard extends StatelessWidget {
                         style: TextStyle(
                               fontSize: 26,
                               fontWeight: FontWeight.w800,
-                              color: colorScheme.onSurface),
+                              color: colorScheme.textTitle),
                       ),
                       const SizedBox(height: 5),
                       SizedBox(
@@ -88,7 +93,7 @@ class CommonStatCard extends StatelessWidget {
                               fontSize: 13,
                               height: 1.25,
                               fontWeight: FontWeight.w500,
-                              color: colorScheme.onSurfaceVariant,
+                              color: colorScheme.textDesc,
                             ),
                           ),
                         ),

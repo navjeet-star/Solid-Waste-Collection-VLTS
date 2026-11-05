@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
 import 'package:vlts_swc/models/module_item.dart';
 
 class ModuleCardItem extends StatelessWidget {
@@ -17,87 +18,67 @@ class ModuleCardItem extends StatelessWidget {
     final itemColor = item.color ?? colorScheme.primary;
 
     return Card(
-      margin: EdgeInsets.zero,
-      elevation: 1.5,
-      color: colorScheme.surface,
-      shadowColor: colorScheme.shadow.withValues(alpha: 0.08),
+      margin: const EdgeInsets.all(2),
+      elevation: 2,
+      color: colorScheme.cardBg,
+      shadowColor: itemColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         side: BorderSide(
-          color: colorScheme.outline,
+          color: colorScheme.outline.withValues(alpha: 0.35),
+          width: 1,
         ),
       ),
-      child: InkWell(
-        onTap: item.onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          color: colorScheme.surface,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // Top section: Icon badge + forward arrow
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 32,
-                    width: 32,
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: itemColor.withValues(alpha: 0.12),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Image.asset(
-                      imagePath,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Icon(
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(16),
+        child: InkWell(
+          onTap: item.onTap,
+          borderRadius: BorderRadius.circular(16),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Prominent clean icon (matching stat card value scale)
+                imagePath.isNotEmpty
+                    ? Image.asset(
+                        imagePath,
+                        height: 28,
+                        width: 28,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) => Icon(
                           item.icon,
+                          size: 28,
                           color: itemColor,
-                          size: 18,
-                        );
-                      },
-                    ),
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: colorScheme.onSurfaceVariant.withValues(alpha: 0.45),
-                    size: 12,
-                  ),
-                ],
-              ),
+                        ),
+                      )
+                    : Icon(
+                        item.icon,
+                        size: 28,
+                        color: itemColor,
+                      ),
 
-              // Bottom section: Title (+ optional subtitle)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    item.title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: colorScheme.onSurface
-                    ),
-                  ),
-                  if (item.subtitle != null && item.subtitle!.isNotEmpty) ...[
-                    const SizedBox(height: 2),
-                    Text(
-                      item.subtitle!,
-                      maxLines: 1,
+                // Title matching CommonStatCard's text size, font weight & 2-line height
+                SizedBox(
+                  height: 34,
+                  child: Center(
+                    child: Text(
+                      item.title,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 9.5,
-                        color: colorScheme.onSurfaceVariant,
+                        fontSize: 12.5,
+                        height: 1.2,
+                        fontWeight: FontWeight.w500,
+                        color: colorScheme.textDesc,
                       ),
                     ),
-                  ],
-                ],
-              ),
-            ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

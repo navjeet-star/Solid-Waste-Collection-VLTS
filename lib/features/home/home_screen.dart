@@ -148,7 +148,7 @@ class _HomeBodyContent extends StatelessWidget {
         // Generic GridView builder used directly in HomeScreen
         GenericGridView<ModuleItem>(
           items: moduleList,
-          childAspectRatio: 1.95,
+          childAspectRatio: 1.5,
           itemBuilder: (context, module, index) {
             return ModuleCardItem(item: module);
           },
@@ -242,7 +242,7 @@ class _HomeBodyContent extends StatelessWidget {
               child: CommonStatCard(
                 value: '623',
                 title: 'D2D Tipper',
-                accentColor: colorScheme.background,
+                accentColor: colorScheme.cardBg,
                 onTap: () {
                   // Tap action
                 },
@@ -253,7 +253,7 @@ class _HomeBodyContent extends StatelessWidget {
               child: CommonStatCard(
                 value: '3',
                 title: 'Tractor',
-                accentColor: colorScheme.background,
+                accentColor: colorScheme.cardBg,
                 onTap: () {
                   // Tap action
                 },
@@ -264,7 +264,7 @@ class _HomeBodyContent extends StatelessWidget {
               child: CommonStatCard(
                 value: '20',
                 title: 'Others',
-                accentColor: colorScheme.background,
+                accentColor: colorScheme.cardBg,
                 onTap: () {
                   // Tap action
                 },

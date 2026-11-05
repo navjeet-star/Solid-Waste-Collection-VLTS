@@ -26,6 +26,11 @@ class DarkColors {
   static const Color green = Color(0xFF16A34A);
   static const Color red = Color(0xFFDC2626);
   static const Color yellow = Color(0xFFEAB308);
+
+  static const Color cardBg = Color(0xFF1F2B25);
+  static const Color textTitle = Color(0xFFF0FDF4);
+  static const Color textDesc = Color(0xFF9EABA2);
+
 }
 
 final ThemeData darkTheme = ThemeData(

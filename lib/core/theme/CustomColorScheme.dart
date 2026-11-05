@@ -19,4 +19,16 @@ extension CustomColorScheme on ColorScheme {
       ? DarkColors.yellow
       : LightColors.yellow;
 
+  Color get cardBg => brightness == Brightness.dark
+      ? DarkColors.cardBg
+      : LightColors.cardBg;
+
+  Color get textTitle => brightness == Brightness.dark
+      ? DarkColors.textTitle
+      : LightColors.textTitle;
+
+  Color get textDesc => brightness == Brightness.dark
+      ? DarkColors.textDesc
+      : LightColors.textDesc;
+
 }
