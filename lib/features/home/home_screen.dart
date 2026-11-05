@@ -103,13 +103,13 @@ class _HomeBodyContent extends StatelessWidget {
       ModuleItem(
         title: strings.attendanceDashboard,
         icon: Icons.how_to_reg_rounded,
-        color: colorScheme.primary,
+        color: colorScheme.tertiary,
         onTap: () => CommonSnackBar.show(context, strings.attendanceDashboard),
       ),
       ModuleItem(
         title: strings.ulbProgressReport,
         icon: Icons.bar_chart_rounded,
-        color: colorScheme.secondary,
+        color: colorScheme.tertiary,
         onTap: () => CommonSnackBar.show(context, strings.ulbProgressReport),
       ),
       ModuleItem(
@@ -121,7 +121,7 @@ class _HomeBodyContent extends StatelessWidget {
       ModuleItem(
         title: strings.swachhtaAppComplaints,
         icon: Icons.mark_chat_unread_rounded,
-        color: colorScheme.error,
+        color: colorScheme.tertiary,
         onTap: () => CommonSnackBar.show(context, strings.swachhtaAppComplaints),
       ),
     ];
@@ -145,21 +145,6 @@ class _HomeBodyContent extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
-              decoration: BoxDecoration(
-                color: colorScheme.primary.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                '${moduleList.length} Modules',
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w600,
-                  color: colorScheme.primary,
-                ),
-              ),
-            ),
           ],
         ),
 
@@ -168,10 +153,25 @@ class _HomeBodyContent extends StatelessWidget {
         // Generic GridView builder used directly in HomeScreen
         GenericGridView<ModuleItem>(
           items: moduleList,
+          childAspectRatio: 1.95,
           itemBuilder: (context, module, index) {
             return ModuleCardItem(item: module);
           },
         ),
+
+        const SizedBox(height: 12),
+
+        Text(
+          strings.employeeType,
+          style: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+            color: colorScheme.onSurface,
+          ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        )
+
       ],
     );
   }

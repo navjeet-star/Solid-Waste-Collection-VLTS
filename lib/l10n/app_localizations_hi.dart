@@ -310,4 +310,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get swachhtaAppComplaints => 'स्वच्छता ऐप शिकायतें';
+
+  @override
+  String get employeeType => 'कर्मचारी का प्रकार';
 }

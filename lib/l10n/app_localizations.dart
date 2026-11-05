@@ -691,6 +691,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Swachhta App Complaints'**
   String get swachhtaAppComplaints;
+
+  /// No description provided for @employeeType.
+  ///
+  /// In en, this message translates to:
+  /// **'Employee Type'**
+  String get employeeType;
 }
 
 class _AppLocalizationsDelegate

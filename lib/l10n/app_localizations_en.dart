@@ -311,4 +311,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get swachhtaAppComplaints => 'Swachhta App Complaints';
+
+  @override
+  String get employeeType => 'Employee Type';
 }
