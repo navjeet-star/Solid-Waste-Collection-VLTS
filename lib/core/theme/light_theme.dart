@@ -29,7 +29,7 @@ class LightColors {
   static const Color red = Color(0xFFDC2626);
   static const Color yellow = Color(0xFFEAB308);
 
-  static const Color cardBg = Color(0xFFF7FAF8);
+  static const Color cardBg = Color(0xFFFFFFFF);
   static const Color textTitle = Color(0xFF000000);
   static const Color textDesc = Color(0xFF6B7D74);
 }

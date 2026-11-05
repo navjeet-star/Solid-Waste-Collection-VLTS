@@ -148,7 +148,7 @@ class _HomeBodyContent extends StatelessWidget {
         // Generic GridView builder used directly in HomeScreen
         GenericGridView<ModuleItem>(
           items: moduleList,
-          childAspectRatio: 1.5,
+          childAspectRatio: 1.8,
           itemBuilder: (context, module, index) {
             return ModuleCardItem(item: module);
           },

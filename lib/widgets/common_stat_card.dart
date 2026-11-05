@@ -50,9 +50,9 @@ class CommonStatCard extends StatelessWidget {
       height: height,
       margin: EdgeInsets.all(1),
       child: Card(
-        elevation: 2,
+        elevation: 1,
         color: colorScheme.cardBg,
-        shadowColor: Colors.black.withValues(alpha: 0.12),
+        shadowColor: colorScheme.shadow,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: BorderSide(
