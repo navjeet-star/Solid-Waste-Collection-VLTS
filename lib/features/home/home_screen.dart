@@ -177,7 +177,7 @@ class _HomeBodyContent extends StatelessWidget {
               flex: 1,
               child: CommonStatCard(
                 value: '921',
-                title: 'Driver',
+                title: strings.driver,
                 accentColor: colorScheme.blue,
                 onTap: () {},
               ),
@@ -186,7 +186,7 @@ class _HomeBodyContent extends StatelessWidget {
               flex: 1,
               child: CommonStatCard(
                 value: '875',
-                title: 'Helper',
+                title: strings.helper,
                 accentColor: colorScheme.green,
                 onTap: () {},
               ),
@@ -195,7 +195,7 @@ class _HomeBodyContent extends StatelessWidget {
               flex: 1,
               child: CommonStatCard(
                 value: '3997',
-                title: 'Sanitary worker',
+                title: strings.sanitaryWorker,
                 accentColor: colorScheme.red,
                 onTap: () {},
               ),
@@ -204,7 +204,7 @@ class _HomeBodyContent extends StatelessWidget {
               flex: 1,
               child: CommonStatCard(
                 value: '346',
-                title: 'Others',
+                title: strings.others,
                 accentColor: colorScheme.yellow,
                 onTap: () {},
               ),
@@ -234,7 +234,7 @@ class _HomeBodyContent extends StatelessWidget {
               flex: 1,
               child: CommonStatCard(
                 value: '623',
-                title: 'D2D Tipper',
+                title: strings.d2dTipper,
                 accentColor: colorScheme.cardBg,
                 onTap: () {},
               ),
@@ -243,7 +243,7 @@ class _HomeBodyContent extends StatelessWidget {
               flex: 1,
               child: CommonStatCard(
                 value: '3',
-                title: 'Tractor',
+                title: strings.tractor,
                 accentColor: colorScheme.cardBg,
                 onTap: () {},
               ),
@@ -252,7 +252,7 @@ class _HomeBodyContent extends StatelessWidget {
               flex: 1,
               child: CommonStatCard(
                 value: '20',
-                title: 'Others',
+                title: strings.others,
                 accentColor: colorScheme.cardBg,
                 onTap: () {},
               ),
@@ -268,7 +268,7 @@ class _HomeBodyContent extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                strings.ulbProgressReport,
+                strings.ulbProgressReportToday,
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
@@ -278,7 +278,8 @@ class _HomeBodyContent extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Text("View all",
+            Text(
+              strings.viewAll,
               style: TextStyle(
                 fontSize: 11.5,
                 fontWeight: FontWeight.w600,
@@ -296,7 +297,7 @@ class _HomeBodyContent extends StatelessWidget {
             item: ulb,
             onTap: () => CommonSnackBar.show(
               context,
-              '${ulb.ulbName} • Score: ${ulb.score}',
+              '${ulb.ulbName} • ${strings.score}: ${ulb.score}',
             ),
           );
         }),

@@ -310,6 +310,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ulbProgressReport => 'ULB-wise Progress Report';
 
   @override
+  String get ulbProgressReportToday => 'ULB Performance today - by ULB';
+
+  @override
   String get swachhtaAppComplaints => 'Swachhta App Complaints';
 
   @override
@@ -317,4 +320,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get vehicleType => 'Vehicle Type';
+
+  @override
+  String get driver => 'Driver';
+
+  @override
+  String get helper => 'Helper';
+
+  @override
+  String get sanitaryWorker => 'Sanitary Worker';
+
+  @override
+  String get others => 'Others';
+
+  @override
+  String get d2dTipper => 'D2D Tipper';
+
+  @override
+  String get tractor => 'Tractor';
+
+  @override
+  String get score => 'Score';
+
+  @override
+  String get routeCoverage => 'Route Coverage';
+
+  @override
+  String get active => 'Active';
+
+  @override
+  String get trips => 'Trips';
+
+  @override
+  String get notReporting => 'Not Reporting';
 }

@@ -99,7 +99,19 @@
   "dashboardModules": "Dashboard Modules",
   "attendanceDashboard": "Attendance Dashboard",
   "ulbProgressReport": "ULB-wise Progress Report",
+  "ulbProgressReportToday": "ULB Performance today - by ULB",
   "swachhtaAppComplaints": "Swachhta App Complaints",
   "employeeType": "Employee Type",
-  "vehicleType": "Vehicle Type"
+  "vehicleType": "Vehicle Type",
+  "driver": "Driver",
+  "helper": "Helper",
+  "sanitaryWorker": "Sanitary Worker",
+  "others": "Others",
+  "d2dTipper": "D2D Tipper",
+  "tractor": "Tractor",
+  "score": "Score",
+  "routeCoverage": "Route Coverage",
+  "active": "Active",
+  "trips": "Trips",
+  "notReporting": "Not Reporting"
 }

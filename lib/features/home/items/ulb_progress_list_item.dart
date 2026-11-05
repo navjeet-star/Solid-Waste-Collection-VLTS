@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vlts_swc/common_utils/decoration/common_decorations.dart';
+import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
 import 'package:vlts_swc/models/ulb_progress_item.dart';
 
@@ -11,8 +12,8 @@ class UlbProgressListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
-    final isOfflineAlert = !item.notReporting.startsWith('0');
 
     return Card(
       margin: const EdgeInsets.fromLTRB(0, 8, 0, 8),
@@ -64,7 +65,7 @@ class UlbProgressListItem extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'Score ',
+                            '${strings.score} ',
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
@@ -95,7 +96,7 @@ class UlbProgressListItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Route Coverage',
+                          strings.routeCoverage,
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w500,
@@ -138,7 +139,7 @@ class UlbProgressListItem extends StatelessWidget {
                     Expanded(
                       flex: 4,
                       child: _MetricBox(
-                        label: 'Active',
+                        label: strings.active,
                         value: item.fleetActive,
                         color: colorScheme.primary,
                         icon: Icons.local_shipping_outlined,
@@ -150,7 +151,7 @@ class UlbProgressListItem extends StatelessWidget {
                     Expanded(
                       flex: 3,
                       child: _MetricBox(
-                        label: 'Trips',
+                        label: strings.trips,
                         value: '${item.tripsDone}',
                         color: colorScheme.blue,
                         icon: Icons.alt_route_rounded,
@@ -162,9 +163,9 @@ class UlbProgressListItem extends StatelessWidget {
                     Expanded(
                       flex: 3,
                       child: _MetricBox(
-                        label: 'Not reporting',
+                        label: strings.notReporting,
                         value: item.notReporting,
-                        color:  colorScheme.red,
+                        color: colorScheme.red,
                         icon: Icons.wifi_off_rounded,
                       ),
                     ),

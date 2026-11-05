@@ -6,7 +6,6 @@ import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/theme/app_theme_mode.dart';
 import 'package:vlts_swc/core/theme/dark_theme.dart';
 import 'package:vlts_swc/core/theme/light_theme.dart';
-import 'package:vlts_swc/features/overview/view/overview_screen.dart';
 import 'package:vlts_swc/l10n/app_localizations.dart';
 
 Future<void> main() async {

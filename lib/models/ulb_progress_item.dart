@@ -74,24 +74,7 @@ class UlbProgressItem {
           notReporting: '0% (0)',
           score: 81,
         ),
-        UlbProgressItem(
-          rank: 7,
-          ulbName: 'Nagar Nigam, Kashipur',
-          fleetActive: '32/36 (88.0%)',
-          routeCoverage: 71.23,
-          tripsDone: 403,
-          notReporting: '11% (4)',
-          score: 80,
-        ),
-        UlbProgressItem(
-          rank: 8,
-          ulbName: 'Nagar Nigam, Almora',
-          fleetActive: '6/7 (85.0%)',
-          routeCoverage: 67.84,
-          tripsDone: 0,
-          notReporting: '14% (1)',
-          score: 76,
-        ),
+
       ];
 }
 

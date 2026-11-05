@@ -686,6 +686,12 @@ abstract class AppLocalizations {
   /// **'ULB-wise Progress Report'**
   String get ulbProgressReport;
 
+  /// No description provided for @ulbProgressReportToday.
+  ///
+  /// In en, this message translates to:
+  /// **'ULB Performance today - by ULB'**
+  String get ulbProgressReportToday;
+
   /// No description provided for @swachhtaAppComplaints.
   ///
   /// In en, this message translates to:
@@ -703,6 +709,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Vehicle Type'**
   String get vehicleType;
+
+  /// No description provided for @driver.
+  ///
+  /// In en, this message translates to:
+  /// **'Driver'**
+  String get driver;
+
+  /// No description provided for @helper.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper'**
+  String get helper;
+
+  /// No description provided for @sanitaryWorker.
+  ///
+  /// In en, this message translates to:
+  /// **'Sanitary Worker'**
+  String get sanitaryWorker;
+
+  /// No description provided for @others.
+  ///
+  /// In en, this message translates to:
+  /// **'Others'**
+  String get others;
+
+  /// No description provided for @d2dTipper.
+  ///
+  /// In en, this message translates to:
+  /// **'D2D Tipper'**
+  String get d2dTipper;
+
+  /// No description provided for @tractor.
+  ///
+  /// In en, this message translates to:
+  /// **'Tractor'**
+  String get tractor;
+
+  /// No description provided for @score.
+  ///
+  /// In en, this message translates to:
+  /// **'Score'**
+  String get score;
+
+  /// No description provided for @routeCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Route Coverage'**
+  String get routeCoverage;
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @trips.
+  ///
+  /// In en, this message translates to:
+  /// **'Trips'**
+  String get trips;
+
+  /// No description provided for @notReporting.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Reporting'**
+  String get notReporting;
 }
 
 class _AppLocalizationsDelegate

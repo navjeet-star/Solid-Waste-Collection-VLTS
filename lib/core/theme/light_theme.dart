@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vlts_swc/core/theme/dark_theme.dart';
 
 class LightColors {
   LightColors._();

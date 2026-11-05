@@ -76,8 +76,8 @@ class CommonStatCard extends StatelessWidget {
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.w800,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
                               color: colorScheme.textTitle),
                       ),
                       const SizedBox(height: 5),

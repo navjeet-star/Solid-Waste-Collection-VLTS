@@ -210,13 +210,13 @@ class AppLocalizationsHi extends AppLocalizations {
       '3,500 मीट्रिक टन लक्ष्य • 67% • 8 ज़ोन सक्रिय';
 
   @override
-  String get totalUlbs => 'Total ULB(s)';
+  String get totalUlbs => 'कुल यूएलबी';
 
   @override
-  String get totalWards => 'Total Wards';
+  String get totalWards => 'कुल वार्ड';
 
   @override
-  String get registeredFleet => 'Registered Fleet';
+  String get registeredFleet => 'पंजीकृत फ्लीट';
 
   @override
   String get collectionTrend => 'संग्रह रुझान • अक्टूबर';
@@ -309,6 +309,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get ulbProgressReport => 'निकायवार प्रगति रिपोर्ट';
 
   @override
+  String get ulbProgressReportToday => 'आज का ULB प्रदर्शन - ULB के अनुसार';
+
+  @override
   String get swachhtaAppComplaints => 'स्वच्छता ऐप शिकायतें';
 
   @override
@@ -316,4 +319,37 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get vehicleType => 'वाहन का प्रकार';
+
+  @override
+  String get driver => 'चालक';
+
+  @override
+  String get helper => 'सहायक';
+
+  @override
+  String get sanitaryWorker => 'सफाई कर्मी';
+
+  @override
+  String get others => 'अन्य';
+
+  @override
+  String get d2dTipper => 'डी2डी टिपर';
+
+  @override
+  String get tractor => 'ट्रैक्टर';
+
+  @override
+  String get score => 'स्कोर';
+
+  @override
+  String get routeCoverage => 'रूट कवरेज';
+
+  @override
+  String get active => 'सक्रिय';
+
+  @override
+  String get trips => 'ट्रिप्स';
+
+  @override
+  String get notReporting => 'नॉट रिपोर्टिंग';
 }
