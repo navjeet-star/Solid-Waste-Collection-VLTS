@@ -353,7 +353,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notReporting => 'Not Reporting';
-
-  @override
-  String get vehicles => 'Vehicles';
 }

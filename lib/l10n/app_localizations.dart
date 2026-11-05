@@ -775,12 +775,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not Reporting'**
   String get notReporting;
-
-  /// No description provided for @vehicles.
-  ///
-  /// In en, this message translates to:
-  /// **'Vehicles'**
-  String get vehicles;
 }
 
 class _AppLocalizationsDelegate

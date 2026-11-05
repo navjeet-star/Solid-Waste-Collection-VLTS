@@ -6,6 +6,7 @@ import 'package:vlts_swc/models/ulb_progress_item.dart';
 import 'package:vlts_swc/features/home/hero_header_content.dart';
 import 'package:vlts_swc/features/home/items/dashboard_card_item.dart';
 import 'package:vlts_swc/features/home/items/ulb_progress_list_item.dart';
+import 'package:vlts_swc/features/home/items/vehicle_stat_card.dart';
 import 'package:vlts_swc/widgets/CommonSnackBar.dart';
 import 'package:vlts_swc/common_utils/generic_grid_view.dart';
 import 'package:vlts_swc/widgets/common_stat_card.dart';
@@ -91,10 +92,17 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 /// Categories Sheet Content with Trend Card, Header, and Category List
-class _HomeBodyContent extends StatelessWidget {
+class _HomeBodyContent extends StatefulWidget {
   final VoidCallback onViewAllCategories;
 
   const _HomeBodyContent({required this.onViewAllCategories});
+
+  @override
+  State<_HomeBodyContent> createState() => _HomeBodyContentState();
+}
+
+class _HomeBodyContentState extends State<_HomeBodyContent> {
+  bool _isTableView = false;
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +178,7 @@ class _HomeBodyContent extends StatelessWidget {
 
         const SizedBox(height: 10),
 
-        // Employee type rows
+        // Employee type rows (Uses CommonStatCard - untouched)
         Row(
           children: [
             Expanded(
@@ -227,36 +235,48 @@ class _HomeBodyContent extends StatelessWidget {
 
         const SizedBox(height: 10),
 
-        // Vehicle type rows
+        // Vehicle type rows (Uses specialized VehicleStatCard with icons & dedicated styling)
         Row(
           children: [
             Expanded(
               flex: 1,
-              child: CommonStatCard(
+              child: VehicleStatCard(
                 value: '623',
                 title: strings.d2dTipper,
-                accentColor: colorScheme.cardBg,
-                onTap: () {},
+                icon: Icons.local_shipping_rounded,
+                accentColor: colorScheme.blue,
+                onTap: () => CommonSnackBar.show(
+                  context,
+                  '${strings.d2dTipper}: 623',
+                ),
               ),
             ),
             Expanded(
               flex: 1,
-              child: CommonStatCard(
+              child: VehicleStatCard(
                 value: '3',
                 title: strings.tractor,
-                accentColor: colorScheme.cardBg,
-                onTap: () {},
+                icon: Icons.agriculture_rounded,
+                accentColor: colorScheme.green,
+                onTap: () => CommonSnackBar.show(
+                  context,
+                  '${strings.tractor}: 3',
+                ),
               ),
             ),
             Expanded(
               flex: 1,
-              child: CommonStatCard(
+              child: VehicleStatCard(
                 value: '20',
                 title: strings.others,
-                accentColor: colorScheme.cardBg,
-                onTap: () {},
+                icon: Icons.commute_rounded,
+                accentColor: colorScheme.yellow,
+                onTap: () => CommonSnackBar.show(
+                  context,
+                  '${strings.others}: 20',
+                ),
               ),
-            )
+            ),
           ],
         ),
 
@@ -268,7 +288,7 @@ class _HomeBodyContent extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                strings.ulbProgressReport,
+                strings.ulbProgressReportToday,
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
@@ -278,29 +298,31 @@ class _HomeBodyContent extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Text(
+             Text(
               strings.viewAll,
               style: TextStyle(
-                fontSize: 11.5,
-                fontWeight: FontWeight.w600,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
                 color: colorScheme.primary,
               ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
 
         const SizedBox(height: 12),
 
-        // Vertical List of ULB Progress Report items
-        ...UlbProgressItem.sampleList.map((ulb) {
-          return UlbProgressListItem(
-            item: ulb,
-            onTap: () => CommonSnackBar.show(
-              context,
-              '${ulb.ulbName} • ${strings.score}: ${ulb.score}',
-            ),
-          );
-        }),
+        // Display either the exact Dashboard Table or the Mobile Cards
+          ...UlbProgressItem.sampleList.map((ulb) {
+            return UlbProgressListItem(
+              item: ulb,
+              onTap: () => CommonSnackBar.show(
+                context,
+                '${ulb.ulbName} • ${strings.score}: ${ulb.score}',
+              ),
+            );
+          }),
       ],
     );
   }

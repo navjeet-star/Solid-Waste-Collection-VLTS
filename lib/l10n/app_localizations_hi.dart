@@ -352,7 +352,4 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get notReporting => 'नॉट रिपोर्टिंग';
-
-  @override
-  String get vehicles => 'वाहन';
 }
