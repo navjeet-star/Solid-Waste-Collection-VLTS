@@ -314,4 +314,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get employeeType => 'Employee Type';
+
+  @override
+  String get vehicleType => 'Vehicle Type';
 }

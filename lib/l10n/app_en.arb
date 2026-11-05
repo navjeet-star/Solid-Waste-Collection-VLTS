@@ -100,5 +100,6 @@
   "attendanceDashboard": "Attendance Dashboard",
   "ulbProgressReport": "ULB-wise Progress Report",
   "swachhtaAppComplaints": "Swachhta App Complaints",
-  "employeeType": "Employee Type"
+  "employeeType": "Employee Type",
+  "vehicleType": "Vehicle Type"
 }

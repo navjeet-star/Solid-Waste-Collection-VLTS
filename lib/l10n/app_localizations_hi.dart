@@ -313,4 +313,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get employeeType => 'कर्मचारी का प्रकार';
+
+  @override
+  String get vehicleType => 'वाहन का प्रकार';
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
 import 'package:vlts_swc/models/module_item.dart';
 import 'package:vlts_swc/features/home/hero_header_content.dart';
 import 'package:vlts_swc/features/home/module_card_item.dart';
 import 'package:vlts_swc/widgets/CommonSnackBar.dart';
 import 'package:vlts_swc/common_utils/generic_grid_view.dart';
+import 'package:vlts_swc/widgets/common_stat_card.dart';
 import 'package:vlts_swc/widgets/side_menu.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -130,25 +132,18 @@ class _HomeBodyContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Operational Modules Section Header
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                strings.dashboardModules,
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  color: colorScheme.onSurface,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            const SizedBox(width: 8),
-          ],
+        Text(
+          strings.dashboardModules,
+          style: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+            color: colorScheme.onSurface,
+          ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
 
-        const SizedBox(height: 12),
+        const SizedBox(height: 10),
 
         // Generic GridView builder used directly in HomeScreen
         GenericGridView<ModuleItem>(
@@ -159,7 +154,7 @@ class _HomeBodyContent extends StatelessWidget {
           },
         ),
 
-        const SizedBox(height: 12),
+        const SizedBox(height: 20),
 
         Text(
           strings.employeeType,
@@ -170,7 +165,113 @@ class _HomeBodyContent extends StatelessWidget {
           ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-        )
+        ),
+
+        const SizedBox(height: 10),
+
+        //employee type rows
+        Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: CommonStatCard(
+                value: '921',
+                title: 'Driver',
+                accentColor: colorScheme.blue,
+                onTap: () {
+                  // Tap action
+                },
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: CommonStatCard(
+                value: '875',
+                title: 'Helper',
+                accentColor: colorScheme.green,
+                onTap: () {
+                  // Tap action
+                },
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: CommonStatCard(
+                value: '3997',
+                title: 'Sanitary worker',
+                accentColor: colorScheme.red,
+                onTap: () {
+                  // Tap action
+                },
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: CommonStatCard(
+                value: '346',
+                title: 'Others',
+                accentColor: colorScheme.yellow,
+                onTap: () {
+                  // Tap action
+                },
+              ),
+            )
+          ],
+        ),
+
+        const SizedBox(height: 20),
+
+        Text(
+          strings.vehicleType,
+          style: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+            color: colorScheme.onSurface,
+          ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+
+        const SizedBox(height: 10),
+
+        //employee type rows
+        Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: CommonStatCard(
+                value: '623',
+                title: 'D2D Tipper',
+                accentColor: colorScheme.background,
+                onTap: () {
+                  // Tap action
+                },
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: CommonStatCard(
+                value: '3',
+                title: 'Tractor',
+                accentColor: colorScheme.background,
+                onTap: () {
+                  // Tap action
+                },
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: CommonStatCard(
+                value: '20',
+                title: 'Others',
+                accentColor: colorScheme.background,
+                onTap: () {
+                  // Tap action
+                },
+              ),
+            )
+          ],
+        ),
 
       ],
     );

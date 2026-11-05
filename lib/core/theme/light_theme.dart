@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vlts_swc/core/theme/dark_theme.dart';
 
 class LightColors {
   LightColors._();
@@ -21,6 +22,13 @@ class LightColors {
   static const Color info = Color(0xFF2563EB); // Telemetry Blue / Info
   static const Color cardBackground = Color(0xFFFFFFFF); // Elevated Card Surface
   static const Color accent = Color(0xFF6366F1); // Indigo / Attendance & Analytics
+
+
+  static const Color blue = Color(0xFF2563EB);
+  static const Color green = Color(0xFF16A34A);
+  static const Color red = Color(0xFFDC2626);
+  static const Color yellow = Color(0xFFEAB308);
+
 }
 
 final ThemeData lightTheme = ThemeData(
@@ -42,3 +50,4 @@ final ThemeData lightTheme = ThemeData(
     elevation: 0,
   ),
 );
+
