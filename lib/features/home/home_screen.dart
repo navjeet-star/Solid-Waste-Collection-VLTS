@@ -268,7 +268,7 @@ class _HomeBodyContent extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                strings.ulbProgressReportToday,
+                strings.ulbProgressReport,
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
