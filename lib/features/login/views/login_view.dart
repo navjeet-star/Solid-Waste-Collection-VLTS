@@ -8,19 +8,14 @@ import '../../../widgets/common_text.dart';
 import '../../../widgets/common_text_field.dart';
 import '../../../widgets/theme_toggle_button.dart';
 import '../../signUp/view/signup_screen.dart';
-import '../bindings/login_binding.dart';
 import '../viewModels/login_view_model.dart';
 
-class LoginView extends GetView<LoginViewModel> {
+class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Ensure all dependencies (Repository, ViewModel) are registered
-    if (!Get.isRegistered<LoginViewModel>()) {
-      LoginBinding().dependencies();
-    }
-    final controller = Get.find<LoginViewModel>();
+    final controller = Get.put(LoginViewModel());
 
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;

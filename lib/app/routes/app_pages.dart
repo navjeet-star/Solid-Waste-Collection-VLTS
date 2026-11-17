@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import '../../features/home/home_screen.dart';
-import '../../features/login/bindings/login_binding.dart';
 import '../../features/login/views/login_view.dart';
 import '../../features/overview/view/overview_screen.dart';
 
@@ -17,7 +16,6 @@ class AppPages {
     GetPage(
       name: Routes.login,
       page: () => const LoginView(),
-      binding: LoginBinding(),
     ),
     GetPage(
       name: Routes.home,

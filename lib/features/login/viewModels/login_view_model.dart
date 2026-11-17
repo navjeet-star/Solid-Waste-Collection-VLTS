@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
 
 import '../../../../app/routes/app_pages.dart';
 import '../../../../core/aes_encypt.dart';
+import '../../../../core/network/api_service.dart';
 import '../models/login_model.dart';
 import '../repositories/login_repository.dart';
 
@@ -38,12 +40,14 @@ class LoginViewModel extends GetxController {
     try {
       isLoading.value = true;
 
-      // Resolve repository from parameter or GetX container
+      // Resolve repository from parameter, GetX container, or fallback
       final repo =
           repository ??
           (Get.isRegistered<LoginRepository>()
               ? Get.find<LoginRepository>()
-              : null);
+              : (Get.isRegistered<ApiService>()
+                  ? LoginRepositoryImpl(apiService: Get.find<ApiService>())
+                  : null));
 
       if (repo == null) {
         throw Exception("LoginRepository is not registered.");
