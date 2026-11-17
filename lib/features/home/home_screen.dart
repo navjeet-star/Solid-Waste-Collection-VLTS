@@ -298,7 +298,8 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-             Text(
+            const SizedBox(width: 8),
+            Text(
               strings.viewAll,
               style: TextStyle(
                 fontSize: 14,

@@ -1,8 +1,10 @@
 import 'dart:io';
+
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
 import 'api_endpoints.dart';
 
 /// Production-ready Dio HTTP Client factory and manager.
@@ -18,7 +20,7 @@ class DioClient {
     return _instance!;
   }
 
-  /// Creates and configures a new [Dio] instance with interceptors and SSL handling.
+
   static Dio createDio({String? baseUrl}) {
     final dio = Dio(
       BaseOptions(
@@ -33,17 +35,35 @@ class DioClient {
       ),
     );
 
-    // 1. SSL Certificate Bypass for Dev/Staging (.gov.in intermediate CA validation)
+    // Development-only SSL handling
     if (!kReleaseMode) {
       (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
           (HttpClient client) {
-        client.badCertificateCallback =
-            (X509Certificate cert, String host, int port) => true;
-        return client;
-      };
+            client.badCertificateCallback = (
+              X509Certificate cert,
+              String host,
+              int port,
+            ) => true;
+            return client;
+          };
     }
 
-    // 2. Production-Grade PrettyDioLogger
+    // dio.interceptors.add(
+    //   InterceptorsWrapper(
+    //     onRequest: (options, handler) {
+    //       final uri = options.uri;
+    //       if (uri.host != 'localhost' &&
+    //           (uri.host.startsWith('192.168.') ||
+    //               uri.host.startsWith('10.0.') ||
+    //               uri.host == '127.0.0.1')) {
+    //         options.headers['Host'] = 'localhost:${uri.port}';
+    //       }
+    //       return handler.next(options);
+    //     },
+    //   ),
+    // );
+
+    // PrettyDioLogger
     dio.interceptors.add(
       PrettyDioLogger(
         request: true,
@@ -60,4 +80,3 @@ class DioClient {
     return dio;
   }
 }
-

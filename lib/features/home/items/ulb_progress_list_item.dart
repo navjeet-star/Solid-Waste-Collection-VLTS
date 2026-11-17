@@ -206,14 +206,16 @@ class _MetricBox extends StatelessWidget {
             children: [
               Icon(icon, size: 12, color: color),
               const SizedBox(width: 3),
-              Text(
-                label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w500,
-                  color: color,
+              Flexible(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w500,
+                    color: color,
+                  ),
                 ),
               ),
             ],

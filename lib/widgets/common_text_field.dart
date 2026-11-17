@@ -34,7 +34,7 @@ class CommonTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    final field = TextFormField(
+    return TextFormField(
       controller: controller,
       focusNode: focusNode,
       obscureText: obscureText,
@@ -98,38 +98,5 @@ class CommonTextField extends StatelessWidget {
       ),
     );
 
-    if (label == null) {
-      return field;
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: [
-            if (labelIcon != null) ...[
-              Icon(
-                labelIcon,
-                size: 16,
-                color: colorScheme.primary,
-              ),
-              const SizedBox(width: 6),
-            ],
-            Text(
-              label!,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: colorScheme.onSurface,
-                letterSpacing: 0.2,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        field,
-      ],
-    );
   }
 }

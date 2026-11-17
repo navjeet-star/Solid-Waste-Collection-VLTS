@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../../app/routes/app_pages.dart';
 import '../../../../core/aes_encypt.dart';
 import '../models/login_model.dart';
@@ -12,8 +13,8 @@ class LoginViewModel extends GetxController {
 
   LoginViewModel({this.repository});
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController(text: 'super-admin');
+  final passwordController = TextEditingController(text: 'Nic@2025');
   final formKey = GlobalKey<FormState>();
 
   final isLoading = false.obs;
@@ -33,12 +34,13 @@ class LoginViewModel extends GetxController {
     if (!(formKey.currentState?.validate() ?? false)) {
       return;
     }
-
+   // Get.offAllNamed(Routes.home);
     try {
       isLoading.value = true;
 
       // Resolve repository from parameter or GetX container
-      final repo = repository ??
+      final repo =
+          repository ??
           (Get.isRegistered<LoginRepository>()
               ? Get.find<LoginRepository>()
               : null);
@@ -47,28 +49,50 @@ class LoginViewModel extends GetxController {
         throw Exception("LoginRepository is not registered.");
       }
 
+      // // Initialize encryption helper
+      // final encryptionHelper = AESENCRYPTION();
+      //
+      // // Encrypt loginId, passwordForApi, and salt separately
+      // String salt, password, userName;
+      // salt = encryptionHelper.getSalt(5);
+      //
+      // userName = encryptionHelper.aesEncryption(plainText: emailController.text.toString());
+      // password = encryptionHelper.aesEncryption(plainText: encryptionHelper.getSha256(passwordController.text.toString()+salt));
+      // salt = encryptionHelper.aesEncryption(plainText: salt);
+      //
+      // final result = await repo.login(
+      //   loginId: base64Url.encode(utf8.encode(userName)),
+      //   password: base64Url.encode(utf8.encode(password)),
+      //   salt: base64Url.encode(utf8.encode(salt)),
+      // );
+
       // Initialize encryption helper
       final encryptionHelper = AESENCRYPTION();
 
-      // Encrypt loginId, passwordForApi, and salt separately
-      String salt, password, userName;
-      salt = encryptionHelper.getSalt(5);
+      // Generate salt
+      String salt = encryptionHelper.getSalt(5);
 
-      userName = encryptionHelper.aesEncryption(plainText: emailController.text.toString());
-      password = encryptionHelper.aesEncryption(plainText: encryptionHelper.getSha256(passwordController.text.toString()+salt));
-      salt = encryptionHelper.aesEncryption(plainText: salt);
+      // Encrypt LoginID
+      final userName = encryptionHelper.aesEncryption(plainText: emailController.text.trim(),);
+
+      // Hash password + salt, then encrypt
+      final hashedPassword = encryptionHelper.getSha256(passwordController.text + salt,);
+      final password = encryptionHelper.aesEncryption(plainText: hashedPassword,);
+      final encryptedSalt = encryptionHelper.aesEncryption(plainText: salt);
 
       final result = await repo.login(
-        loginId: base64Url.encode(utf8.encode(userName)),
-        password: base64Url.encode(utf8.encode(password)),
-        salt: base64Url.encode(utf8.encode(salt)),
+        loginId: userName,
+        password: password,
+        salt: encryptedSalt,
       );
 
       result.fold(
         (failure) {
           Get.snackbar(
             "Login Failed",
-            failure.message.isNotEmpty ? failure.message : "Invalid credentials",
+            failure.message.isNotEmpty
+                ? failure.message
+                : "Invalid credentials",
             backgroundColor: Colors.red,
             colorText: Colors.white,
             snackPosition: SnackPosition.BOTTOM,
@@ -103,4 +127,3 @@ class LoginViewModel extends GetxController {
 
 /// Backwards compatibility alias for LoginController
 typedef LoginController = LoginViewModel;
-
