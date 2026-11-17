@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:vlts_swc/core/services/shared_prefs_service.dart';
 import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
 import '../../core/network/api_endpoints.dart';
 import '../../core/network/api_service.dart';
@@ -9,6 +10,8 @@ import '../../features/login/repositories/login_repository.dart';
 class InitialBinding extends Bindings {
   @override
   void dependencies() {
+    // Global SharedPreferences service instance
+    Get.lazyPut<SharedPrefsService>(() => SharedPrefsService.instance, fenix: true);
 
     // Global Dio instance
     Get.lazyPut<Dio>(() => DioClient.createDio(), fenix: true);

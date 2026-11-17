@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
 
-import '../../../../app/routes/app_pages.dart';
-import '../../../../common_utils/common_functions.dart';
-import '../../../../core/aes_encypt.dart';
-import '../../../common_utils/common_constants.dart';
-import '../../../../core/network/api_service.dart';
+import 'package:vlts_swc/app/routes/app_pages.dart';
+import 'package:vlts_swc/common_utils/common_functions.dart';
+import 'package:vlts_swc/core/aes_encypt.dart';
+import 'package:vlts_swc/core/network/api_service.dart';
+import 'package:vlts_swc/core/services/shared_prefs_service.dart';
 import '../models/login_model.dart';
 import '../repositories/login_repository.dart';
 
@@ -77,10 +77,17 @@ class LoginViewModel extends GetxController {
             title: "Login Failed",
           );
         },
-        (userData) {
+        (userData) async {
           // Check backend business status code
-          if (userData.code?.toUpperCase() == CommonConstants.successCode) {
+          if (userData.isSuccess) {
             user.value = userData;
+
+            // Save login response & profile in SharedPreferences
+            await SharedPrefsService.instance.saveLoginResponse(userData);
+            await SharedPrefsService.instance.isLoggedIn();
+            LoginModel? currentUser = await SharedPrefsService.instance.getLoginResponse();
+            String userName = currentUser?.name ?? "User";
+            String userRole = currentUser?.roleName ?? "";
             debugPrint("Login Success: ${userData.accessToken}");
             Get.offAllNamed(Routes.home);
           } else {

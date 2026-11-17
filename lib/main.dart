@@ -3,19 +3,21 @@ import 'package:get/get.dart';
 import 'package:vlts_swc/app/bindings/initial_binding.dart';
 import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/core/services/shared_prefs_service.dart';
 import 'package:vlts_swc/core/theme/app_theme_mode.dart';
 import 'package:vlts_swc/core/theme/dark_theme.dart';
 import 'package:vlts_swc/core/theme/light_theme.dart';
 import 'package:vlts_swc/l10n/app_localizations.dart';
 
 Future<void> main() async {
-
-
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  final isLoggedIn = await SharedPrefsService.instance.isLoggedIn();
+  runApp(MyApp(initialRoute: isLoggedIn ? Routes.home : Routes.login));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+  const MyApp({super.key, this.initialRoute = Routes.login});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
               supportedLocales: AppLocalizations.supportedLocales,
               initialBinding: InitialBinding(),
               getPages: AppPages.routes,
-              initialRoute: AppPages.initial,
+              initialRoute: initialRoute,
             );
           },
         );

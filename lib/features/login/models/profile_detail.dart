@@ -1,24 +1,64 @@
-class ProfileDetail {
-  String? loginID;
-  String? name;
-  String? mobileNo;
-  String? roleID;
-  String? roleName;
-  String? userLevelID;
-  String? userLevel;
-  String? districtID;
-  String? district;
-  String? ulbid;
-  String? ulb;
-  String? wardID;
-  String? ward;
-  String? designation;
-  String? refreshToken;
-  String? refreshTokenCreationDateTime;
-  String? emailID;
-  String? employeeID;
+import 'package:json_annotation/json_annotation.dart';
 
-  ProfileDetail({
+part 'profile_detail.g.dart';
+
+@JsonSerializable()
+class ProfileDetail {
+  @JsonKey(name: 'LoginID')
+  final String? loginID;
+
+  @JsonKey(name: 'Name')
+  final String? name;
+
+  @JsonKey(name: 'MobileNo')
+  final String? mobileNo;
+
+  @JsonKey(name: 'RoleID')
+  final String? roleID;
+
+  @JsonKey(name: 'RoleName')
+  final String? roleName;
+
+  @JsonKey(name: 'UserLevelID')
+  final String? userLevelID;
+
+  @JsonKey(name: 'UserLevel')
+  final String? userLevel;
+
+  @JsonKey(name: 'DistrictID')
+  final String? districtID;
+
+  @JsonKey(name: 'District')
+  final String? district;
+
+  @JsonKey(name: 'ULBID')
+  final String? ulbid;
+
+  @JsonKey(name: 'ULB')
+  final String? ulb;
+
+  @JsonKey(name: 'WardID')
+  final String? wardID;
+
+  @JsonKey(name: 'Ward')
+  final String? ward;
+
+  @JsonKey(name: 'Designation')
+  final String? designation;
+
+  @JsonKey(name: 'RefreshToken')
+  final String? refreshToken;
+
+  @JsonKey(name: 'RefreshTokenCreationDateTime')
+  final String? refreshTokenCreationDateTime;
+
+  @JsonKey(name: 'EmailID')
+  final String? emailID;
+
+  @JsonKey(name: 'EmployeeID')
+  final String? employeeID;
+
+  const ProfileDetail({
     this.loginID,
     this.name,
     this.mobileNo,
@@ -39,50 +79,8 @@ class ProfileDetail {
     this.employeeID,
   });
 
-  ProfileDetail.fromJson(dynamic json) {
-    if (json is Map) {
-      loginID = json['LoginID'] as String?;
-      name = json['Name'] as String?;
-      mobileNo = json['MobileNo'] as String?;
-      roleID = json['RoleID'] as String?;
-      roleName = json['RoleName'] as String?;
-      userLevelID = json['UserLevelID'] as String?;
-      userLevel = json['UserLevel'] as String?;
-      districtID = json['DistrictID'] as String?;
-      district = json['District'] as String?;
-      ulbid = json['ULBID'] as String?;
-      ulb = json['ULB'] as String?;
-      wardID = json['WardID'] as String?;
-      ward = json['Ward'] as String?;
-      designation = json['Designation'] as String?;
-      refreshToken = json['RefreshToken'] as String?;
-      refreshTokenCreationDateTime = json['RefreshTokenCreationDateTime'] as String?;
-      emailID = json['EmailID'] as String?;
-      employeeID = json['EmployeeID'] as String?;
-    }
-  }
+  factory ProfileDetail.fromJson(Map<String, dynamic> json) =>
+      _$ProfileDetailFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['LoginID'] = loginID;
-    map['Name'] = name;
-    map['MobileNo'] = mobileNo;
-    map['RoleID'] = roleID;
-    map['RoleName'] = roleName;
-    map['UserLevelID'] = userLevelID;
-    map['UserLevel'] = userLevel;
-    map['DistrictID'] = districtID;
-    map['District'] = district;
-    map['ULBID'] = ulbid;
-    map['ULB'] = ulb;
-    map['WardID'] = wardID;
-    map['Ward'] = ward;
-    map['Designation'] = designation;
-    map['RefreshToken'] = refreshToken;
-    map['RefreshTokenCreationDateTime'] = refreshTokenCreationDateTime;
-    map['EmailID'] = emailID;
-    map['EmployeeID'] = employeeID;
-    return map;
-  }
+  Map<String, dynamic> toJson() => _$ProfileDetailToJson(this);
 }
-

@@ -44,6 +44,8 @@ dependencies:
   crypto: ^3.0.8
   encrypt: ^5.0.3
   get: ^4.7.3
+  json_annotation: ^4.9.0
+  shared_preferences: ^2.5.6
 
 dev_dependencies:
   flutter_test:
@@ -55,10 +57,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  injectable_generator: any
   build_runner: ^2.4.8
   retrofit_generator: any
-  hive_generator: any
+  json_serializable: ^6.7.0
   analyzer: any
   local_captcha: ^1.0.1
 

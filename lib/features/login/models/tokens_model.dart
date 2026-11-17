@@ -1,24 +1,22 @@
-class TokensModel {
-  String? accessToken;
-  String? refreshToken;
+import 'package:json_annotation/json_annotation.dart';
 
-  TokensModel({
+part 'tokens_model.g.dart';
+
+@JsonSerializable()
+class TokensModel {
+  @JsonKey(name: 'AccessToken')
+  final String? accessToken;
+
+  @JsonKey(name: 'RefreshToken')
+  final String? refreshToken;
+
+  const TokensModel({
     this.accessToken,
     this.refreshToken,
   });
 
-  TokensModel.fromJson(dynamic json) {
-    if (json is Map) {
-      accessToken = json['AccessToken'] as String?;
-      refreshToken = json['RefreshToken'] as String?;
-    }
-  }
+  factory TokensModel.fromJson(Map<String, dynamic> json) =>
+      _$TokensModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['AccessToken'] = accessToken;
-    map['RefreshToken'] = refreshToken;
-    return map;
-  }
+  Map<String, dynamic> toJson() => _$TokensModelToJson(this);
 }
-

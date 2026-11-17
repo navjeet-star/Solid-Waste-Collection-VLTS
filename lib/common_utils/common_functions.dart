@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vlts_swc/core/services/shared_prefs_service.dart';
 
 /// Centralized utility class for common operations (snackbars, dialogs, helpers).
 class CommonFunctions {
@@ -54,6 +55,100 @@ class CommonFunctions {
       ),
     );
   }
+
+  /// Displays a reusable confirmation popup dialog.
+  static Future<bool?> showConfirmationDialog(
+    BuildContext context, {
+    String title = 'Confirmation',
+    String message = 'Are you sure you want to proceed?',
+    String confirmText = 'Confirm',
+    String cancelText = 'Cancel',
+    VoidCallback? onConfirm,
+  }) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        backgroundColor: colorScheme.surface,
+        titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        actionsPadding: const EdgeInsets.fromLTRB(16, 10, 16, 16),
+        title: Row(
+          children: [
+
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.onSurface,
+                ),
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          message,
+          style: TextStyle(
+            fontSize: 14,
+            color: colorScheme.onSurfaceVariant,
+            height: 1.4,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(
+              cancelText,
+              style: TextStyle(
+                color: colorScheme.onSurfaceVariant,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: colorScheme.primary,
+              foregroundColor: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+            ),
+            onPressed: () {
+              Navigator.of(ctx).pop(true);
+              onConfirm?.call();
+            },
+            child: Text(
+              confirmText,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Common popup to verify logout with user confirmation.
+  static Future<void> showLogoutDialog(BuildContext context) async {
+    final confirmed = await showConfirmationDialog(
+      context,
+      title: 'Logout',
+      message: 'Are you sure you want to logout?',
+      confirmText: 'Logout',
+      cancelText: 'Cancel',
+    );
+
+    if (confirmed == true) {
+      await SharedPrefsService.instance.logout();
+    }
+  }
 }
 
 /// Backwards-compatibility alias for typo 'CommonFuntions'
@@ -63,4 +158,7 @@ typedef CommonFuntions = CommonFunctions;
 void errSnackbar(String message, {String title = "Error"}) {
   CommonFunctions.errSnackbar(message, title: title);
 }
+
+
+
 

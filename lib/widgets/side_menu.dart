@@ -4,8 +4,6 @@ import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/widgets/LanguageSelector.dart';
 import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
-import '../features/login/views/login_view.dart';
-
 class SideMenu extends StatelessWidget {
   const SideMenu({super.key});
 
@@ -239,11 +237,7 @@ class SideMenu extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (_) => const LoginScreen()),
-                    (route) => false,
-                  );
+                  CommonFunctions.showLogoutDialog(context);
                 },
               ),
             ),
