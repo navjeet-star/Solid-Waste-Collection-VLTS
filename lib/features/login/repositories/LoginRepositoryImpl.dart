@@ -5,7 +5,6 @@ import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/network/api_service.dart';
 import '../../../../core/network/error_handler.dart';
-import '../../../../models/requestParams/auth_params.dart';
 import '../models/login_model.dart';
 
 /// Concrete implementation of [LoginRepository].
@@ -22,13 +21,11 @@ class LoginRepositoryImpl implements LoginRepository {
     required String? salt,
   }) async {
     try {
-      final authParams = AuthParams(
-        loginID: loginId,
-        password: password,
-        salt: salt,
-      );
-
-      final httpResponse = await apiService.isAppActive(authParams);
+      final httpResponse = await apiService.isAppActive({
+        "LoginID": loginId,
+        "Password": password,
+        "Salt": salt,
+      });
 
       if (httpResponse.response.statusCode != null &&
           httpResponse.response.statusCode! >= 200 &&

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:vlts_swc/models/requestParams/auth_params.dart';
 import '../../features/login/models/login_model.dart';
 part 'api_service.g.dart';
 
@@ -15,7 +14,7 @@ abstract class ApiService {
   // DummyJSON POST endpoint for testing (https://dummyjson.com/posts/add)
   @POST("DepartmentUserAuthentication")
   Future<HttpResponse<LoginModel>> isAppActive(
-    @Body() AuthParams authParams,
+    @Body() Map<String, dynamic> body,
   );
 
 

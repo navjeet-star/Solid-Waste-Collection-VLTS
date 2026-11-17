@@ -9,35 +9,31 @@ part of 'api_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _ApiService implements ApiService {
-  _ApiService(
-    this._dio, {
-    this.baseUrl,
-  });
+  _ApiService(this._dio, {this.baseUrl});
 
   final Dio _dio;
 
   String? baseUrl;
 
   @override
-  Future<HttpResponse<LoginModel>> isAppActive(authParams) async {
+  Future<HttpResponse<LoginModel>> isAppActive(body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(authParams.toJson());
+    _data.addAll(body);
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<LoginModel>>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
+      _setStreamType<HttpResponse<LoginModel>>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
             .compose(
               _dio.options,
               'DepartmentUserAuthentication',
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl),
+      ),
+    );
     final value = LoginModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
