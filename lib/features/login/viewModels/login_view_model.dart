@@ -3,15 +3,22 @@ import 'package:get/get.dart';
 import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
 
 import '../../../../app/routes/app_pages.dart';
+import '../../../../common_utils/common_functions.dart';
 import '../../../../core/aes_encypt.dart';
+import '../../../common_utils/common_constants.dart';
 import '../../../../core/network/api_service.dart';
 import '../models/login_model.dart';
 import '../repositories/login_repository.dart';
 
 class LoginViewModel extends GetxController {
-  final LoginRepository? repository;
+  final LoginRepository repository;
 
-  LoginViewModel({this.repository});
+  // Resolves repository once on instantiation
+  LoginViewModel({LoginRepository? repository})
+      : repository = repository ??
+            (Get.isRegistered<LoginRepository>()
+                ? Get.find<LoginRepository>()
+                : LoginRepositoryImpl(apiService: Get.find<ApiService>()));
 
   final emailController = TextEditingController(text: 'super-admin');
   final passwordController = TextEditingController(text: 'Nic@2025');
@@ -34,55 +41,28 @@ class LoginViewModel extends GetxController {
     if (!(formKey.currentState?.validate() ?? false)) {
       return;
     }
-   // Get.offAllNamed(Routes.home);
+
     try {
       isLoading.value = true;
 
-      // Resolve repository from parameter, GetX container, or fallback
-      final repo =
-          repository ??
-          (Get.isRegistered<LoginRepository>()
-              ? Get.find<LoginRepository>()
-              : (Get.isRegistered<ApiService>()
-                  ? LoginRepositoryImpl(apiService: Get.find<ApiService>())
-                  : null));
-
-      if (repo == null) {
-        throw Exception("LoginRepository is not registered.");
-      }
-
-      // // Initialize encryption helper
-      // final encryptionHelper = AESENCRYPTION();
-      //
-      // // Encrypt loginId, passwordForApi, and salt separately
-      // String salt, password, userName;
-      // salt = encryptionHelper.getSalt(5);
-      //
-      // userName = encryptionHelper.aesEncryption(plainText: emailController.text.toString());
-      // password = encryptionHelper.aesEncryption(plainText: encryptionHelper.getSha256(passwordController.text.toString()+salt));
-      // salt = encryptionHelper.aesEncryption(plainText: salt);
-      //
-      // final result = await repo.login(
-      //   loginId: base64Url.encode(utf8.encode(userName)),
-      //   password: base64Url.encode(utf8.encode(password)),
-      //   salt: base64Url.encode(utf8.encode(salt)),
-      // );
-
-      // Initialize encryption helper
       final encryptionHelper = AESENCRYPTION();
-
-      // Generate salt
-      String salt = encryptionHelper.getSalt(5);
+      final salt = encryptionHelper.getSalt(5);
 
       // Encrypt LoginID
-      final userName = encryptionHelper.aesEncryption(plainText: emailController.text.trim(),);
+      final userName = encryptionHelper.aesEncryption(
+        plainText: emailController.text.trim(),
+      );
 
       // Hash password + salt, then encrypt
-      final hashedPassword = encryptionHelper.getSha256(passwordController.text + salt,);
-      final password = encryptionHelper.aesEncryption(plainText: hashedPassword,);
+      final hashedPassword = encryptionHelper.getSha256(
+        passwordController.text + salt,
+      );
+      final password = encryptionHelper.aesEncryption(
+        plainText: hashedPassword,
+      );
       final encryptedSalt = encryptionHelper.aesEncryption(plainText: salt);
 
-      final result = await repo.login(
+      final result = await repository.login(
         loginId: userName,
         password: password,
         salt: encryptedSalt,
@@ -90,30 +70,33 @@ class LoginViewModel extends GetxController {
 
       result.fold(
         (failure) {
-          Get.snackbar(
-            "Login Failed",
+          CommonFunctions.errSnackbar(
             failure.message.isNotEmpty
                 ? failure.message
                 : "Invalid credentials",
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
-            snackPosition: SnackPosition.BOTTOM,
+            title: "Login Failed",
           );
         },
         (userData) {
-          user.value = userData;
-          debugPrint("Login Success: ${userData.accessToken}");
-          Get.offAllNamed(Routes.home);
+          // Check backend business status code
+          if (userData.code?.toUpperCase() == CommonConstants.successCode) {
+            user.value = userData;
+            debugPrint("Login Success: ${userData.accessToken}");
+            Get.offAllNamed(Routes.home);
+          } else {
+            // Failure response from backend (e.g. Code == "F")
+            final errorMsg = userData.message?.isNotEmpty == true
+                ? userData.message!
+                : "Invalid credentials. Please try again.";
+            CommonFunctions.errSnackbar(
+              errorMsg,
+              title: "Login Failed",
+            );
+          }
         },
       );
     } catch (e) {
-      Get.snackbar(
-        "Error",
-        e.toString(),
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      CommonFunctions.errSnackbar(e.toString());
     } finally {
       isLoading.value = false;
     }

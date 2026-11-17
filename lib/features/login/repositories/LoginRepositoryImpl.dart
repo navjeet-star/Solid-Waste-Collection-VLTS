@@ -1,14 +1,12 @@
-import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:vlts_swc/features/login/repositories/login_repository.dart';
-import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/network/api_service.dart';
-import '../../../../core/network/error_handler.dart';
+import '../../../../core/network/safe_api_call.dart';
 import '../models/login_model.dart';
 
 /// Concrete implementation of [LoginRepository].
-/// Coordinates network calls via [ApiService] and translates exceptions into domain [Failure]s.
+/// Coordinates network calls via [ApiService] with centralized error handling.
 class LoginRepositoryImpl implements LoginRepository {
   final ApiService apiService;
 
@@ -19,49 +17,13 @@ class LoginRepositoryImpl implements LoginRepository {
     required String loginId,
     required String password,
     required String? salt,
-  }) async {
-    try {
-      final httpResponse = await apiService.isAppActive({
+  }) {
+    return safeApiCall(
+      () => apiService.isAppActive({
         "LoginID": loginId,
         "Password": password,
         "Salt": salt,
-      });
-
-      if (httpResponse.response.statusCode != null &&
-          httpResponse.response.statusCode! >= 200 &&
-          httpResponse.response.statusCode! < 300) {
-        return Right(httpResponse.data);
-      } else {
-        return Left(
-          ServerFailure(
-            message: httpResponse.response.statusMessage ?? 'Server error',
-            statusCode: httpResponse.response.statusCode,
-          ),
-        );
-      }
-    } on DioError catch (e) {
-      final exception = ApiErrorHandler.handleDioError(e);
-      return Left(
-        ServerFailure(
-          message: exception.message,
-          statusCode: exception.statusCode,
-        ),
-      );
-    } on ServerException catch (e) {
-      return Left(
-        ServerFailure(
-          message: e.message,
-          statusCode: e.statusCode,
-        ),
-      );
-    } on NetworkException catch (e) {
-      return Left(
-        NetworkFailure(
-          message: e.message,
-        ),
-      );
-    } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
-    }
+      }),
+    );
   }
 }

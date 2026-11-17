@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vlts_swc/common_utils/common_functions.dart';
 import '../../../core/app_locale.dart';
-import '../../../widgets/CommonSnackBar.dart';
 import '../../../widgets/LanguageSelector.dart';
 import '../../../widgets/common_button.dart';
 import '../../../widgets/common_text.dart';
@@ -309,10 +309,7 @@ class LoginView extends StatelessWidget {
                               // Forgot Password Link
                               TextButton(
                                 onPressed: () {
-                                  CommonSnackBar.show(
-                                    context,
-                                    strings.forgotPasswordPrompt,
-                                  );
+                                  CommonFunctions.showSnackBar(context, strings.forgotPasswordPrompt);
                                 },
                                 style: TextButton.styleFrom(
                                   padding: EdgeInsets.zero,

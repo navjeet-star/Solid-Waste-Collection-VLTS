@@ -47,7 +47,9 @@ class ApiErrorHandler {
           );
         }
         return ServerException(
-          message: error.message ?? 'An unexpected network error occurred.',
+          message: error.message.isNotEmpty
+              ? error.message
+              : 'An unexpected network error occurred.',
           statusCode: 500,
         );
     }
@@ -59,46 +61,45 @@ class ApiErrorHandler {
     String errorMessage = _extractErrorMessage(response?.data);
 
     if (errorMessage.isEmpty) {
-      switch (statusCode) {
-        case 400:
-          errorMessage = 'Bad request. Please verify the request parameters.';
-          break;
-        case 401:
-          errorMessage = 'Unauthorized. Please check your credentials.';
-          break;
-        case 403:
-          errorMessage = 'Access denied. You do not have permission.';
-          break;
-        case 404:
-          errorMessage = 'Requested resource not found on server.';
-          break;
-        case 408:
-          errorMessage = 'Request timeout.';
-          break;
-        case 422:
-          errorMessage = 'Validation error. Please check your inputs.';
-          break;
-        case 500:
-          errorMessage = 'Internal server error. Please try again later.';
-          break;
-        case 502:
-          errorMessage = 'Bad gateway. The server is temporarily unavailable.';
-          break;
-        case 503:
-          errorMessage = 'Service unavailable. Server is under maintenance.';
-          break;
-        case 504:
-          errorMessage = 'Gateway timeout. Server response delayed.';
-          break;
-        default:
-          errorMessage = response?.statusMessage ?? 'Server error occurred ($statusCode)';
-      }
+      errorMessage = getHttpErrorMessage(statusCode, response?.statusMessage);
     }
 
     return ServerException(
       message: errorMessage,
       statusCode: statusCode,
     );
+  }
+
+  /// Returns user-friendly messages for standard HTTP error codes.
+  static String getHttpErrorMessage(int statusCode, [String? defaultMsg]) {
+    switch (statusCode) {
+      case 400:
+        return 'Bad request. Please verify the request parameters.';
+      case 401:
+        return 'Unauthorized. Please check your credentials or log in again.';
+      case 403:
+        return 'Access denied. You do not have permission.';
+      case 404:
+        return 'Requested resource not found on server.';
+      case 408:
+        return 'Request timeout. Please check your network connection.';
+      case 409:
+        return 'Conflict. The resource already exists or conflict occurred.';
+      case 422:
+        return 'Validation error. Please check your inputs.';
+      case 429:
+        return 'Too many requests. Please try again later.';
+      case 500:
+        return 'Internal server error. Please try again later.';
+      case 502:
+        return 'Bad gateway. The server is temporarily unavailable.';
+      case 503:
+        return 'Service unavailable. Server is under maintenance.';
+      case 504:
+        return 'Gateway timeout. Server response delayed.';
+      default:
+        return defaultMsg ?? 'Server error occurred ($statusCode)';
+    }
   }
 
   /// Parses error message from multiple backend formats:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/features/home/home_screen.dart';
-import 'package:vlts_swc/widgets/CommonSnackBar.dart';
 import 'package:vlts_swc/widgets/LanguageSelector.dart';
 import 'package:vlts_swc/widgets/common_button.dart';
 import 'package:vlts_swc/widgets/common_text.dart';
@@ -42,11 +42,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final strings = context.l10n;
 
     if (_passwordController.text != _confirmPasswordController.text) {
-      CommonSnackBar.show(context, strings.passwordsDoNotMatch);
+      CommonFunctions.showSnackBar(context, strings.passwordsDoNotMatch);
       return;
     }
-
-    CommonSnackBar.show(context, strings.signUpSuccessfully);
+    CommonFunctions.showSnackBar(context, strings.signUpSuccessfully);
 
     Navigator.pushReplacement(
       context,

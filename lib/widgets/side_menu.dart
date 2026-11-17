@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
-import 'package:vlts_swc/widgets/CommonSnackBar.dart';
 import 'package:vlts_swc/widgets/LanguageSelector.dart';
 import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
@@ -117,8 +117,8 @@ class SideMenu extends StatelessWidget {
                     title: strings.realTimeTracking,
                     onTap: () {
                       Navigator.pop(context);
-                      CommonSnackBar.show(context, strings.realTimeTracking);
-                    },
+                      CommonFunctions.showSnackBar(context, strings.realTimeTracking);
+                      },
                   ),
                   _buildMenuItem(
                     context: context,
@@ -126,7 +126,7 @@ class SideMenu extends StatelessWidget {
                     title: strings.routeAnalytics,
                     onTap: () {
                       Navigator.pop(context);
-                      CommonSnackBar.show(context, strings.routeAnalytics);
+                      CommonFunctions.showSnackBar(context, strings.routeAnalytics);
                     },
                   ),
                   _buildMenuItem(
@@ -135,7 +135,7 @@ class SideMenu extends StatelessWidget {
                     title: strings.swachhBharatMission,
                     onTap: () {
                       Navigator.pop(context);
-                      CommonSnackBar.show(context, strings.swachhBharatMission);
+                      CommonFunctions.showSnackBar(context, strings.swachhBharatMission);
                     },
                   ),
                   _buildMenuItem(
@@ -144,7 +144,7 @@ class SideMenu extends StatelessWidget {
                     title: strings.reports,
                     onTap: () {
                       Navigator.pop(context);
-                      CommonSnackBar.show(context, strings.reports);
+                      CommonFunctions.showSnackBar(context, strings.reports);
                     },
                   ),
                   _buildMenuItem(
@@ -153,7 +153,7 @@ class SideMenu extends StatelessWidget {
                     title: strings.ulbProgressReport,
                     onTap: () {
                       Navigator.pop(context);
-                      CommonSnackBar.show(context, strings.ulbProgressReport);
+                      CommonFunctions.showSnackBar(context, strings.ulbProgressReport);
                     },
                   ),
 
