@@ -22,10 +22,12 @@ class LoginView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            // Background Ambient Eco-Green Glow Effects
+      body: Stack(
+        children: [
+          SafeArea(
+            child: Stack(
+              children: [
+                // Background Ambient Eco-Green Glow Effects
             Positioned(
               top: -80,
               right: -80,
@@ -333,9 +335,7 @@ class LoginView extends StatelessWidget {
                           // Sign In Button
                           Obx(
                             () => CommonButton(
-                              text: controller.isLoading.value
-                                  ? 'Loading...'
-                                  : strings.login,
+                              text: strings.login,
                               onPressed: controller.isLoading.value
                                   ? null
                                   : controller.login,
@@ -430,7 +430,17 @@ class LoginView extends StatelessWidget {
           ],
         ),
       ),
-    );
+
+          // Full Screen Loading Overlay
+          Obx(
+            () => CommonFunctions.loadingOverlay(
+              isLoading: controller.isLoading.value,
+              context: context,
+            ),
+          ),
+    ],
+  ),
+);
   }
 }
 

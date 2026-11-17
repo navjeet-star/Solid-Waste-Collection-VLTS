@@ -101,8 +101,6 @@ class _HomeBodyContent extends StatefulWidget {
 }
 
 class _HomeBodyContentState extends State<_HomeBodyContent> {
-  bool _isTableView = false;
-
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n;

@@ -84,10 +84,11 @@ class LoginViewModel extends GetxController {
 
             // Save login response & profile in SharedPreferences
             await SharedPrefsService.instance.saveLoginResponse(userData);
-            await SharedPrefsService.instance.isLoggedIn();
             LoginModel? currentUser = await SharedPrefsService.instance.getLoginResponse();
             String userName = currentUser?.name ?? "User";
             String userRole = currentUser?.roleName ?? "";
+            Log.d("profileeee", userName);
+            Log.d("profileRole", userRole);
             debugPrint("Login Success: ${userData.accessToken}");
             Get.offAllNamed(Routes.home);
           } else {

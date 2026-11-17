@@ -22,6 +22,7 @@ class SharedPrefsService {
   static const String keyRefreshToken = 'refresh_token';
   static const String keyIsLoggedIn = 'is_logged_in';
   static const String keyLoginResponseRaw = 'login_response_raw';
+  static const String keyIsFirstLaunch = 'is_first_launch';
 
   // Individual Profile Keys
   static const String keyLoginId = 'user_login_id';
@@ -148,6 +149,18 @@ class SharedPrefsService {
       'EmailID': prefs.getString(keyEmailId),
       'EmployeeID': prefs.getString(keyEmployeeId),
     };
+  }
+
+  /// Checks if this is the first time the app is launched after installation (defaults to true).
+  Future<bool> isFirstLaunch() async {
+    final prefs = await _storage;
+    return prefs.getBool(keyIsFirstLaunch) ?? true;
+  }
+
+  /// Marks the initial overview / onboarding flow as completed.
+  Future<void> setFirstLaunchComplete() async {
+    final prefs = await _storage;
+    await prefs.setBool(keyIsFirstLaunch, false);
   }
 
   /// Clears all user session, profile, and token data (e.g. on logout).

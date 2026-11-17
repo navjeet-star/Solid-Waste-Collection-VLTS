@@ -149,7 +149,130 @@ class CommonFunctions {
       await SharedPrefsService.instance.logout();
     }
   }
+
+  /// Displays a full-screen modal loading dialog that blocks user interaction.
+  static void showLoader({String? message}) {
+    if (Get.isDialogOpen == true) return;
+    Get.dialog(
+      PopScope(
+        canPop: false,
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Get.theme.colorScheme.surface,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.2),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(
+                  color: Get.theme.colorScheme.primary,
+                ),
+                if (message != null && message.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    message,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Get.theme.colorScheme.onSurface,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: false,
+      barrierColor: Colors.black.withValues(alpha: 0.4),
+    );
+  }
+
+  /// Closes the full-screen loading dialog if it is open.
+  static void hideLoader() {
+    if (Get.isDialogOpen == true) {
+      Get.back();
+    }
+  }
+
+  /// Builds a full-screen loading overlay widget designed for Stack layouts.
+  static Widget loadingOverlay({
+    required bool isLoading,
+    BuildContext? context,
+  }) {
+    if (!isLoading) {
+      return const IgnorePointer(child: SizedBox.shrink());
+    }
+
+    final theme = context != null ? Theme.of(context) : Get.theme;
+    final colorScheme = theme.colorScheme;
+
+    return Positioned.fill(
+      child: Container(
+        color: Colors.black.withValues(alpha: 0.4),
+        alignment: Alignment.center,
+        child: Container(
+          width: 76,
+          height: 76,
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.2),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Center(
+            child: CircularProgressIndicator(
+              color: colorScheme.primary,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
+
+/// Reusable full-screen loading overlay wrapper widget
+class CommonLoadingOverlay extends StatelessWidget {
+  final bool isLoading;
+  final Widget child;
+
+  const CommonLoadingOverlay({
+    super.key,
+    required this.isLoading,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        child,
+        CommonFunctions.loadingOverlay(
+          isLoading: isLoading,
+          context: context,
+        ),
+      ],
+    );
+  }
+}
+
+/// Standalone global helper functions for loaders
+void showLoader({String? message}) => CommonFunctions.showLoader(message: message);
+void hideLoader() => CommonFunctions.hideLoader();
 
 /// Backwards-compatibility alias for typo 'CommonFuntions'
 typedef CommonFuntions = CommonFunctions;
@@ -158,6 +281,32 @@ typedef CommonFuntions = CommonFunctions;
 void errSnackbar(String message, {String title = "Error"}) {
   CommonFunctions.errSnackbar(message, title: title);
 }
+
+/// Android-style logging utility for Flutter developers
+class Log {
+  Log._();
+
+  /// Debug log
+  static void d(String tag, dynamic message) {
+    debugPrint("[$tag] (DEBUG): $message");
+  }
+
+  /// Info log
+  static void i(String tag, dynamic message) {
+    debugPrint("[$tag] (INFO): $message");
+  }
+
+  /// Warning log
+  static void w(String tag, dynamic message) {
+    debugPrint("[$tag] (WARN): $message");
+  }
+
+  /// Error log
+  static void e(String tag, dynamic message) {
+    debugPrint("[$tag] (ERROR): $message");
+  }
+}
+
 
 
 

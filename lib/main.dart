@@ -11,8 +11,21 @@ import 'package:vlts_swc/l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final isLoggedIn = await SharedPrefsService.instance.isLoggedIn();
-  runApp(MyApp(initialRoute: isLoggedIn ? Routes.home : Routes.login));
+  
+  final prefsService = SharedPrefsService.instance;
+  final isFirstLaunch = await prefsService.isFirstLaunch();
+  final isLoggedIn = await prefsService.isLoggedIn();
+
+  String initialRoute;
+  if (isFirstLaunch) {
+    initialRoute = Routes.overview;
+  } else if (isLoggedIn) {
+    initialRoute = Routes.home;
+  } else {
+    initialRoute = Routes.login;
+  }
+
+  runApp(MyApp(initialRoute: initialRoute));
 }
 
 class MyApp extends StatelessWidget {
