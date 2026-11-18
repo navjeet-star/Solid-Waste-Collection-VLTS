@@ -122,5 +122,8 @@
   "routeCoverage": "रूट कवरेज",
   "active": "सक्रिय",
   "trips": "ट्रिप्स",
-  "notReporting": "नॉट रिपोर्टिंग"
+  "notReporting": "नॉट रिपोर्टिंग",
+  "home": "होम",
+  "complaints": "शिकायतें",
+  "profile": "प्रोफ़ाइल"
 }

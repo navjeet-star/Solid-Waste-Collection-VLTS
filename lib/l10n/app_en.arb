@@ -98,6 +98,7 @@
   "reports": "Reports",
   "dashboardModules": "Dashboard Modules",
   "attendanceDashboard": "Attendance Dashboard",
+  "attendanceSubtitle": "Staff & Driver Records",
   "ulbProgressReport": "ULB-wise Progress Report",
   "ulbProgressReportToday": "ULB Performance today - by ULB",
   "swachhtaAppComplaints": "Swachhta App Complaints",
@@ -113,5 +114,8 @@
   "routeCoverage": "Route Coverage",
   "active": "Active",
   "trips": "Trips",
-  "notReporting": "Not Reporting"
+  "notReporting": "Not Reporting",
+  "home": "Home",
+  "complaints": "Complaints",
+  "profile": "Profile"
 }

@@ -13,6 +13,10 @@ import 'package:vlts_swc/features/home/items/vehicle_stat_card.dart';
 import 'package:vlts_swc/common_utils/generic_grid_view.dart';
 import 'package:vlts_swc/widgets/common_stat_card.dart';
 import 'package:vlts_swc/widgets/side_menu.dart';
+import 'package:vlts_swc/widgets/common_bottom_nav_bar.dart';
+import 'tabs/complaints_tab.dart';
+import 'tabs/profile_tab.dart';
+import 'tabs/reports_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isFirstLaunch = false;
   bool isLoggedIn = false;
   LoginModel? currentUser;
+  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -41,6 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
     final firstLaunch = await prefsService.isFirstLaunch();
     final loggedIn = await prefsService.isLoggedIn();
     final user = await prefsService.getLoginResponse();
+
+    if (mounted) {
+      setState(() {
+        isFirstLaunch = firstLaunch;
+        isLoggedIn = loggedIn;
+        currentUser = user;
+      });
+    }
 
     Log.d(
       "HomeScreen",
@@ -60,7 +73,19 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _scaffoldKey,
       drawer: const SideMenu(),
       backgroundColor: colorScheme.surface,
-      body: LayoutBuilder(
+      extendBody: true,
+      bottomNavigationBar: CommonBottomNavBar(
+        currentIndex: _currentIndex,
+        onItemSelected: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: [
+          LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -99,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      padding: const EdgeInsets.fromLTRB(18, 20, 18, 36),
+                      padding: const EdgeInsets.fromLTRB(18, 20, 18, 96),
                       child: _HomeBodyContent(
                           onViewAllCategories: () =>
                               CommonFunctions.showSnackBar(context, strings.categories)
@@ -112,7 +137,25 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
-    );
+
+      // Tab 1: Reports
+      ReportsTab(
+        onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+      ),
+
+      // // Tab 2: Complaints
+      ComplaintsTab(
+        onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+      ),
+      //
+      // // Tab 3: Profile
+      ProfileTab(
+        user: currentUser,
+        onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+      ),
+    ],
+  ),
+);
   }
 }
 
@@ -342,3 +385,6 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
     );
   }
 }
+
+/// Backwards-compatibility alias for MainScreen
+typedef MainScreen = HomeScreen;

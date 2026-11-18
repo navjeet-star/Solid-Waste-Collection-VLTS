@@ -307,6 +307,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get attendanceDashboard => 'Attendance Dashboard';
 
   @override
+  String get attendanceSubtitle => 'Staff & Driver Records';
+
+  @override
   String get ulbProgressReport => 'ULB-wise Progress Report';
 
   @override
@@ -353,4 +356,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notReporting => 'Not Reporting';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get complaints => 'Complaints';
+
+  @override
+  String get profile => 'Profile';
 }

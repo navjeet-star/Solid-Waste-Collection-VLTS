@@ -306,6 +306,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get attendanceDashboard => 'उपस्थिति डैशबोर्ड';
 
   @override
+  String get attendanceSubtitle => 'कर्मी एवं चालक रिकॉर्ड';
+
+  @override
   String get ulbProgressReport => 'निकायवार प्रगति रिपोर्ट';
 
   @override
@@ -352,4 +355,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get notReporting => 'नॉट रिपोर्टिंग';
+
+  @override
+  String get home => 'होम';
+
+  @override
+  String get complaints => 'शिकायतें';
+
+  @override
+  String get profile => 'प्रोफ़ाइल';
 }

@@ -680,6 +680,12 @@ abstract class AppLocalizations {
   /// **'Attendance Dashboard'**
   String get attendanceDashboard;
 
+  /// No description provided for @attendanceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Staff & Driver Records'**
+  String get attendanceSubtitle;
+
   /// No description provided for @ulbProgressReport.
   ///
   /// In en, this message translates to:
@@ -775,6 +781,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not Reporting'**
   String get notReporting;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @complaints.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaints'**
+  String get complaints;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
 }
 
 class _AppLocalizationsDelegate
