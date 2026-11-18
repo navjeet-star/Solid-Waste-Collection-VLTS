@@ -40,6 +40,41 @@ class CommonFunctions {
     );
   }
 
+  /// Displays an Android/iOS native-style floating capsule toast.
+  static void showToast(
+    String message, {
+    bool isError = true,
+    Duration duration = const Duration(seconds: 2),
+  }) {
+    if (Get.context == null) return;
+
+    if (Get.isSnackbarOpen == true) {
+      Get.closeCurrentSnackbar();
+    }
+
+    Get.rawSnackbar(
+      messageText: Text(
+        message,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 13,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      backgroundColor: isError
+          ? const Color(0xE6212121)
+          : const Color(0xE61B8E56),
+      snackPosition: SnackPosition.BOTTOM,
+      borderRadius: 25,
+      margin: const EdgeInsets.fromLTRB(40, 0, 40, 36),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      duration: duration,
+      animationDuration: const Duration(milliseconds: 250),
+      snackStyle: SnackStyle.FLOATING,
+    );
+  }
+
   /// Displays a standard ScaffoldMessenger snackbar with BuildContext.
   static void showSnackBar(BuildContext context, String message) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -280,6 +315,11 @@ typedef CommonFuntions = CommonFunctions;
 /// Standalone global helper function for error snackbars
 void errSnackbar(String message, {String title = "Error"}) {
   CommonFunctions.errSnackbar(message, title: title);
+}
+
+/// Standalone global helper function for toasts
+void showToast(String message, {bool isError = true}) {
+  CommonFunctions.showToast(message, isError: isError);
 }
 
 /// Android-style logging utility for Flutter developers

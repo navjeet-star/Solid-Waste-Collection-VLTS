@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vlts_swc/core/network/network_info.dart';
 import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
 
 import 'package:vlts_swc/app/routes/app_pages.dart';
@@ -39,6 +40,13 @@ class LoginViewModel extends GetxController {
 
   Future<void> login() async {
     if (!(formKey.currentState?.validate() ?? false)) {
+      return;
+    }
+
+    // Check internet connection before hitting the API
+    final isOnline = await NetworkInfo.isConnected();
+    if (!isOnline) {
+      CommonFunctions.showToast("No internet connection. Please check your network.");
       return;
     }
 

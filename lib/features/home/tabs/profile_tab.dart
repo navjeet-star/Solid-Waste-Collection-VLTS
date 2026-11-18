@@ -3,9 +3,7 @@ import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/services/shared_prefs_service.dart';
 import 'package:vlts_swc/features/login/models/login_model.dart';
-import 'package:vlts_swc/widgets/LanguageSelector.dart';
 import 'package:vlts_swc/widgets/common_app_bar.dart';
-import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
 /// Profile Tab view for the Bottom Navigation Bar.
 ///

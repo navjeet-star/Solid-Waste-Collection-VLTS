@@ -2,12 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../common_utils/common_functions.dart';
 import '../errors/exceptions.dart';
 import '../errors/failure.dart';
 import 'error_handler.dart';
+import 'network_info.dart';
 
 /// Centralized execution wrapper for all API network calls.
 /// Automatically handles:
+/// - Pre-flight internet connectivity checks (shows toast and aborts if offline)
 /// - HTTP Status Codes (200-299 success, 4xx/5xx failures)
 /// - DioError (timeouts, no connection, response errors, cancellations)
 /// - Domain Exceptions ([ServerException], [NetworkException], [AuthException])
@@ -16,8 +19,23 @@ import 'error_handler.dart';
 /// Returns [Right(data)] on success or [Left(Failure)] on any error,
 /// eliminating duplicate try-catch blocks and error checks across all repositories.
 Future<Either<Failure, T>> safeApiCall<T>(
-  Future<dynamic> Function() apiCall,
-) async {
+  Future<dynamic> Function() apiCall, {
+  bool checkInternet = true,
+  bool showOfflineToast = true,
+}) async {
+  if (checkInternet) {
+    final isConnected = await NetworkInfo.isConnected();
+    if (!isConnected) {
+      const offlineMsg = "No internet connection. Please check your network.";
+      if (showOfflineToast) {
+        CommonFunctions.showToast(offlineMsg);
+      }
+      return Left(
+        NetworkFailure(message: offlineMsg),
+      );
+    }
+  }
+
   try {
     final result = await apiCall();
 

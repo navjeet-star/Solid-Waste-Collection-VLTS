@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/widgets/common_app_bar.dart';
 

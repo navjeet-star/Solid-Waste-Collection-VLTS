@@ -40,24 +40,15 @@ class _HomeScreenState extends State<HomeScreen> {
     _fetchPreferences();
   }
 
-  /// Safely fetches preferences asynchronously on screen load without blocking build()
-  Future<void> _fetchPreferences() async {
+  /// Fetches preferences synchronously on screen load without await
+  void _fetchPreferences() {
     final prefsService = SharedPrefsService.instance;
-    final firstLaunch = await prefsService.isFirstLaunch();
-    final loggedIn = await prefsService.isLoggedIn();
-    final user = await prefsService.getLoginResponse();
-
-    if (mounted) {
-      setState(() {
-        isFirstLaunch = firstLaunch;
-        isLoggedIn = loggedIn;
-        currentUser = user;
-      });
-    }
+    isFirstLaunch = prefsService.isFirstLaunchSync;
+    currentUser = prefsService.loginResponseSync;
 
     Log.d(
       "HomeScreen",
-      "Preferences loaded -> acesstoken: ${user?.accessToken}, userloginid: ${user?.loginId}, ulbid:${user?.ulbId},  roleid:${user?.roleId}",
+      "Preferences loaded (sync) -> acesstoken: ${currentUser?.accessToken}, userloginid: ${currentUser?.loginId}, ulbid:${currentUser?.ulbId}, roleid:${currentUser?.roleId}",
     );
   }
 

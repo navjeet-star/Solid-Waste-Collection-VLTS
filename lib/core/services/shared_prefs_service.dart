@@ -11,7 +11,16 @@ class SharedPrefsService {
   static SharedPrefsService? _instance;
   static SharedPrefsService get instance => _instance ??= SharedPrefsService._();
 
+  /// Explicitly initializes and warms up the SharedPreferences cache.
+  static Future<SharedPrefsService> init() async {
+    final service = instance;
+    service._prefs ??= await SharedPreferences.getInstance();
+    return service;
+  }
+
   SharedPreferences? _prefs;
+  LoginModel? _cachedUser;
+
   Future<SharedPreferences> get _storage async {
     _prefs ??= await SharedPreferences.getInstance();
     return _prefs!;
@@ -82,6 +91,7 @@ class SharedPrefsService {
 
     // 4. Mark user as authenticated
     await prefs.setBool(keyIsLoggedIn, true);
+    _cachedUser = loginModel;
   }
 
   /// Helper to safely store or remove null strings
@@ -93,8 +103,28 @@ class SharedPrefsService {
     }
   }
 
+  /// Synchronously checks if this is the first app launch.
+  bool get isFirstLaunchSync {
+    return _prefs?.getBool(keyIsFirstLaunch) ?? true;
+  }
+
+  /// Synchronously retrieves the cached [LoginModel] without await.
+  LoginModel? get loginResponseSync {
+    if (_cachedUser != null) return _cachedUser;
+    final rawJson = _prefs?.getString(keyLoginResponseRaw);
+    if (rawJson == null || rawJson.isEmpty) return null;
+    try {
+      final map = jsonDecode(rawJson) as Map<String, dynamic>;
+      _cachedUser = LoginModel.fromJson(map);
+      return _cachedUser;
+    } catch (_) {
+      return null;
+    }
+  }
+
   /// Retrieves the saved [LoginModel] from local storage, or null if none saved.
   Future<LoginModel?> getLoginResponse() async {
+    if (_cachedUser != null) return _cachedUser;
     final prefs = await _storage;
     final rawJson = prefs.getString(keyLoginResponseRaw);
     if (rawJson == null || rawJson.isEmpty) {
@@ -102,7 +132,8 @@ class SharedPrefsService {
     }
     try {
       final map = jsonDecode(rawJson) as Map<String, dynamic>;
-      return LoginModel.fromJson(map);
+      _cachedUser = LoginModel.fromJson(map);
+      return _cachedUser;
     } catch (_) {
       return null;
     }
@@ -171,6 +202,7 @@ class SharedPrefsService {
 
   /// Clears all user session, profile, and token data (e.g. on logout).
   Future<void> clearAll() async {
+    _cachedUser = null;
     final prefs = await _storage;
     await prefs.remove(keyAccessToken);
     await prefs.remove(keyRefreshToken);
