@@ -55,7 +55,7 @@ class HeroHeaderContent extends StatelessWidget {
                     vertical: 8,
                   ),
                   child: SizedBox(
-                    height: 48,
+                    height: 50,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

@@ -1,3 +1,4 @@
+export 'common_app_bar.dart';
 export 'common_bottom_nav_bar.dart';
 export 'common_button.dart';
 export 'common_dropdown.dart';

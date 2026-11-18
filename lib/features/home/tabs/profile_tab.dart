@@ -4,6 +4,7 @@ import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/services/shared_prefs_service.dart';
 import 'package:vlts_swc/features/login/models/login_model.dart';
 import 'package:vlts_swc/widgets/LanguageSelector.dart';
+import 'package:vlts_swc/widgets/common_app_bar.dart';
 import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
 /// Profile Tab view for the Bottom Navigation Bar.
@@ -77,28 +78,16 @@ class _ProfileTabState extends State<ProfileTab> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: colorScheme.surface,
-        appBar: AppBar(
-          backgroundColor: colorScheme.surface,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.menu_rounded, color: colorScheme.onSurface),
-            onPressed: widget.onMenuTap,
-          ),
-          title: Text(
-            strings.profile,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: colorScheme.onSurface,
-            ),
-          ),
-          centerTitle: true,
-          actions: const [
-            ThemeToggleButton(),
-            SizedBox(width: 8),
-            LanguageSelector(),
-            SizedBox(width: 12),
-          ],
+        appBar: CommonAppBar(
+          title: strings.profile,
+          showDrawerButton: true,
+          onMenuTap: widget.onMenuTap,
+          // actions: const [
+          //   ThemeToggleButton(),
+          //   SizedBox(width: 8),
+          //   LanguageSelector(),
+          //   SizedBox(width: 12),
+          // ],
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),

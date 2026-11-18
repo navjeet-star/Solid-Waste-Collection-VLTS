@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/widgets/common_app_bar.dart';
 
 /// Complaints Tab view for the Bottom Navigation Bar.
 ///
@@ -61,22 +62,10 @@ class _ComplaintsTabState extends State<ComplaintsTab> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: colorScheme.surface,
-        appBar: AppBar(
-          backgroundColor: colorScheme.surface,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.menu_rounded, color: colorScheme.onSurface),
-            onPressed: widget.onMenuTap,
-          ),
-          title: Text(
-            strings.complaints,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: colorScheme.onSurface,
-            ),
-          ),
-          centerTitle: true,
+        appBar: CommonAppBar(
+          title: strings.complaints,
+          showDrawerButton: true,
+          onMenuTap: widget.onMenuTap,
         ),
         body: Column(
           children: [
