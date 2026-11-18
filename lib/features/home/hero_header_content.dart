@@ -111,14 +111,17 @@ class HeroHeaderContent extends StatelessWidget {
 
                         // Center: App Title
                         Expanded(
-                          child: Center(
-                            child: Text(
-                              strings.appTitle,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 0.3,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: Center(
+                              child: Text(
+                                strings.appTitle,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 0.3,
+                                ),
                               ),
                             ),
                           ),
@@ -128,7 +131,7 @@ class HeroHeaderContent extends StatelessWidget {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const ThemeToggleButton(),
+                           // const ThemeToggleButton(),
                             const SizedBox(width: 6),
                             GestureDetector(
                               onTap: onNotificationTap,

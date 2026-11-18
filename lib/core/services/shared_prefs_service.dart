@@ -120,6 +120,12 @@ class SharedPrefsService {
     return prefs.getString(keyRefreshToken);
   }
 
+  /// Retrieves the stored refresh token.
+  Future<String?> getLoginID() async {
+    final prefs = await _storage;
+    return prefs.getString(keyLoginId);
+  }
+
   /// Checks if the user is currently logged in.
   Future<bool> isLoggedIn() async {
     final prefs = await _storage;

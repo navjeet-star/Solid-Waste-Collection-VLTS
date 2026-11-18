@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/core/services/shared_prefs_service.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
+import 'package:vlts_swc/features/login/models/login_model.dart';
 import 'package:vlts_swc/models/module_item.dart';
 import 'package:vlts_swc/models/ulb_progress_item.dart';
 import 'package:vlts_swc/features/home/hero_header_content.dart';
@@ -21,6 +23,30 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // Stored preference values fetched from SharedPreferences
+  bool isFirstLaunch = false;
+  bool isLoggedIn = false;
+  LoginModel? currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchPreferences();
+  }
+
+  /// Safely fetches preferences asynchronously on screen load without blocking build()
+  Future<void> _fetchPreferences() async {
+    final prefsService = SharedPrefsService.instance;
+    final firstLaunch = await prefsService.isFirstLaunch();
+    final loggedIn = await prefsService.isLoggedIn();
+    final user = await prefsService.getLoginResponse();
+
+    Log.d(
+      "HomeScreen",
+      "Preferences loaded -> acesstoken: ${user?.accessToken}, userloginid: ${user?.loginId}, ulbid:${user?.ulbId},  roleid:${user?.roleId}",
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

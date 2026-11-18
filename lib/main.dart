@@ -15,6 +15,9 @@ Future<void> main() async {
   final prefsService = SharedPrefsService.instance;
   final isFirstLaunch = await prefsService.isFirstLaunch();
   final isLoggedIn = await prefsService.isLoggedIn();
+  if (isLoggedIn) {
+    await prefsService.getLoginResponse();
+  }
 
   String initialRoute;
   if (isFirstLaunch) {
