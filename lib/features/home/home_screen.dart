@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/services/shared_prefs_service.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
+import 'package:vlts_swc/features/home/viewModels/home_view_model.dart';
 import 'package:vlts_swc/features/login/models/login_model.dart';
 import 'package:vlts_swc/models/module_item.dart';
 import 'package:vlts_swc/models/ulb_progress_item.dart';
@@ -27,6 +29,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final HomeViewModel homeViewModel = Get.put(HomeViewModel());
 
   // Stored preference values fetched from SharedPreferences
   bool isFirstLaunch = false;
@@ -38,12 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _fetchPreferences();
+    homeViewModel.fetchUlbWiseProgress();
   }
 
   /// Fetches preferences synchronously on screen load without await
   void _fetchPreferences() {
     final prefsService = SharedPrefsService.instance;
     isFirstLaunch = prefsService.isFirstLaunchSync;
+    isLoggedIn = prefsService.isLoggedInSync;
     currentUser = prefsService.loginResponseSync;
 
     Log.d(
@@ -78,12 +83,17 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           LayoutBuilder(
         builder: (context, constraints) {
-          return SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constraints.maxHeight,
+          return RefreshIndicator(
+            onRefresh: () => homeViewModel.fetchUlbWiseProgress(),
+            color: colorScheme.primary,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(
+                parent: BouncingScrollPhysics(),
               ),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
+                ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -125,9 +135,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
+    ),
 
       // Tab 1: Reports
       ReportsTab(
@@ -163,6 +174,7 @@ class _HomeBodyContent extends StatefulWidget {
 class _HomeBodyContentState extends State<_HomeBodyContent> {
   @override
   Widget build(BuildContext context) {
+    final HomeViewModel homeViewModel = Get.find<HomeViewModel>();
     final strings = context.l10n;
     final colorScheme = Theme
         .of(context)
@@ -364,12 +376,38 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
 
         const SizedBox(height: 12),
 
-        // Display Cards
-        ...UlbProgressItem.sampleList.map((ulb) {
-          return UlbProgressListItem(
-            item: ulb,
-            onTap: () =>CommonFunctions.showSnackBar(context,  '${ulb.ulbName} • ${strings.score}: ${ulb.score}'),
+        // Display Cards (Reactively bound to HomeViewModel.ulbList)
+        Obx(() {
+          if (homeViewModel.isLoading.value && homeViewModel.ulbList.isEmpty) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24),
+                child: CircularProgressIndicator(
+                  color: colorScheme.primary,
+                ),
+              ),
+            );
+          }
 
+          // Uses API list if loaded; falls back to sampleList if empty
+          final items = homeViewModel.ulbList.isNotEmpty
+              ? homeViewModel.ulbList
+                  .asMap()
+                  .entries
+                  .map((e) => e.value.toUlbProgressItem(rank: e.key + 1))
+                  .toList()
+              : UlbProgressItem.sampleList;
+
+          return Column(
+            children: items.map((ulb) {
+              return UlbProgressListItem(
+                item: ulb,
+                onTap: () => CommonFunctions.showSnackBar(
+                  context,
+                  '${ulb.ulbName} • ${strings.score}: ${ulb.score}',
+                ),
+              );
+            }).toList(),
           );
         }),
       ],

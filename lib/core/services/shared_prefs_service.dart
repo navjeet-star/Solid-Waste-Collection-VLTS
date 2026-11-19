@@ -103,6 +103,17 @@ class SharedPrefsService {
     }
   }
 
+  // ========================================================
+  // Synchronous Getters (Instant memory lookup - No await)
+  // ========================================================
+
+  /// Synchronously checks if the user is currently logged in.
+  bool get isLoggedInSync {
+    final loggedIn = _prefs?.getBool(keyIsLoggedIn) ?? false;
+    final token = accessTokenSync;
+    return loggedIn && token != null && token.isNotEmpty;
+  }
+
   /// Synchronously checks if this is the first app launch.
   bool get isFirstLaunchSync {
     return _prefs?.getBool(keyIsFirstLaunch) ?? true;
@@ -121,6 +132,24 @@ class SharedPrefsService {
       return null;
     }
   }
+
+  /// Synchronously retrieves the stored access token.
+  String? get accessTokenSync => _prefs?.getString(keyAccessToken);
+
+  /// Synchronously retrieves the stored refresh token.
+  String? get refreshTokenSync => _prefs?.getString(keyRefreshToken);
+
+  /// Synchronously retrieves the user's name.
+  String? get userNameSync => _prefs?.getString(keyName);
+
+  /// Synchronously retrieves the user's login ID.
+  String? get loginIdSync => _prefs?.getString(keyLoginId);
+
+  /// Synchronously retrieves the user's role ID.
+  String? get roleIdSync => _prefs?.getString(keyRoleId);
+
+  /// Synchronously retrieves the user's ULB ID.
+  String? get ulbIdSync => _prefs?.getString(keyUlbId);
 
   /// Retrieves the saved [LoginModel] from local storage, or null if none saved.
   Future<LoginModel?> getLoginResponse() async {

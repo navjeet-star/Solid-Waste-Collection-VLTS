@@ -1,34 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vlts_swc/core/network/network_info.dart';
-import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
-
 import 'package:vlts_swc/app/routes/app_pages.dart';
-import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/aes_encypt.dart';
-import 'package:vlts_swc/core/network/api_service.dart';
+import 'package:vlts_swc/core/base/base_view_model.dart';
 import 'package:vlts_swc/core/services/shared_prefs_service.dart';
+import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
 import '../models/login_model.dart';
 import '../repositories/login_repository.dart';
 
-class LoginViewModel extends GetxController {
+/// MVVM ViewModel for the Login screen.
+/// Extends [BaseViewModel] for centralized loading and error states.
+class LoginViewModel extends BaseViewModel {
   final LoginRepository repository;
 
-  // Resolves repository once on instantiation
   LoginViewModel({LoginRepository? repository})
       : repository = repository ??
             (Get.isRegistered<LoginRepository>()
                 ? Get.find<LoginRepository>()
-                : LoginRepositoryImpl(apiService: Get.find<ApiService>()));
+                : LoginRepositoryImpl());
 
   final emailController = TextEditingController(text: 'super-admin');
   final passwordController = TextEditingController(text: 'Nic@2025');
   final formKey = GlobalKey<FormState>();
 
-  final isLoading = false.obs;
-  final isPasswordHidden = true.obs;
-  final rememberMe = true.obs;
-  final user = Rxn<LoginModel>();
+  // Reactive UI States
+  final RxBool isPasswordHidden = true.obs;
+  final RxBool rememberMe = true.obs;
+  final Rxn<LoginModel> user = Rxn<LoginModel>();
 
   void togglePasswordVisibility() {
     isPasswordHidden.value = !isPasswordHidden.value;
@@ -43,15 +41,8 @@ class LoginViewModel extends GetxController {
       return;
     }
 
-    // Check internet connection before hitting the API
-    final isOnline = await NetworkInfo.isConnected();
-    if (!isOnline) {
-      CommonFunctions.showToast("No internet connection. Please check your network.");
-      return;
-    }
-
     try {
-      isLoading.value = true;
+      setLoading();
 
       final encryptionHelper = AESENCRYPTION();
       final salt = encryptionHelper.getSalt(5);
@@ -70,6 +61,9 @@ class LoginViewModel extends GetxController {
       );
       final encryptedSalt = encryptionHelper.aesEncryption(plainText: salt);
 
+      // Centralized API call via repository:
+      // - Pre-flight internet check, BaseApiResponse status check, and user-facing error toasts
+      //   are all handled centrally by safeApiCall.
       final result = await repository.login(
         loginId: userName,
         password: password,
@@ -78,43 +72,23 @@ class LoginViewModel extends GetxController {
 
       result.fold(
         (failure) {
-          CommonFunctions.errSnackbar(
-            failure.message.isNotEmpty
-                ? failure.message
-                : "Invalid credentials",
-            title: "Login Failed",
-          );
+          setError(failure.message);
         },
         (userData) async {
-          // Check backend business status code
-          if (userData.isSuccess) {
-            user.value = userData;
+          setSuccess();
+          user.value = userData;
 
-            // Save login response & profile in SharedPreferences
-            await SharedPrefsService.instance.saveLoginResponse(userData);
-            LoginModel? currentUser = await SharedPrefsService.instance.getLoginResponse();
-            String userName = currentUser?.name ?? "User";
-            String userRole = currentUser?.roleName ?? "";
-            Log.d("profileeee", userName);
-            Log.d("profileRole", userRole);
-            debugPrint("Login Success: ${userData.accessToken}");
-            Get.offAllNamed(Routes.home);
-          } else {
-            // Failure response from backend (e.g. Code == "F")
-            final errorMsg = userData.message?.isNotEmpty == true
-                ? userData.message!
-                : "Invalid credentials. Please try again.";
-            CommonFunctions.errSnackbar(
-              errorMsg,
-              title: "Login Failed",
-            );
-          }
+          // Save login response & profile in SharedPreferences
+          await SharedPrefsService.instance.saveLoginResponse(userData);
+          Get.offAllNamed(Routes.home);
         },
       );
     } catch (e) {
-      CommonFunctions.errSnackbar(e.toString());
+      setError(e.toString());
     } finally {
-      isLoading.value = false;
+      if (isLoading.value && !isError && !isSuccess) {
+        resetState();
+      }
     }
   }
 

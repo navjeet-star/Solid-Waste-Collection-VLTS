@@ -1,11 +1,10 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:vlts_swc/core/network/api_client.dart';
 import 'package:vlts_swc/core/services/shared_prefs_service.dart';
+import 'package:vlts_swc/features/home/repositories/HomeRepositoryImpl.dart';
+import 'package:vlts_swc/features/home/repositories/home_repository.dart';
 import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
-import '../../core/network/api_endpoints.dart';
-import '../../core/network/api_service.dart';
-import '../../core/network/dio_client.dart';
-import '../../features/login/repositories/login_repository.dart';
+import 'package:vlts_swc/features/login/repositories/login_repository.dart';
 
 class InitialBinding extends Bindings {
   @override
@@ -13,21 +12,18 @@ class InitialBinding extends Bindings {
     // Global SharedPreferences service instance
     Get.lazyPut<SharedPrefsService>(() => SharedPrefsService.instance, fenix: true);
 
-    // Global Dio instance
-    Get.lazyPut<Dio>(() => DioClient.createDio(), fenix: true);
-
-    // Global ApiService instance
-    Get.lazyPut<ApiService>(
-      () => ApiService(
-        dio: Get.find<Dio>(),
-        baseUrl: ApiEndpoints.authApiBase,
-      ),
-      fenix: true,
-    );
+    // Global ApiClient instance
+    Get.lazyPut<ApiClient>(() => ApiClient.instance, fenix: true);
 
     // Global LoginRepository instance
     Get.lazyPut<LoginRepository>(
-      () => LoginRepositoryImpl(apiService: Get.find<ApiService>()),
+      () => LoginRepositoryImpl(apiClient: Get.find<ApiClient>()),
+      fenix: true,
+    );
+
+    // Global HomeRepository instance
+    Get.lazyPut<HomeRepository>(
+      () => HomeRepositoryImpl(apiClient: Get.find<ApiClient>()),
       fenix: true,
     );
   }

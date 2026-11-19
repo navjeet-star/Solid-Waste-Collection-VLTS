@@ -1,16 +1,17 @@
 import 'package:either_dart/either.dart';
-import 'package:vlts_swc/features/login/repositories/login_repository.dart';
 import '../../../../core/errors/failure.dart';
-import '../../../../core/network/api_service.dart';
-import '../../../../core/network/safe_api_call.dart';
+import '../../../../core/network/api_client.dart';
+import '../../../../core/network/api_endpoints.dart';
 import '../models/login_model.dart';
+import 'login_repository.dart';
 
 /// Concrete implementation of [LoginRepository].
-/// Coordinates network calls via [ApiService] with centralized error handling.
+/// Executes authentication API calls directly via [ApiClient].
 class LoginRepositoryImpl implements LoginRepository {
-  final ApiService apiService;
+  final ApiClient apiClient;
 
-  LoginRepositoryImpl({required this.apiService});
+  LoginRepositoryImpl({ApiClient? apiClient})
+      : apiClient = apiClient ?? ApiClient.instance;
 
   @override
   Future<Either<Failure, LoginModel>> login({
@@ -18,12 +19,14 @@ class LoginRepositoryImpl implements LoginRepository {
     required String password,
     required String? salt,
   }) {
-    return safeApiCall(
-      () => apiService.isAppActive({
+    return apiClient.post<LoginModel>(
+      ApiEndpoints.departmentUserAuth,
+      data: {
         "LoginID": loginId,
         "Password": password,
         "Salt": salt,
-      }),
+      },
+      fromJson: (json) => LoginModel.fromJson(json as Map<String, dynamic>),
     );
   }
 }
