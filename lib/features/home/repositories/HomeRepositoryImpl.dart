@@ -1,8 +1,8 @@
 import 'package:either_dart/either.dart';
+import 'package:vlts_swc/models/ulb_model.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/network/api_client.dart';
 import '../../../../core/network/api_endpoints.dart';
-import '../models/ulb_model.dart';
 import 'home_repository.dart';
 
 /// Concrete implementation of [HomeRepository].

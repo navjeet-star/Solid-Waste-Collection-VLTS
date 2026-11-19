@@ -3,7 +3,7 @@ import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/aes_encypt.dart';
 import 'package:vlts_swc/core/base/base_view_model.dart';
 import 'package:vlts_swc/core/services/shared_prefs_service.dart';
-import '../models/ulb_model.dart';
+import 'package:vlts_swc/models/ulb_model.dart';
 import '../repositories/home_repository.dart';
 import '../repositories/HomeRepositoryImpl.dart';
 

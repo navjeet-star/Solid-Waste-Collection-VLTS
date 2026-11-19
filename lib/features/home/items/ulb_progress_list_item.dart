@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:vlts_swc/common_utils/decoration/common_decorations.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
-import 'package:vlts_swc/models/ulb_progress_item.dart';
+import 'package:vlts_swc/models/ulb_model.dart';
 
 class UlbProgressListItem extends StatelessWidget {
-  final UlbProgressItem item;
+  final UlbProgressData item;
+  final int? rank;
   final VoidCallback? onTap;
 
-  const UlbProgressListItem({super.key, required this.item, this.onTap});
+  const UlbProgressListItem({
+    super.key,
+    required this.item,
+    this.rank,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

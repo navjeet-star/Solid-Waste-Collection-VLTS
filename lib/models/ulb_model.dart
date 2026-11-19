@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:vlts_swc/core/network/base_api_response.dart';
-import 'package:vlts_swc/models/ulb_progress_item.dart';
 
 /// Top-level response model for the ULB-wise progress API.
 /// Extends [BaseApiResponse] to inherit `Code`, `Message`, and `isSuccess`.
@@ -45,11 +44,19 @@ class UlbModel extends BaseApiResponse {
   /// Whether valid ULB records exist
   bool get hasData => ulbWiseProgressList.isNotEmpty;
 
+  /// Fallback dummy / sample [UlbModel] used on API failure
+  static UlbModel get sampleModel => const UlbModel(
+        code: 'S',
+        message: 'Sample mock data loaded',
+        ulbWiseProgressList: UlbProgressData.sampleList,
+      );
+
   @override
   List<Object?> get props => [code, message, ulbWiseProgressList];
 }
 
 /// Metrics and progress item for an individual ULB.
+/// Used directly for both live API responses and UI list rendering.
 class UlbProgressData extends Equatable {
   final String ulb;
   final String totalWards;
@@ -175,18 +182,18 @@ class UlbProgressData extends Equatable {
   double get coverageDouble =>
       double.tryParse(wardMappedCoverage.replaceAll('%', '').trim()) ?? 0.0;
 
-  /// Helper to convert API [UlbProgressData] to existing UI [UlbProgressItem] widget model
-  UlbProgressItem toUlbProgressItem({int rank = 1}) {
-    return UlbProgressItem(
-      rank: rank,
-      ulbName: ulb.isNotEmpty ? ulb : 'ULB $rank',
-      fleetActive: '$dataReceiving/$numberOfVehicles',
-      routeCoverage: coverageDouble,
-      tripsDone: routeCreatedInt,
-      notReporting: '$dataNotReceiving ($totalWardNotMapped)',
-      score: coverageDouble.toInt(),
-    );
-  }
+  // -------------------------------------------------------------
+  // UI Display Getters (Used directly by UI components)
+  // -------------------------------------------------------------
+  String get ulbName => ulb;
+  String get fleetActive => '$dataReceiving/$numberOfVehicles';
+  double get routeCoverage => coverageDouble;
+  int get tripsDone => routeCreatedInt;
+  String get notReporting =>
+      totalWardNotMappedInt > 0
+          ? '$dataNotReceiving ($totalWardNotMapped)'
+          : dataNotReceiving;
+  int get score => coverageDouble.toInt();
 
   @override
   List<Object?> get props => [
@@ -212,4 +219,62 @@ class UlbProgressData extends Equatable {
         numberOfEmployees,
         employeeCount,
       ];
+
+  /// Static dummy / sample list of [UlbProgressData] for fallback
+  static const List<UlbProgressData> sampleList = [
+    UlbProgressData(
+      ulb: 'Nagar Nigam, Kanvnagri Kotdwar',
+      wardMappedCoverage: '97.18',
+      routeCreated: '292',
+      dataReceiving: '39',
+      numberOfVehicles: '40',
+      dataNotReceiving: '1',
+      totalWardNotMapped: '1',
+    ),
+    UlbProgressData(
+      ulb: 'Nagar Nigam, Haldwani',
+      wardMappedCoverage: '72.41',
+      routeCreated: '0',
+      dataReceiving: '78',
+      numberOfVehicles: '79',
+      dataNotReceiving: '1',
+      totalWardNotMapped: '1',
+    ),
+    UlbProgressData(
+      ulb: 'Nagar Nigam, Haridwar',
+      wardMappedCoverage: '70.13',
+      routeCreated: '177',
+      dataReceiving: '46',
+      numberOfVehicles: '46',
+      dataNotReceiving: '0',
+      totalWardNotMapped: '0',
+    ),
+    UlbProgressData(
+      ulb: 'Nagar Nigam, Rudrapur',
+      wardMappedCoverage: '82.83',
+      routeCreated: '0',
+      dataReceiving: '63',
+      numberOfVehicles: '71',
+      dataNotReceiving: '8',
+      totalWardNotMapped: '8',
+    ),
+    UlbProgressData(
+      ulb: 'Nagar Nigam, Srinagar',
+      wardMappedCoverage: '73.48',
+      routeCreated: '94',
+      dataReceiving: '10',
+      numberOfVehicles: '11',
+      dataNotReceiving: '1',
+      totalWardNotMapped: '1',
+    ),
+    UlbProgressData(
+      ulb: 'Nagar Panchayat, Kapkot',
+      wardMappedCoverage: '62.10',
+      routeCreated: '0',
+      dataReceiving: '1',
+      numberOfVehicles: '1',
+      dataNotReceiving: '0',
+      totalWardNotMapped: '0',
+    ),
+  ];
 }
