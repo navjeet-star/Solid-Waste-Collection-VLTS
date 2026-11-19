@@ -22,6 +22,7 @@ class ApiEndpoints {
   // -------------------------------------------------------------
   static const String departmentUserAuth = "${authApi}DepartmentUserAuthentication";
   static const String uLBWiseProgressList = "${authApi}ULBWiseProgressList";
+  static const String regenerateAccessTokenDepartmentUser = "${authApi}RegenerateAccessTokenDepartmentUser";
 
 
   // -------------------------------------------------------------

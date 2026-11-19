@@ -94,6 +94,18 @@ class SharedPrefsService {
     _cachedUser = loginModel;
   }
 
+  /// Updates access token and optional refresh token (e.g. after silent token regeneration).
+  Future<void> updateTokens({
+    required String accessToken,
+    String? refreshToken,
+  }) async {
+    final prefs = await _storage;
+    await prefs.setString(keyAccessToken, accessToken);
+    if (refreshToken != null && refreshToken.trim().isNotEmpty) {
+      await prefs.setString(keyRefreshToken, refreshToken);
+    }
+  }
+
   /// Helper to safely store or remove null strings
   Future<void> _saveString(SharedPreferences prefs, String key, String? value) async {
     if (value != null && value.isNotEmpty) {
