@@ -2,7 +2,7 @@ import 'package:either_dart/either.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/network/api_client.dart';
 import '../../../../core/network/api_endpoints.dart';
-import '../models/login_model.dart';
+import '../models/LoginModel.dart';
 import 'login_repository.dart';
 
 /// Concrete implementation of [LoginRepository].

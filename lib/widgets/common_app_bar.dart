@@ -18,6 +18,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onMenuTap;
   final double height;
   final PreferredSizeWidget? bottom;
+  final List<Widget>? actions;
 
   const CommonAppBar({
     super.key,
@@ -29,6 +30,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onMenuTap,
     this.height = defaultHeight,
     this.bottom,
+    this.actions,
   });
 
   @override
@@ -64,14 +66,17 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: centerTitle,
       automaticallyImplyLeading: false,
       leading: effectiveLeading,
-      title: Text(
-        title!,
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: colorScheme.textDesc,
-        ),
-      ),
+      title: title != null
+          ? Text(
+              title!,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.textDesc,
+              ),
+            )
+          : null,
+      actions: actions,
     );
   }
 

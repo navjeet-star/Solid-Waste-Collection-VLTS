@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart' as SharedPreferences;
 import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/core/aes_encypt.dart';
 import 'package:vlts_swc/core/base/base_view_model.dart';
-import 'package:vlts_swc/core/services/shared_prefs_service.dart';
+import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
+import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
 import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
-import '../models/login_model.dart';
+import '../models/LoginModel.dart';
 import '../repositories/login_repository.dart';
 
 /// MVVM ViewModel for the Login screen.
@@ -26,7 +28,6 @@ class LoginViewModel extends BaseViewModel {
   // Reactive UI States
   final RxBool isPasswordHidden = true.obs;
   final RxBool rememberMe = true.obs;
-  final Rxn<LoginModel> user = Rxn<LoginModel>();
 
   void togglePasswordVisibility() {
     isPasswordHidden.value = !isPasswordHidden.value;
@@ -76,10 +77,10 @@ class LoginViewModel extends BaseViewModel {
         },
         (userData) async {
           setSuccess();
-          user.value = userData;
-
-          // Save login response & profile in SharedPreferences
-          await SharedPrefsService.instance.saveLoginResponse(userData);
+          // 1. Save data in SharedPreferences & Secure Storage
+          await SharedPrefsService.saveLoginResponse(userData);
+          final savedResponse = await SharedPrefsService.getLoginResponse();
+          debugPrint('INFO: Login Response: ${savedResponse?.toJson()}');
           Get.offAllNamed(Routes.home);
         },
       );

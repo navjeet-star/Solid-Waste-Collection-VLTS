@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:vlts_swc/core/network/api_client.dart';
-import 'package:vlts_swc/core/services/shared_prefs_service.dart';
 import 'package:vlts_swc/features/home/repositories/HomeRepositoryImpl.dart';
 import 'package:vlts_swc/features/home/repositories/home_repository.dart';
 import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
@@ -9,8 +8,6 @@ import 'package:vlts_swc/features/login/repositories/login_repository.dart';
 class InitialBinding extends Bindings {
   @override
   void dependencies() {
-    // Global SharedPreferences service instance
-    Get.lazyPut<SharedPrefsService>(() => SharedPrefsService.instance, fenix: true);
 
     // Global ApiClient instance
     Get.lazyPut<ApiClient>(() => ApiClient.instance, fenix: true);

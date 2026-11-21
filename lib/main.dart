@@ -3,27 +3,38 @@ import 'package:get/get.dart';
 import 'package:vlts_swc/app/bindings/initial_binding.dart';
 import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/core/app_locale.dart';
-import 'package:vlts_swc/core/services/shared_prefs_service.dart';
+import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
 import 'package:vlts_swc/core/theme/app_theme_mode.dart';
 import 'package:vlts_swc/core/theme/dark_theme.dart';
 import 'package:vlts_swc/core/theme/light_theme.dart';
 import 'package:vlts_swc/l10n/app_localizations.dart';
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  final prefsService = SharedPrefsService.instance;
-  final isFirstLaunch = await prefsService.isFirstLaunch();
-  final isLoggedIn = await prefsService.isLoggedIn();
-  if (isLoggedIn) {
-    await prefsService.getLoginResponse();
-  }
 
+  // Initialize SharedPreferences
+  await SharedPrefsService.init();
+
+  // Get app launch and login status
+  final isFirstLaunch = SharedPrefsService.isFirstLaunch;
+  final isLoggedIn = SharedPrefsService.isLoggedIn;
+
+  // Determine initial route
   String initialRoute;
+
   if (isFirstLaunch) {
     initialRoute = Routes.overview;
   } else if (isLoggedIn) {
-    initialRoute = Routes.home;
+    // Retrieve saved login response if required
+    final loginResponse =
+    await SharedPrefsService.getLoginResponse();
+
+    if (loginResponse != null) {
+      initialRoute = Routes.home;
+    } else {
+      initialRoute = Routes.login;
+    }
   } else {
     initialRoute = Routes.login;
   }

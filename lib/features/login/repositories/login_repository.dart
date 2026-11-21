@@ -1,6 +1,6 @@
 import 'package:either_dart/either.dart';
 import '../../../../core/errors/failure.dart';
-import '../models/login_model.dart';
+import '../models/LoginModel.dart';
 
 /// Repository contract for authentication in MVVM architecture.
 abstract class LoginRepository {

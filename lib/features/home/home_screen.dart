@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
-import 'package:vlts_swc/core/services/shared_prefs_service.dart';
+import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
 import 'package:vlts_swc/features/home/viewModels/home_view_model.dart';
-import 'package:vlts_swc/features/login/models/login_model.dart';
+import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
 import 'package:vlts_swc/models/module_item.dart';
 import 'package:vlts_swc/models/ulb_model.dart';
 import 'package:vlts_swc/features/home/hero_header_content.dart';
@@ -17,6 +17,7 @@ import 'package:vlts_swc/widgets/common_stat_card.dart';
 import 'package:vlts_swc/widgets/side_menu.dart';
 import 'package:vlts_swc/widgets/common_bottom_nav_bar.dart';
 import 'package:vlts_swc/widgets/shimmer_loading.dart';
+import '../login/models/LoginModel.dart';
 import 'tabs/complaints_tab.dart';
 import 'tabs/profile_tab.dart';
 import 'tabs/reports_tab.dart';
@@ -35,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
   // Stored preference values fetched from SharedPreferences
   bool isFirstLaunch = false;
   bool isLoggedIn = false;
-  LoginModel? currentUser;
   int _currentIndex = 0;
 
   @override
@@ -47,15 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /// Fetches preferences synchronously on screen load without await
   void _fetchPreferences() {
-    final prefsService = SharedPrefsService.instance;
-    isFirstLaunch = prefsService.isFirstLaunchSync;
-    isLoggedIn = prefsService.isLoggedInSync;
-    currentUser = prefsService.loginResponseSync;
-
-    Log.d(
-      "HomeScreen",
-      "Preferences loaded (sync) -> acesstoken: ${currentUser?.refreshToken}, userloginid: ${currentUser?.loginId}, ulbid:${currentUser?.ulbId}, roleid:${currentUser?.roleId}",
-    );
+    isFirstLaunch = SharedPrefsService.isFirstLaunch;
+    isLoggedIn = SharedPrefsService.isLoggedIn;
   }
 
   @override
@@ -162,10 +155,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       //
       // // Tab 3: Profile
-      ProfileTab(
-        user: currentUser,
-        onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
-      ),
+      // ProfileTab(
+      //   user: currentUser,
+      //   onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+      // ),
     ],
   ),
 );

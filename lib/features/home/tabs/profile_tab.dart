@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
-import 'package:vlts_swc/core/services/shared_prefs_service.dart';
-import 'package:vlts_swc/features/login/models/login_model.dart';
+import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
+import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
 import 'package:vlts_swc/widgets/common_app_bar.dart';
+
+import '../../login/models/LoginModel.dart';
 
 /// Profile Tab view for the Bottom Navigation Bar.
 ///
 /// Displays logged-in officer profile details, assigned ULB/Ward jurisdiction,
 /// and quick settings (Language, Theme, and Logout).
 class ProfileTab extends StatefulWidget {
-  final LoginModel? user;
+  final ProfileDetail? user;
   final VoidCallback? onMenuTap;
 
   const ProfileTab({super.key, this.user, this.onMenuTap});
@@ -22,56 +24,33 @@ class ProfileTab extends StatefulWidget {
 class _ProfileTabState extends State<ProfileTab> {
   LoginModel? _user;
 
-  @override
-  void initState() {
-    super.initState();
-    _user = widget.user;
-    if (_user == null) {
-      _loadProfile();
-    }
-  }
 
-  @override
-  void didUpdateWidget(covariant ProfileTab oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.user != oldWidget.user) {
-      setState(() {
-        _user = widget.user;
-      });
-    }
-  }
 
-  Future<void> _loadProfile() async {
-    final user = await SharedPrefsService.instance.getLoginResponse();
-    if (mounted) {
-      setState(() {
-        _user = user;
-      });
-    }
-  }
 
-  String get _initials {
-    final name = _user?.name?.trim();
-    if (name == null || name.isEmpty) return 'U';
-    final parts = name.split(RegExp(r'\s+'));
-    if (parts.length >= 2 && parts[0].isNotEmpty && parts[1].isNotEmpty) {
-      return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
-    }
-    return name.substring(0, name.length >= 2 ? 2 : 1).toUpperCase();
-  }
+
+  //
+  // String get _initials {
+  //   final name = _user?.name?.trim();
+  //   if (name == null || name.isEmpty) return 'U';
+  //   final parts = name.split(RegExp(r'\s+'));
+  //   if (parts.length >= 2 && parts[0].isNotEmpty && parts[1].isNotEmpty) {
+  //     return '${parts[0][0]}${parts[1][0]}'.toUpperCase();
+  //   }
+  //   return name.substring(0, name.length >= 2 ? 2 : 1).toUpperCase();
+  // }
 
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
 
-    final userName = _user?.name?.isNotEmpty == true ? _user!.name! : 'Super Admin';
-    final userRole = _user?.roleName?.isNotEmpty == true ? _user!.roleName! : strings.profileRole;
-    final userEmail = _user?.emailId?.isNotEmpty == true
-        ? _user!.emailId!
-        : (_user?.mobileNo?.isNotEmpty == true ? _user!.mobileNo! : 'admin@swc.gov.in');
-    final userDistrict = _user?.district?.isNotEmpty == true ? _user!.district! : 'Headquarters';
-    final userUlb = _user?.ulb?.isNotEmpty == true ? _user!.ulb! : 'Urban Development Directorate';
+    // final userName = _user?.na?.isNotEmpty == true ? _user!.name! : 'Super Admin';
+    // final userRole = _user?.roleName?.isNotEmpty == true ? _user!.roleName! : strings.profileRole;
+    // final userEmail = _user?.emailId?.isNotEmpty == true
+    //     ? _user!.emailId!
+    //     : (_user?.mobileNo?.isNotEmpty == true ? _user!.mobileNo! : 'admin@swc.gov.in');
+    // final userDistrict = _user?.district?.isNotEmpty == true ? _user!.district! : 'Headquarters';
+    // final userUlb = _user?.ulb?.isNotEmpty == true ? _user!.ulb! : 'Urban Development Directorate';
 
     return SafeArea(
       child: Scaffold(
@@ -110,7 +89,7 @@ class _ProfileTabState extends State<ProfileTab> {
                       radius: 32,
                       backgroundColor: colorScheme.primary,
                       child: Text(
-                        _initials,
+                        "_initials",
                         style: TextStyle(
                           color: colorScheme.onPrimary,
                           fontWeight: FontWeight.bold,
@@ -124,7 +103,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            userName,
+                            "userName",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -133,7 +112,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           ),
                           const SizedBox(height: 3),
                           Text(
-                            userRole,
+                            "userRole",
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -142,7 +121,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            userEmail,
+                            "userEmail",
                             style: TextStyle(
                               fontSize: 12,
                               color: colorScheme.onSurfaceVariant,
@@ -173,7 +152,7 @@ class _ProfileTabState extends State<ProfileTab> {
               _buildInfoTile(
                 context,
                 title: 'Assigned District',
-                value: userDistrict,
+                value: "userDistrict",
                 icon: Icons.map_outlined,
               ),
               const SizedBox(height: 10),
@@ -181,19 +160,19 @@ class _ProfileTabState extends State<ProfileTab> {
               _buildInfoTile(
                 context,
                 title: 'Urban Local Body (ULB)',
-                value: userUlb,
+                value: "userUlb",
                 icon: Icons.location_city_outlined,
               ),
 
-              if (_user?.ward?.isNotEmpty == true) ...[
-                const SizedBox(height: 10),
-                _buildInfoTile(
-                  context,
-                  title: 'Assigned Ward',
-                  value: _user!.ward!,
-                  icon: Icons.holiday_village_outlined,
-                ),
-              ],
+              // if (_user?.ward?.isNotEmpty == true) ...[
+              //   const SizedBox(height: 10),
+              //   _buildInfoTile(
+              //     context,
+              //     title: 'Assigned Ward',
+              //     value: _user!.ward!,
+              //     icon: Icons.holiday_village_outlined,
+              //   ),
+              // ],
 
               const SizedBox(height: 28),
 

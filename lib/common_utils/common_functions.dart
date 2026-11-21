@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vlts_swc/core/services/shared_prefs_service.dart';
+import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
 
 /// Centralized utility class for common operations (snackbars, dialogs, helpers).
 class CommonFunctions {
@@ -181,7 +181,7 @@ class CommonFunctions {
     );
 
     if (confirmed == true) {
-      await SharedPrefsService.instance.logout();
+      await SharedPrefsService.logout();
     }
   }
 

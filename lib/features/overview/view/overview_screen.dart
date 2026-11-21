@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/core/app_locale.dart';
-import 'package:vlts_swc/core/services/shared_prefs_service.dart';
+import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
 import 'package:vlts_swc/features/overview/view/widgets/overview_page_one.dart';
 import 'package:vlts_swc/features/overview/view/widgets/overview_page_three.dart';
 import 'package:vlts_swc/features/overview/view/widgets/overview_page_two.dart';
@@ -52,7 +52,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
   }
 
   Future<void> _completeOverviewAndProceed() async {
-    await SharedPrefsService.instance.setFirstLaunchComplete();
+    await SharedPrefsService.setFirstLaunchComplete();
     Get.offAllNamed(Routes.login);
   }
 
