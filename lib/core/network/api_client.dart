@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
@@ -7,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../common_utils/common_functions.dart';
-import '../aes_encypt.dart';
 import '../errors/failure.dart';
 import '../storage/shared_prefs_service.dart';
 import 'api_endpoints.dart';
@@ -15,33 +13,25 @@ import 'base_api_response.dart';
 import 'error_handler.dart';
 import 'network_info.dart';
 
-/// Centralized, production-ready HTTP Client and Network Engine for Flutter MVVM.
-///
-/// Handles:
-/// - Pre-flight internet connectivity checks with user toasts.
-/// - Centralized Bearer token injection from [SharedPrefsService].
-/// - Multi-base URL support (AuthApi, OfficeApi, MasterApi).
-/// - Standardized [BaseApiResponse] validation (Code "S" vs "F").
-/// - Automatic silent token regeneration & request retry on token expiration.
-/// - Error translation returning [Either<Failure, T>].
 class ApiClient {
   ApiClient._() {
     _dio = _createDio();
   }
 
   static ApiClient? _instance;
-  static ApiClient get instance => _instance ??= ApiClient._();
+
+  static ApiClient get instance =>
+      _instance ??= ApiClient._();
 
   late final Dio _dio;
+
   Dio get dio => _dio;
 
-  Completer<bool>? _refreshCompleter;
+  // ==========================================
+  // DIO INITIALIZATION
+  // ==========================================
 
-  // =============================================================
-  // Dio Initialization
-  // =============================================================
-
-  Dio _createRawDio() {
+  Dio _createDio() {
     final dio = Dio(
       BaseOptions(
         connectTimeout: ApiEndpoints.connectTimeout,
@@ -54,57 +44,69 @@ class ApiClient {
       ),
     );
 
+    // Allow self-signed certificates in debug only.
     if (!kReleaseMode) {
-      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-          (client) =>
-              client..badCertificateCallback = (cert, host, port) => true;
+      (dio.httpClientAdapter as DefaultHttpClientAdapter)
+          .onHttpClientCreate = (client) {
+        client.badCertificateCallback =
+            (cert, host, port) => true;
+        return client;
+      };
+    }
+
+    // ==========================================
+    // AUTHORIZATION INTERCEPTOR
+    // ==========================================
+
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          try {
+            final token =
+            await SharedPrefsService.getAccessToken();
+
+            if (token != null && token.isNotEmpty && !options.headers.containsKey('Authorization')) {
+              options.headers['Authorization'] = 'Bearer $token';
+            }
+
+            handler.next(options);
+          } catch (e) {
+            handler.reject(
+              DioError (
+                requestOptions: options,
+                error: e,
+              ),
+            );
+          }
+        },
+      ),
+    );
+
+    // ==========================================
+    // API LOGGER
+    // ==========================================
+
+    if (kDebugMode) {
+      dio.interceptors.add(
+        PrettyDioLogger(
+          request: true,
+          requestHeader: false,
+          requestBody: true,
+          responseHeader: false,
+          responseBody: true,
+          error: true,
+          compact: true,
+          maxWidth: 90,
+        ),
+      );
     }
 
     return dio;
   }
 
-  Dio _createDio() {
-    final dio = _createRawDio();
-
-    // 1. Authorization Bearer Token Interceptor
-    dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) {
-          final token = SharedPrefsService.getAccessToken();
-          if (token != null && !options.headers.containsKey('Authorization')) {
-            options.headers['Authorization'] =   'Bearer $token';
-          }
-          return handler.next(options);
-        },
-        onError: (DioError error, handler) async {
-          if (error.response?.statusCode == 401) {
-            Log.w("ApiClient", "401 Unauthorized: ${error.requestOptions.path}");
-          }
-          return handler.next(error);
-        },
-      ),
-    );
-
-    // 2. Pretty Logger Interceptor
-    dio.interceptors.add(
-      PrettyDioLogger(
-        request: true,
-        requestHeader: true,
-        requestBody: true,
-        responseHeader: false,
-        responseBody: true,
-        error: true,
-        compact: true,
-        maxWidth: 90,
-      ),
-    );
-
-    return dio;
-  }
-
-  // =============================================================
-  // Core Request Engine with Auto Token Renewal & Retry
-  // =============================================================
+  // ==========================================
+  // CORE REQUEST METHOD
+  // ==========================================
 
   Future<Either<Failure, T>> _request<T>({
     required String method,
@@ -115,47 +117,68 @@ class ApiClient {
     required T Function(dynamic json) fromJson,
     bool checkInternet = true,
     bool showErrorToast = true,
-    bool isRetry = false,
   }) async {
-    // 1. Pre-flight Internet Connectivity Check
-    if (checkInternet && !await NetworkInfo.isConnected()) {
-      const offlineMsg = "No internet connection. Please check your network.";
-      if (showErrorToast) CommonFunctions.showToast(offlineMsg);
-      return Left(const NetworkFailure(message: offlineMsg));
+    // Check internet connection
+    if (checkInternet &&
+        !await NetworkInfo.isConnected()) {
+      const message =
+          'No internet connection. Please check your network.';
+
+      if (showErrorToast) {
+        CommonFunctions.showToast(message);
+      }
+
+      return Left(
+        const NetworkFailure(message: message),
+      );
     }
 
-    // 2. Execute HTTP Request
     try {
       final response = await _dio.request(
         url,
         data: data,
         queryParameters: queryParameters,
-        options: (options ?? Options()).copyWith(method: method),
+        options: (options ?? Options()).copyWith(
+          method: method,
+        ),
       );
 
-      final responseData = response.data;
-      if (responseData == null) {
-        return Left(const ServerFailure(message: "Empty response from server."));
+      if (response.data == null) {
+        return Left(
+          const ServerFailure(
+            message: 'Empty response from server.',
+          ),
+        );
       }
 
-      final model = fromJson(responseData);
+      final model = fromJson(response.data);
 
-      // 3. Centralized BaseApiResponse status validation (Code == "S" vs "F")
+      // Validate API response
       if (model is BaseApiResponse && !model.isSuccess) {
-        final errorMsg =
-            (model.message != null && model.message!.trim().isNotEmpty)
-                ? model.message!
-                : "Request failed. Please try again.";
+        final message =
+        (model.message != null &&
+            model.message!.trim().isNotEmpty)
+            ? model.message!
+            : 'Request failed. Please try again.';
 
+        if (showErrorToast) {
+          CommonFunctions.showToast(message);
+        }
 
-        if (showErrorToast) CommonFunctions.showToast(errorMsg);
-        return Left(ServerFailure(message: errorMsg));
+        return Left(
+          ServerFailure(message: message),
+        );
       }
 
       return Right(model);
-    } on DioError catch (e) {
-      final exception = ApiErrorHandler.handleDioError(e);
-      if (showErrorToast) CommonFunctions.showToast(exception.message);
+    } on DioError  catch (e) {
+      final exception =
+      ApiErrorHandler.handleDioError(e);
+
+      if (showErrorToast) {
+        CommonFunctions.showToast(exception.message);
+      }
+
       return Left(
         ServerFailure(
           message: exception.message,
@@ -164,27 +187,30 @@ class ApiClient {
       );
     } catch (e) {
       final message = e.toString();
-      if (showErrorToast) CommonFunctions.showToast(message);
-      return Left(ServerFailure(message: message));
+
+      if (showErrorToast) {
+        CommonFunctions.showToast(message);
+      }
+
+      return Left(
+        ServerFailure(message: message),
+      );
     }
   }
 
+  // ==========================================
+  // POST REQUEST
+  // ==========================================
 
-
-  // =============================================================
-  // Public HTTP API Methods
-  // =============================================================
-
-  /// Centralized POST method
   Future<Either<Failure, T>> post<T>(
-    String url, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    required T Function(dynamic json) fromJson,
-    bool checkInternet = true,
-    bool showErrorToast = true,
-  }) {
+      String url, {
+        dynamic data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        required T Function(dynamic json) fromJson,
+        bool checkInternet = true,
+        bool showErrorToast = true,
+      }) {
     return _request<T>(
       method: 'POST',
       url: url,
@@ -197,15 +223,18 @@ class ApiClient {
     );
   }
 
-  /// Centralized GET method
+  // ==========================================
+  // GET REQUEST
+  // ==========================================
+
   Future<Either<Failure, T>> get<T>(
-    String url, {
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    required T Function(dynamic json) fromJson,
-    bool checkInternet = true,
-    bool showErrorToast = true,
-  }) {
+      String url, {
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        required T Function(dynamic json) fromJson,
+        bool checkInternet = true,
+        bool showErrorToast = true,
+      }) {
     return _request<T>(
       method: 'GET',
       url: url,

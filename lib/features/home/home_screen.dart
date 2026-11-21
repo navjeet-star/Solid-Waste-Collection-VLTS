@@ -5,7 +5,6 @@ import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
 import 'package:vlts_swc/features/home/viewModels/home_view_model.dart';
-import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
 import 'package:vlts_swc/models/module_item.dart';
 import 'package:vlts_swc/models/ulb_model.dart';
 import 'package:vlts_swc/features/home/hero_header_content.dart';
@@ -16,10 +15,7 @@ import 'package:vlts_swc/common_utils/generic_grid_view.dart';
 import 'package:vlts_swc/widgets/common_stat_card.dart';
 import 'package:vlts_swc/widgets/side_menu.dart';
 import 'package:vlts_swc/widgets/common_bottom_nav_bar.dart';
-import 'package:vlts_swc/widgets/shimmer_loading.dart';
-import '../login/models/LoginModel.dart';
 import 'tabs/complaints_tab.dart';
-import 'tabs/profile_tab.dart';
 import 'tabs/reports_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -75,11 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          Obx(() {
-            if (homeViewModel.isLoading.value) {
-              return const HomeFullScreenShimmer();
-            }
-            return LayoutBuilder(
+
+             LayoutBuilder(
               builder: (context, constraints) {
                 return RefreshIndicator(
                   onRefresh: () => homeViewModel.fetchUlbWiseProgress(),
@@ -141,8 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
-            );
-          }),
+            ),
 
       // Tab 1: Reports
       ReportsTab(
