@@ -47,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     isLoggedIn = SharedPrefsService.isLoggedIn;
   }
 
+
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n;
