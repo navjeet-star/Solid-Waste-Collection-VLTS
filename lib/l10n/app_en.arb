@@ -117,5 +117,10 @@
   "notReporting": "Not Reporting",
   "home": "Home",
   "complaints": "Complaints",
-  "profile": "Profile"
+  "profile": "Profile",
+  "systemTagline": "Vehicle Location Tracking System",
+  "initializingTelemetry": "Initializing Fleet Telemetry...",
+  "connectingGps": "Connecting to VLTS Network...",
+  "systemReady": "System Ready • Welcome",
+  "swachhBharatTagline": "Swachh Bharat Mission (Urban)"
 }

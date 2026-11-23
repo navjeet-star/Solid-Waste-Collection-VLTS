@@ -799,6 +799,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @systemTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle Location Tracking System'**
+  String get systemTagline;
+
+  /// No description provided for @initializingTelemetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Initializing Fleet Telemetry...'**
+  String get initializingTelemetry;
+
+  /// No description provided for @connectingGps.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting to VLTS Network...'**
+  String get connectingGps;
+
+  /// No description provided for @systemReady.
+  ///
+  /// In en, this message translates to:
+  /// **'System Ready • Welcome'**
+  String get systemReady;
+
+  /// No description provided for @swachhBharatTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Swachh Bharat Mission (Urban)'**
+  String get swachhBharatTagline;
 }
 
 class _AppLocalizationsDelegate

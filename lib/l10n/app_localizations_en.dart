@@ -365,4 +365,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get systemTagline => 'Vehicle Location Tracking System';
+
+  @override
+  String get initializingTelemetry => 'Initializing Fleet Telemetry...';
+
+  @override
+  String get connectingGps => 'Connecting to VLTS Network...';
+
+  @override
+  String get systemReady => 'System Ready • Welcome';
+
+  @override
+  String get swachhBharatTagline => 'Swachh Bharat Mission (Urban)';
 }

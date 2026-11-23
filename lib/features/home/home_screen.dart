@@ -1,4 +1,4 @@
-import'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
@@ -15,6 +15,7 @@ import 'package:vlts_swc/common_utils/generic_grid_view.dart';
 import 'package:vlts_swc/widgets/common_stat_card.dart';
 import 'package:vlts_swc/widgets/side_menu.dart';
 import 'package:vlts_swc/widgets/common_bottom_nav_bar.dart';
+
 import 'tabs/complaints_tab.dart';
 import 'tabs/reports_tab.dart';
 
@@ -47,13 +48,10 @@ class _HomeScreenState extends State<HomeScreen> {
     isLoggedIn = SharedPrefsService.isLoggedIn;
   }
 
-
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n;
-    final colorScheme = Theme
-        .of(context)
-        .colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
     const overlap = 24.0;
 
     return Scaffold(
@@ -72,89 +70,90 @@ class _HomeScreenState extends State<HomeScreen> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-
-             LayoutBuilder(
-              builder: (context, constraints) {
-                return RefreshIndicator(
-                  onRefresh: () => homeViewModel.fetchUlbWiseProgress(),
-                  color: colorScheme.primary,
-                  child: SingleChildScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(
-                      parent: BouncingScrollPhysics(),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return RefreshIndicator(
+                onRefresh: () => homeViewModel.fetchUlbWiseProgress(),
+                color: colorScheme.primary,
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(
+                    parent: BouncingScrollPhysics(),
+                  ),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
                     ),
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minHeight: constraints.maxHeight,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          // Layer 1: Natural-height Hero Header at the top
-                          HeroHeaderContent(
-                            onProfileTap: () =>
-                                _scaffoldKey.currentState?.openDrawer(),
-                            onNotificationTap: () =>
-                                CommonFunctions.showSnackBar(
-                                    context, strings.notificationsClicked),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        // Layer 1: Natural-height Hero Header at the top
+                        HeroHeaderContent(
+                          onProfileTap: () =>
+                              _scaffoldKey.currentState?.openDrawer(),
+                          onNotificationTap: () => CommonFunctions.showSnackBar(
+                            context,
+                            strings.notificationsClicked,
                           ),
+                        ),
 
-                          // Layer 2: Body card placed ON TOP of header with top curve,
-                          // overlap, elevation shadow, and filling all remaining height
-                          Transform.translate(
-                            offset: const Offset(0, -overlap),
-                            child: Container(
-                              width: double.infinity,
-                              constraints: BoxConstraints(
-                                minHeight: constraints.maxHeight * 0.6,
+                        // Layer 2: Body card placed ON TOP of header with top curve,
+                        // overlap, elevation shadow, and filling all remaining height
+                        Transform.translate(
+                          offset: const Offset(0, -overlap),
+                          child: Container(
+                            width: double.infinity,
+                            constraints: BoxConstraints(
+                              minHeight: constraints.maxHeight * 0.6,
+                            ),
+                            decoration: BoxDecoration(
+                              color: colorScheme.surface,
+                              borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(32),
                               ),
-                              decoration: BoxDecoration(
-                                color: colorScheme.surface,
-                                borderRadius: const BorderRadius.vertical(
-                                  top: Radius.circular(32),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: colorScheme.shadow
-                                        .withValues(alpha: 0.12),
-                                    blurRadius: 18,
-                                    offset: const Offset(0, -6),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: colorScheme.shadow.withValues(
+                                    alpha: 0.12,
                                   ),
-                                ],
-                              ),
-                              padding:
-                                  const EdgeInsets.fromLTRB(18, 20, 18, 96),
-                              child: _HomeBodyContent(
-                                  onViewAllCategories: () =>
-                                      CommonFunctions.showSnackBar(
-                                          context, strings.categories)),
+                                  blurRadius: 18,
+                                  offset: const Offset(0, -6),
+                                ),
+                              ],
+                            ),
+                            padding: const EdgeInsets.fromLTRB(18, 20, 18, 96),
+                            child: _HomeBodyContent(
+                              onViewAllCategories: () =>
+                                  CommonFunctions.showSnackBar(
+                                    context,
+                                    strings.categories,
+                                  ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
+          ),
 
-      // Tab 1: Reports
-      ReportsTab(
-        onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
-      ),
+          // Tab 1: Reports
+          ReportsTab(onMenuTap: () => _scaffoldKey.currentState?.openDrawer()),
 
-      // // Tab 2: Complaints
-      ComplaintsTab(
-        onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+          // // Tab 2: Complaints
+          ComplaintsTab(
+            onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+          ),
+          //
+          // // Tab 3: Profile
+          // ProfileTab(
+          //   user: currentUser,
+          //   onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+          // ),
+        ],
       ),
-      //
-      // // Tab 3: Profile
-      // ProfileTab(
-      //   user: currentUser,
-      //   onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
-      // ),
-    ],
-  ),
-);
+    );
   }
 }
 
@@ -173,9 +172,7 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
   Widget build(BuildContext context) {
     final HomeViewModel homeViewModel = Get.find<HomeViewModel>();
     final strings = context.l10n;
-    final colorScheme = Theme
-        .of(context)
-        .colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     // Create the dynamic list of ModuleItem objects derived from theme colorScheme
     final List<ModuleItem> moduleList = [
@@ -183,25 +180,31 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
         title: strings.attendanceDashboard,
         icon: Icons.how_to_reg_rounded,
         color: colorScheme.tertiary,
-        onTap: () => CommonFunctions.showSnackBar(context, strings.attendanceDashboard),
+        onTap: () =>
+            CommonFunctions.showSnackBar(context, strings.attendanceDashboard),
       ),
       ModuleItem(
         title: strings.ulbProgressReport,
         icon: Icons.bar_chart_rounded,
         color: colorScheme.tertiary,
-        onTap: () =>CommonFunctions.showSnackBar(context, strings.ulbProgressReport) ,
+        onTap: () =>
+            CommonFunctions.showSnackBar(context, strings.ulbProgressReport),
       ),
       ModuleItem(
         title: strings.ulbProgressReport,
         icon: Icons.pie_chart_rounded,
         color: colorScheme.tertiary,
-        onTap: () => CommonFunctions.showSnackBar(context, strings.ulbProgressReport)  ,
+        onTap: () =>
+            CommonFunctions.showSnackBar(context, strings.ulbProgressReport),
       ),
       ModuleItem(
         title: strings.swachhtaAppComplaints,
         icon: Icons.mark_chat_unread_rounded,
         color: colorScheme.tertiary,
-        onTap: () =>CommonFunctions.showSnackBar(context, strings.swachhtaAppComplaints)
+        onTap: () => CommonFunctions.showSnackBar(
+          context,
+          strings.swachhtaAppComplaints,
+        ),
       ),
     ];
 
@@ -284,7 +287,7 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
                 accentColor: colorScheme.yellow,
                 onTap: () {},
               ),
-            )
+            ),
           ],
         ),
 

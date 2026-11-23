@@ -364,4 +364,19 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get profile => 'प्रोफ़ाइल';
+
+  @override
+  String get systemTagline => 'वाहन स्थान ट्रैकिंग प्रणाली';
+
+  @override
+  String get initializingTelemetry => 'फ्लीट टेलीमेट्री प्रारंभ हो रही है...';
+
+  @override
+  String get connectingGps => 'वीएलटीएस नेटवर्क से कनेक्ट हो रहा है...';
+
+  @override
+  String get systemReady => 'प्रणाली तैयार • स्वागत है';
+
+  @override
+  String get swachhBharatTagline => 'स्वच्छ भारत मिशन (शहरी)';
 }

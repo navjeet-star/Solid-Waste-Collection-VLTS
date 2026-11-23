@@ -125,5 +125,10 @@
   "notReporting": "नॉट रिपोर्टिंग",
   "home": "होम",
   "complaints": "शिकायतें",
-  "profile": "प्रोफ़ाइल"
+  "profile": "प्रोफ़ाइल",
+  "systemTagline": "वाहन स्थान ट्रैकिंग प्रणाली",
+  "initializingTelemetry": "फ्लीट टेलीमेट्री प्रारंभ हो रही है...",
+  "connectingGps": "वीएलटीएस नेटवर्क से कनेक्ट हो रहा है...",
+  "systemReady": "प्रणाली तैयार • स्वागत है",
+  "swachhBharatTagline": "स्वच्छ भारत मिशन (शहरी)"
 }

@@ -16,35 +16,12 @@ Future<void> main() async {
   // Initialize SharedPreferences
   await SharedPrefsService.init();
 
-  // Get app launch and login status
-  final isFirstLaunch = SharedPrefsService.isFirstLaunch;
-  final isLoggedIn = SharedPrefsService.isLoggedIn;
-
-  // Determine initial route
-  String initialRoute;
-
-  if (isFirstLaunch) {
-    initialRoute = Routes.overview;
-  } else if (isLoggedIn) {
-    // Retrieve saved login response if required
-    final loginResponse =
-    await SharedPrefsService.getLoginResponse();
-
-    if (loginResponse != null) {
-      initialRoute = Routes.home;
-    } else {
-      initialRoute = Routes.login;
-    }
-  } else {
-    initialRoute = Routes.login;
-  }
-
-  runApp(MyApp(initialRoute: initialRoute));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   final String initialRoute;
-  const MyApp({super.key, this.initialRoute = Routes.login});
+  const MyApp({super.key, this.initialRoute = Routes.splash});
 
   @override
   Widget build(BuildContext context) {
