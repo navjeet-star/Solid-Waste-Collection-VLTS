@@ -403,14 +403,6 @@ class LoginView extends StatelessWidget {
           ],
         ),
       ),
-
-          // Full Screen Loading Overlay
-          Obx(
-            () => CommonFunctions.loadingOverlay(
-              isLoading: controller.isLoading.value,
-              context: context,
-            ),
-          ),
     ],
   ),
 );

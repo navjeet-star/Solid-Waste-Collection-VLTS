@@ -15,6 +15,8 @@ import 'package:vlts_swc/common_utils/generic_grid_view.dart';
 import 'package:vlts_swc/widgets/common_stat_card.dart';
 import 'package:vlts_swc/widgets/side_menu.dart';
 import 'package:vlts_swc/widgets/common_bottom_nav_bar.dart';
+import 'package:vlts_swc/extensions/Extensions.dart';
+import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
 
 import 'tabs/complaints_tab.dart';
 import 'tabs/profile_tab.dart';
@@ -35,11 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isFirstLaunch = false;
   bool isLoggedIn = false;
   int _currentIndex = 0;
+  ProfileDetail? _userProfile;
 
   @override
   void initState() {
     super.initState();
     _fetchPreferences();
+    _loadUserProfile();
     homeViewModel.fetchUlbWiseProgress();
   }
 
@@ -47,6 +51,17 @@ class _HomeScreenState extends State<HomeScreen> {
   void _fetchPreferences() {
     isFirstLaunch = SharedPrefsService.isFirstLaunch;
     isLoggedIn = SharedPrefsService.isLoggedIn;
+  }
+
+  Future<void> _loadUserProfile() async {
+    try {
+      final profile = await SharedPrefsService.getProfile();
+      if (mounted) {
+        setState(() {
+          _userProfile = profile;
+        });
+      }
+    } catch (_) {}
   }
 
   @override
@@ -57,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       key: _scaffoldKey,
-      drawer: const SideMenu(),
+      drawer: SideMenu(user: _userProfile),
       backgroundColor: colorScheme.surface,
       extendBody: true,
       bottomNavigationBar: CommonBottomNavBar(
@@ -95,6 +110,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             context,
                             strings.notificationsClicked,
                           ),
+                          user: _userProfile,
+                          userInitials: _userProfile?.name?.getInitials(),
                         ),
 
                         // Layer 2: Body card placed ON TOP of header with top curve,
@@ -149,6 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // Tab 3: Profile
           ProfileTab(
+            user: _userProfile,
             onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
           ),
         ],

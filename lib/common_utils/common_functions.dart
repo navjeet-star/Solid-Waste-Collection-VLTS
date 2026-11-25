@@ -241,72 +241,9 @@ class CommonFunctions {
       Get.back();
     }
   }
-
-  /// Builds a full-screen loading overlay widget designed for Stack layouts.
-  static Widget loadingOverlay({
-    required bool isLoading,
-    BuildContext? context,
-  }) {
-    if (!isLoading) {
-      return const IgnorePointer(child: SizedBox.shrink());
-    }
-
-    final theme = context != null ? Theme.of(context) : Get.theme;
-    final colorScheme = theme.colorScheme;
-
-    return Positioned.fill(
-      child: Container(
-        color: Colors.black.withValues(alpha: 0.4),
-        alignment: Alignment.center,
-        child: Container(
-          width: 76,
-          height: 76,
-          decoration: BoxDecoration(
-            color: colorScheme.surface,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
-                blurRadius: 12,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Center(
-            child: CircularProgressIndicator(
-              color: colorScheme.primary,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
 
-/// Reusable full-screen loading overlay wrapper widget
-class CommonLoadingOverlay extends StatelessWidget {
-  final bool isLoading;
-  final Widget child;
 
-  const CommonLoadingOverlay({
-    super.key,
-    required this.isLoading,
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        child,
-        CommonFunctions.loadingOverlay(
-          isLoading: isLoading,
-          context: context,
-        ),
-      ],
-    );
-  }
-}
 
 /// Standalone global helper functions for loaders
 void showLoader({String? message}) => CommonFunctions.showLoader(message: message);

@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/extensions/Extensions.dart';
+import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
 
 /// Rich Hero Header with solid waste management background image,
 /// semi-transparent black overlay, app title, and 3-metric card
 class HeroHeaderContent extends StatelessWidget {
   final VoidCallback onProfileTap;
   final VoidCallback onNotificationTap;
+  final ProfileDetail? user;
+  final String? userInitials;
 
   const HeroHeaderContent({
     super.key,
     required this.onProfileTap,
     required this.onNotificationTap,
+    this.user,
+    this.userInitials,
   });
 
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
+    final effectiveInitials = userInitials ??
+        (user?.name?.isNotEmpty == true
+            ? user!.name!.getInitials(fallback: 'SW')
+            : 'SW');
 
     return Container(
       decoration: BoxDecoration(
@@ -78,9 +88,9 @@ class HeroHeaderContent extends StatelessWidget {
                                   backgroundColor: Colors.white.withValues(
                                     alpha: 0.2,
                                   ),
-                                  child: const Text(
-                                    'RK',
-                                    style: TextStyle(
+                                  child: Text(
+                                    effectiveInitials,
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13,

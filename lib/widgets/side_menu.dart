@@ -1,17 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
+import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
+import 'package:vlts_swc/extensions/Extensions.dart';
+import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
 import 'package:vlts_swc/widgets/LanguageSelector.dart';
 import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
-class SideMenu extends StatelessWidget {
-  const SideMenu({super.key});
+class SideMenu extends StatefulWidget {
+  final ProfileDetail? user;
+
+  const SideMenu({super.key, this.user});
+
+  @override
+  State<SideMenu> createState() => _SideMenuState();
+}
+
+class _SideMenuState extends State<SideMenu> {
+  ProfileDetail? _profile;
+
+  @override
+  void initState() {
+    super.initState();
+    _profile = widget.user;
+    if (_profile == null) {
+      _loadProfile();
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant SideMenu oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.user != oldWidget.user) {
+      setState(() {
+        _profile = widget.user;
+      });
+    }
+  }
+
+  Future<void> _loadProfile() async {
+    try {
+      final profile = await SharedPrefsService.getProfile();
+      if (mounted) {
+        setState(() {
+          _profile = profile;
+        });
+      }
+    } catch (_) {}
+  }
 
   @override
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    final profile = _profile ?? widget.user;
+    final name = profile?.name?.trim().isNotEmpty == true
+        ? profile!.name!
+        : 'Super Admin';
+    final role = profile?.designation?.trim().isNotEmpty == true
+        ? profile!.designation!
+        : (profile?.roleName?.trim().isNotEmpty == true
+            ? profile!.roleName!
+            : strings.profileRole);
+    final email = profile?.emailID?.trim().isNotEmpty == true
+        ? profile!.emailID!
+        : (profile?.mobileNo?.trim().isNotEmpty == true
+            ? profile!.mobileNo!
+            : 'admin@swc.gov.in');
+    final initials = name.getInitials(fallback: 'SA');
 
     return Drawer(
       backgroundColor: colorScheme.surface,
@@ -45,7 +103,7 @@ class SideMenu extends StatelessWidget {
                             radius: 30,
                             backgroundColor: colorScheme.primary,
                             child: Text(
-                              'TU',
+                              initials,
                               style: TextStyle(
                                 color: colorScheme.onPrimary,
                                 fontWeight: FontWeight.bold,
@@ -61,25 +119,29 @@ class SideMenu extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Test user',
+                              name,
                               style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
                                 color: colorScheme.onSurface,
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              strings.profileRole,
+                              role,
                               style: TextStyle(
                                 fontSize: 12,
                                 color: colorScheme.primary,
                                 fontWeight: FontWeight.w600,
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              'test.user@swm.gov.in',
+                              email,
                               style: TextStyle(
                                 fontSize: 11,
                                 color: colorScheme.onSurfaceVariant,
@@ -256,38 +318,44 @@ class SideMenu extends StatelessWidget {
   }) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 2),
-      decoration: BoxDecoration(
-        color: isSelected ? colorScheme.primary.withValues(alpha: 0.12) : Colors.transparent,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Material(
+        color: isSelected
+            ? colorScheme.primary.withValues(alpha: 0.12)
+            : Colors.transparent,
         borderRadius: BorderRadius.circular(12),
-      ),
-      child: ListTile(
-        dense: true,
-        leading: Icon(
-          icon,
-          color: isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
-          size: 22,
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-            color: isSelected ? colorScheme.primary : colorScheme.onSurface,
+        child: ListTile(
+          dense: true,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
           ),
+          leading: Icon(
+            icon,
+            color:
+                isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
+            size: 22,
+          ),
+          title: Text(
+            title,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+              color: isSelected ? colorScheme.primary : colorScheme.onSurface,
+            ),
+          ),
+          trailing: isSelected
+              ? Container(
+                  width: 6,
+                  height: 6,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: colorScheme.primary,
+                  ),
+                )
+              : null,
+          onTap: onTap,
         ),
-        trailing: isSelected
-            ? Container(
-                width: 6,
-                height: 6,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colorScheme.primary,
-                ),
-              )
-            : null,
-        onTap: onTap,
       ),
     );
   }
