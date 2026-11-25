@@ -835,6 +835,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Smart Waste Management System'**
   String get smartWasteManagementSystem;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get pending;
+
+  /// No description provided for @inProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get inProgress;
+
+  /// No description provided for @resolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolved'**
+  String get resolved;
+
+  /// No description provided for @rejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get rejected;
+
+  /// No description provided for @searchComplaints.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by ID, citizen, details...'**
+  String get searchComplaints;
+
+  /// No description provided for @allUlbs.
+  ///
+  /// In en, this message translates to:
+  /// **'All ULBs'**
+  String get allUlbs;
+
+  /// No description provided for @nagarNigam.
+  ///
+  /// In en, this message translates to:
+  /// **'Nagar Nigam'**
+  String get nagarNigam;
+
+  /// No description provided for @nagarPalikaParishad.
+  ///
+  /// In en, this message translates to:
+  /// **'Nagar Palika Parishad'**
+  String get nagarPalikaParishad;
+
+  /// No description provided for @nagarPanchayat.
+  ///
+  /// In en, this message translates to:
+  /// **'Nagar Panchayat'**
+  String get nagarPanchayat;
+
+  /// No description provided for @dateFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'Date Filter'**
+  String get dateFilter;
+
+  /// No description provided for @fromDate.
+  ///
+  /// In en, this message translates to:
+  /// **'From Date'**
+  String get fromDate;
+
+  /// No description provided for @toDate.
+  ///
+  /// In en, this message translates to:
+  /// **'To Date'**
+  String get toDate;
+
+  /// No description provided for @toDateValidationError.
+  ///
+  /// In en, this message translates to:
+  /// **'To Date cannot be earlier than From Date'**
+  String get toDateValidationError;
+
+  /// No description provided for @ulbType.
+  ///
+  /// In en, this message translates to:
+  /// **'ULB Type'**
+  String get ulbType;
+
+  /// No description provided for @resetFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Filters'**
+  String get resetFilters;
+
+  /// No description provided for @selectComplaintType.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Complaint Type'**
+  String get selectComplaintType;
+
+  /// No description provided for @allComplaintTypes.
+  ///
+  /// In en, this message translates to:
+  /// **'All Complaint Types'**
+  String get allComplaintTypes;
+
+  /// No description provided for @noComplaintsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No complaints found'**
+  String get noComplaintsFound;
+
+  /// No description provided for @tryAdjustingFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Try adjusting your search query or filters'**
+  String get tryAdjustingFilters;
 }
 
 class _AppLocalizationsDelegate

@@ -383,4 +383,66 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get smartWasteManagementSystem => 'Smart Waste Management System';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get pending => 'Pending';
+
+  @override
+  String get inProgress => 'In Progress';
+
+  @override
+  String get resolved => 'Resolved';
+
+  @override
+  String get rejected => 'Rejected';
+
+  @override
+  String get searchComplaints => 'Search by ID, citizen, details...';
+
+  @override
+  String get allUlbs => 'All ULBs';
+
+  @override
+  String get nagarNigam => 'Nagar Nigam';
+
+  @override
+  String get nagarPalikaParishad => 'Nagar Palika Parishad';
+
+  @override
+  String get nagarPanchayat => 'Nagar Panchayat';
+
+  @override
+  String get dateFilter => 'Date Filter';
+
+  @override
+  String get fromDate => 'From Date';
+
+  @override
+  String get toDate => 'To Date';
+
+  @override
+  String get toDateValidationError =>
+      'To Date cannot be earlier than From Date';
+
+  @override
+  String get ulbType => 'ULB Type';
+
+  @override
+  String get resetFilters => 'Reset Filters';
+
+  @override
+  String get selectComplaintType => 'Select Complaint Type';
+
+  @override
+  String get allComplaintTypes => 'All Complaint Types';
+
+  @override
+  String get noComplaintsFound => 'No complaints found';
+
+  @override
+  String get tryAdjustingFilters =>
+      'Try adjusting your search query or filters';
 }

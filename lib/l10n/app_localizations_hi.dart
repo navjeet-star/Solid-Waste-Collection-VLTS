@@ -382,4 +382,65 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get smartWasteManagementSystem => 'स्मार्ट अपशिष्ट प्रबंधन प्रणाली';
+
+  @override
+  String get all => 'सभी';
+
+  @override
+  String get pending => 'लंबित';
+
+  @override
+  String get inProgress => 'प्रगति पर';
+
+  @override
+  String get resolved => 'निस्तारित';
+
+  @override
+  String get rejected => 'अस्वीकृत';
+
+  @override
+  String get searchComplaints => 'आईडी, नागरिक, विवरण से खोजें...';
+
+  @override
+  String get allUlbs => 'सभी निकाय';
+
+  @override
+  String get nagarNigam => 'नगर निगम';
+
+  @override
+  String get nagarPalikaParishad => 'नगर पालिका परिषद';
+
+  @override
+  String get nagarPanchayat => 'नगर पंचायत';
+
+  @override
+  String get dateFilter => 'तारीख फ़िल्टर';
+
+  @override
+  String get fromDate => 'प्रारंभ तिथि';
+
+  @override
+  String get toDate => 'अंतिम तिथि';
+
+  @override
+  String get toDateValidationError =>
+      'अंतिम तिथि प्रारंभ तिथि से पहले नहीं हो सकती';
+
+  @override
+  String get ulbType => 'निकाय प्रकार';
+
+  @override
+  String get resetFilters => 'फ़िल्टर रीसेट करें';
+
+  @override
+  String get selectComplaintType => 'शिकायत का प्रकार चुनें';
+
+  @override
+  String get allComplaintTypes => 'सभी प्रकार की शिकायतें';
+
+  @override
+  String get noComplaintsFound => 'कोई शिकायत नहीं मिली';
+
+  @override
+  String get tryAdjustingFilters => 'अपनी खोज या फ़िल्टर बदलकर देखें';
 }

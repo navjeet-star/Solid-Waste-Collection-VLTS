@@ -9,7 +9,7 @@ import 'package:vlts_swc/models/module_item.dart';
 import 'package:vlts_swc/models/ulb_model.dart';
 import 'package:vlts_swc/features/home/hero_header_content.dart';
 import 'package:vlts_swc/features/home/items/dashboard_card_item.dart';
-import 'package:vlts_swc/features/home/items/ulb_progress_list_item.dart';
+import 'package:vlts_swc/features/home/items/ulb_progress_card_item.dart';
 import 'package:vlts_swc/features/home/items/vehicle_stat_card.dart';
 import 'package:vlts_swc/common_utils/generic_grid_view.dart';
 import 'package:vlts_swc/widgets/common_stat_card.dart';
