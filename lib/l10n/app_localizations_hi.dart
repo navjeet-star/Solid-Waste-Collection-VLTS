@@ -443,4 +443,28 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get tryAdjustingFilters => 'अपनी खोज या फ़िल्टर बदलकर देखें';
+
+  @override
+  String get name => 'नाम';
+
+  @override
+  String get mobileNumber => 'मोबाइल नंबर';
+
+  @override
+  String get designation => 'पद';
+
+  @override
+  String get role => 'भूमिका';
+
+  @override
+  String get emailId => 'ईमेल आईडी';
+
+  @override
+  String get userLevel => 'उपयोगकर्ता स्तर';
+
+  @override
+  String get profileInformation => 'प्रोफ़ाइल जानकारी';
+
+  @override
+  String get officialInformation => 'आधिकारिक विवरण';
 }

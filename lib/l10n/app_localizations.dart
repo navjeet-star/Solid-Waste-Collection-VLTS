@@ -955,6 +955,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try adjusting your search query or filters'**
   String get tryAdjustingFilters;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @mobileNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Number'**
+  String get mobileNumber;
+
+  /// No description provided for @designation.
+  ///
+  /// In en, this message translates to:
+  /// **'Designation'**
+  String get designation;
+
+  /// No description provided for @role.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get role;
+
+  /// No description provided for @emailId.
+  ///
+  /// In en, this message translates to:
+  /// **'Email ID'**
+  String get emailId;
+
+  /// No description provided for @userLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'User Level'**
+  String get userLevel;
+
+  /// No description provided for @profileInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile Information'**
+  String get profileInformation;
+
+  /// No description provided for @officialInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Official Information'**
+  String get officialInformation;
 }
 
 class _AppLocalizationsDelegate

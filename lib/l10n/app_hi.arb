@@ -151,5 +151,13 @@
   "selectComplaintType": "शिकायत का प्रकार चुनें",
   "allComplaintTypes": "सभी प्रकार की शिकायतें",
   "noComplaintsFound": "कोई शिकायत नहीं मिली",
-  "tryAdjustingFilters": "अपनी खोज या फ़िल्टर बदलकर देखें"
+  "tryAdjustingFilters": "अपनी खोज या फ़िल्टर बदलकर देखें",
+  "name": "नाम",
+  "mobileNumber": "मोबाइल नंबर",
+  "designation": "पद",
+  "role": "भूमिका",
+  "emailId": "ईमेल आईडी",
+  "userLevel": "उपयोगकर्ता स्तर",
+  "profileInformation": "प्रोफ़ाइल जानकारी",
+  "officialInformation": "आधिकारिक विवरण"
 }

@@ -143,5 +143,13 @@
   "selectComplaintType": "Select Complaint Type",
   "allComplaintTypes": "All Complaint Types",
   "noComplaintsFound": "No complaints found",
-  "tryAdjustingFilters": "Try adjusting your search query or filters"
+  "tryAdjustingFilters": "Try adjusting your search query or filters",
+  "name": "Name",
+  "mobileNumber": "Mobile Number",
+  "designation": "Designation",
+  "role": "Role",
+  "emailId": "Email ID",
+  "userLevel": "User Level",
+  "profileInformation": "Profile Information",
+  "officialInformation": "Official Information"
 }

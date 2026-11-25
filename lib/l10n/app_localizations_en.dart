@@ -445,4 +445,28 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get tryAdjustingFilters =>
       'Try adjusting your search query or filters';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get mobileNumber => 'Mobile Number';
+
+  @override
+  String get designation => 'Designation';
+
+  @override
+  String get role => 'Role';
+
+  @override
+  String get emailId => 'Email ID';
+
+  @override
+  String get userLevel => 'User Level';
+
+  @override
+  String get profileInformation => 'Profile Information';
+
+  @override
+  String get officialInformation => 'Official Information';
 }

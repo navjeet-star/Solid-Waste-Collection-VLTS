@@ -17,6 +17,7 @@ import 'package:vlts_swc/widgets/side_menu.dart';
 import 'package:vlts_swc/widgets/common_bottom_nav_bar.dart';
 
 import 'tabs/complaints_tab.dart';
+import 'tabs/profile_tab.dart';
 import 'tabs/reports_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -141,16 +142,15 @@ class _HomeScreenState extends State<HomeScreen> {
           // Tab 1: Reports
           ReportsTab(onMenuTap: () => _scaffoldKey.currentState?.openDrawer()),
 
-          // // Tab 2: Complaints
+          // Tab 2: Complaints
           ComplaintsTab(
             onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
           ),
-          //
-          // // Tab 3: Profile
-          // ProfileTab(
-          //   user: currentUser,
-          //   onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
-          // ),
+
+          // Tab 3: Profile
+          ProfileTab(
+            onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+          ),
         ],
       ),
     );
