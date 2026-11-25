@@ -159,5 +159,8 @@
   "emailId": "ईमेल आईडी",
   "userLevel": "उपयोगकर्ता स्तर",
   "profileInformation": "प्रोफ़ाइल जानकारी",
-  "officialInformation": "आधिकारिक विवरण"
+  "officialInformation": "आधिकारिक विवरण",
+  "settings": "सेटिंग्स",
+  "changeTheme": "थीम बदलें",
+  "changeLanguage": "भाषा बदलें"
 }

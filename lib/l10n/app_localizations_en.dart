@@ -469,4 +469,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get officialInformation => 'Official Information';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get changeTheme => 'Change Theme';
+
+  @override
+  String get changeLanguage => 'Change Language';
 }

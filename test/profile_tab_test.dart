@@ -48,6 +48,12 @@ void main() {
       // Section titles
       expect(find.text('Profile Information'), findsOneWidget);
       expect(find.text('Official Information'), findsOneWidget);
+      expect(find.text('Settings'), findsOneWidget);
+
+      // Settings options
+      expect(find.text('Change Theme'), findsOneWidget);
+      expect(find.text('Change Language'), findsOneWidget);
+      expect(find.text('English'), findsWidgets);
 
       // Field labels (all 6 fields)
       expect(find.text('Name'), findsOneWidget);
@@ -93,6 +99,11 @@ void main() {
       // Localized section titles
       expect(find.text('प्रोफ़ाइल जानकारी'), findsOneWidget);
       expect(find.text('आधिकारिक विवरण'), findsOneWidget);
+      expect(find.text('सेटिंग्स'), findsOneWidget);
+
+      // Localized settings options
+      expect(find.text('थीम बदलें'), findsOneWidget);
+      expect(find.text('भाषा बदलें'), findsOneWidget);
 
       // Localized field labels
       expect(find.text('नाम'), findsOneWidget);

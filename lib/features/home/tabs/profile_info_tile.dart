@@ -7,6 +7,7 @@ class ProfileInfoTile extends StatelessWidget {
   final String value;
   final Color? iconColor;
   final Color? iconBackgroundColor;
+  final Widget? trailing;
   final VoidCallback? onTap;
 
   const ProfileInfoTile({
@@ -16,6 +17,7 @@ class ProfileInfoTile extends StatelessWidget {
     required this.value,
     this.iconColor,
     this.iconBackgroundColor,
+    this.trailing,
     this.onTap,
   });
 
@@ -70,6 +72,7 @@ class ProfileInfoTile extends StatelessWidget {
               ],
             ),
           ),
+          ?trailing,
         ],
       ),
     );

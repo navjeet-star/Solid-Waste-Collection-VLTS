@@ -1003,6 +1003,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Official Information'**
   String get officialInformation;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @changeTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Theme'**
+  String get changeTheme;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Language'**
+  String get changeLanguage;
 }
 
 class _AppLocalizationsDelegate

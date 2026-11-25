@@ -467,4 +467,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get officialInformation => 'आधिकारिक विवरण';
+
+  @override
+  String get settings => 'सेटिंग्स';
+
+  @override
+  String get changeTheme => 'थीम बदलें';
+
+  @override
+  String get changeLanguage => 'भाषा बदलें';
 }

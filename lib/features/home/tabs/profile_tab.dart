@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
+import 'package:vlts_swc/core/theme/app_theme_mode.dart';
 import 'package:vlts_swc/extensions/Extensions.dart';
 import 'package:vlts_swc/features/home/tabs/profile_info_tile.dart';
 import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
+import 'package:vlts_swc/widgets/LanguageSelector.dart';
 import 'package:vlts_swc/widgets/common_app_bar.dart';
+import 'package:vlts_swc/widgets/theme_toggle_button.dart';
 
 
 class ProfileTab extends StatefulWidget {
@@ -79,6 +82,9 @@ class _ProfileTabState extends State<ProfileTab> {
   Widget build(BuildContext context) {
     final strings = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final currentLanguage =
+        appLocale.value.languageCode == 'hi' ? 'हिन्दी' : 'English';
 
     final profile = _profile ?? _defaultDummyProfile;
     final name = profile.name ?? _defaultDummyProfile.name!;
@@ -185,6 +191,39 @@ class _ProfileTabState extends State<ProfileTab> {
 
                             const SizedBox(height: 28),
 
+                            // =========================================
+                            // 3. Settings Option
+                            // =========================================
+                            _buildSectionTitle(
+                              title: strings.settings,
+                              colorScheme: colorScheme,
+                            ),
+                            const SizedBox(height: 10),
+                            _buildCardContainer(
+                              colorScheme: colorScheme,
+                              children: [
+                                ProfileInfoTile(
+                                  icon: isDark
+                                      ? Icons.light_mode_rounded
+                                      : Icons.dark_mode_rounded,
+                                  label: strings.changeTheme,
+                                  value: isDark
+                                      ? strings.switchToLightMode
+                                      : strings.switchToDarkMode,
+                                  trailing: const ThemeToggleButton(),
+                                  onTap: () => toggleTheme(context),
+                                ),
+                                _buildDivider(colorScheme),
+                                ProfileInfoTile(
+                                  icon: Icons.translate_rounded,
+                                  label: strings.changeLanguage,
+                                  value: currentLanguage,
+                                  trailing: const LanguageSelector(),
+                                ),
+                              ],
+                            ),
+
+                            const SizedBox(height: 28),
                             // =========================================
                             // 4. Logout Action
                             // =========================================

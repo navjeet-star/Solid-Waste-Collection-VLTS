@@ -151,5 +151,8 @@
   "emailId": "Email ID",
   "userLevel": "User Level",
   "profileInformation": "Profile Information",
-  "officialInformation": "Official Information"
+  "officialInformation": "Official Information",
+  "settings": "Settings",
+  "changeTheme": "Change Theme",
+  "changeLanguage": "Change Language"
 }
