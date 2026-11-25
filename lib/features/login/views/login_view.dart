@@ -27,33 +27,6 @@ class LoginView extends StatelessWidget {
           SafeArea(
             child: Stack(
               children: [
-                // Background Ambient Eco-Green Glow Effects
-            Positioned(
-              top: -80,
-              right: -80,
-              child: Container(
-                width: 240,
-                height: 240,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colorScheme.primary.withValues(alpha: 0.08),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 220,
-              left: -90,
-              child: Container(
-                width: 220,
-                height: 220,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colorScheme.secondary.withValues(alpha: 0.05),
-                ),
-              ),
-            ),
-
-            // Main Content ScrollView
             SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               physics: const BouncingScrollPhysics(),

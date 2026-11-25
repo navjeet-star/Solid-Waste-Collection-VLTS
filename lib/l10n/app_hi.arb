@@ -130,5 +130,6 @@
   "initializingTelemetry": "फ्लीट टेलीमेट्री प्रारंभ हो रही है...",
   "connectingGps": "वीएलटीएस नेटवर्क से कनेक्ट हो रहा है...",
   "systemReady": "प्रणाली तैयार • स्वागत है",
-  "swachhBharatTagline": "स्वच्छ भारत मिशन (शहरी)"
+  "swachhBharatTagline": "स्वच्छ भारत मिशन (शहरी)",
+  "smartWasteManagementSystem": "स्मार्ट अपशिष्ट प्रबंधन प्रणाली"
 }

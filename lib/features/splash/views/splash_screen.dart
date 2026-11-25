@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:vlts_swc/core/animations/splash_animation.dart';
+import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/features/splash/viewModels/splash_view_model.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -55,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-
+    final strings = context.l10n;
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -124,7 +125,7 @@ class _SplashScreenState extends State<SplashScreen>
                     const SizedBox(height: 10),
 
                     Text(
-                      'Solid Waste Collection',
+                      strings.appTitle,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white.withValues(alpha: 0.9),
@@ -135,7 +136,7 @@ class _SplashScreenState extends State<SplashScreen>
                     const SizedBox(height: 8),
 
                     Text(
-                      'Smart Waste Management System',
+                      strings.smartWasteManagementSystem,
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.white.withValues(alpha: 0.8),

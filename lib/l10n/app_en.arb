@@ -122,5 +122,6 @@
   "initializingTelemetry": "Initializing Fleet Telemetry...",
   "connectingGps": "Connecting to VLTS Network...",
   "systemReady": "System Ready • Welcome",
-  "swachhBharatTagline": "Swachh Bharat Mission (Urban)"
+  "swachhBharatTagline": "Swachh Bharat Mission (Urban)",
+  "smartWasteManagementSystem": "Smart Waste Management System"
 }

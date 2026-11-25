@@ -40,14 +40,14 @@ void main() {
     // Initial pump
     await tester.pump();
 
-    // Verify main app title is present
-    expect(find.text('SOLID WASTE COLLECTION'), findsOneWidget);
+    // Verify main app title and subtitle are present
+    expect(find.text('VLTS'), findsOneWidget);
+    expect(find.text('Smart Waste Management System'), findsOneWidget);
 
     // Verify system tagline or status elements exist
     expect(find.byType(SplashScreen), findsOneWidget);
 
     // Advance time through total animation duration so all ticks complete
-    await tester.pump(const Duration(milliseconds: 3000));
-    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 6000));
   });
 }

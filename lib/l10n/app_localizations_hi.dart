@@ -379,4 +379,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get swachhBharatTagline => 'स्वच्छ भारत मिशन (शहरी)';
+
+  @override
+  String get smartWasteManagementSystem => 'स्मार्ट अपशिष्ट प्रबंधन प्रणाली';
 }

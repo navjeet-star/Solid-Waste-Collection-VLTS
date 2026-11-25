@@ -829,6 +829,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Swachh Bharat Mission (Urban)'**
   String get swachhBharatTagline;
+
+  /// No description provided for @smartWasteManagementSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Waste Management System'**
+  String get smartWasteManagementSystem;
 }
 
 class _AppLocalizationsDelegate
