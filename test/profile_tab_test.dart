@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
 import 'package:vlts_swc/features/home/tabs/profile_info_tile.dart';
 import 'package:vlts_swc/features/home/tabs/profile_tab.dart';
@@ -13,17 +14,22 @@ void main() {
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
     await SharedPrefsService.init();
+    appLocale.value = const Locale('en');
   });
 
   Widget createTestWidget({
     ProfileDetail? user,
     Locale locale = const Locale('en'),
   }) {
-    return MaterialApp(
-      locale: locale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: ProfileTab(user: user),
+    appLocale.value = locale;
+    return AppLocaleScope(
+      notifier: appLocale,
+      child: MaterialApp(
+        locale: locale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: ProfileTab(user: user),
+      ),
     );
   }
 

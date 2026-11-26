@@ -128,9 +128,15 @@ class _OverviewScreenState extends State<OverviewScreen> {
                   });
                 },
                 children: [
-                  OverviewPageOne(isActive: _currentPage == 0),
-                  OverviewPageTwo(isActive: _currentPage == 1),
-                  OverviewPageThree(isActive: _currentPage == 2),
+                  OverviewPageOne(
+                    isActive: _currentPage == 0,
+                  ),
+                  OverviewPageTwo(
+                    isActive: _currentPage == 1,
+                  ),
+                  OverviewPageThree(
+                    isActive: _currentPage == 2,
+                  ),
                 ],
               ),
             ),

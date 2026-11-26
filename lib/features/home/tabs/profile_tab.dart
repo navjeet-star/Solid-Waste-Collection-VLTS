@@ -219,6 +219,13 @@ class _ProfileTabState extends State<ProfileTab> {
                                   label: strings.changeLanguage,
                                   value: currentLanguage,
                                   trailing: const LanguageSelector(),
+                                  onTap: () {
+                                    final nextLocale =
+                                        appLocale.value.languageCode == 'hi'
+                                            ? const Locale('en')
+                                            : const Locale('hi');
+                                    updateAppLocale(nextLocale);
+                                  },
                                 ),
                               ],
                             ),

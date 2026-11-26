@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 
@@ -9,9 +11,11 @@ class LanguageSelector extends StatelessWidget {
     return ValueListenableBuilder<Locale>(
       valueListenable: appLocale,
       builder: (context, currentLocale, _) {
+        final selectedLocale = currentLocale.languageCode == 'hi'
+            ? const Locale('hi')
+            : const Locale('en');
         return DropdownButton<Locale>(
-          value: currentLocale,
-          hint: Text(context.l10n.language),
+          value: selectedLocale,
           underline: const SizedBox(),
           items: const [
             DropdownMenuItem(
@@ -25,7 +29,7 @@ class LanguageSelector extends StatelessWidget {
           ],
           onChanged: (Locale? locale) {
             if (locale != null) {
-              appLocale.value = locale;
+              updateAppLocale(locale);
             }
           },
         );

@@ -9,7 +9,6 @@ import 'package:vlts_swc/core/theme/dark_theme.dart';
 import 'package:vlts_swc/core/theme/light_theme.dart';
 import 'package:vlts_swc/l10n/app_localizations.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -34,7 +33,8 @@ class MyApp extends StatelessWidget {
             return GetMaterialApp(
               debugShowCheckedModeBanner: false,
               locale: locale,
-              onGenerateTitle: (context) => context.l10n.appTitle,
+              onGenerateTitle: (context) =>
+                  lookupAppLocalizations(locale).appTitle,
               theme: lightTheme,
               darkTheme: darkTheme,
               themeMode: themeMode,
@@ -43,6 +43,12 @@ class MyApp extends StatelessWidget {
               initialBinding: InitialBinding(),
               getPages: AppPages.routes,
               initialRoute: initialRoute,
+              builder: (context, child) {
+                return AppLocaleScope(
+                  notifier: appLocale,
+                  child: child ?? const SizedBox(),
+                );
+              },
             );
           },
         );
