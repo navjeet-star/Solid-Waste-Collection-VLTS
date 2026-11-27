@@ -203,17 +203,16 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
             CommonFunctions.showSnackBar(context, strings.attendanceDashboard),
       ),
       ModuleItem(
-        title: strings.ulbProgressReport,
-        icon: Icons.bar_chart_rounded,
+        title: strings.ulbWiseReport,
+        icon: Icons.pie_chart_rounded,
         color: colorScheme.tertiary,
-        onTap: () => Get.toNamed(Routes.ulb_wise_progress_Report),
+        onTap: () => Get.toNamed(Routes.ulb_wise_Report),
       ),
       ModuleItem(
         title: strings.ulbProgressReport,
-        icon: Icons.pie_chart_rounded,
+        icon: Icons.bar_chart_rounded,
         color: colorScheme.tertiary,
-        onTap: () =>
-            CommonFunctions.showSnackBar(context, strings.ulbProgressReport),
+        onTap: () => Get.toNamed(Routes.ulb_progress_Report),
       ),
       ModuleItem(
         title: strings.swachhtaAppComplaints,
@@ -389,7 +388,7 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
             ),
             const SizedBox(width: 8),
             InkWell(
-              onTap: () => Get.toNamed(Routes.ulb_wise_progress_Report),
+              onTap: () => Get.toNamed(Routes.ulb_progress_Report),
               borderRadius: BorderRadius.circular(8),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
@@ -424,10 +423,8 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
               return UlbProgressListItem(
                 item: ulb,
                 rank: index + 1,
-                onTap: () => Get.toNamed(
-                  Routes.ulb_wise_progress_Report,
-                  arguments: ulb,
-                ),
+                onTap: () =>
+                    Get.toNamed(Routes.ulb_progress_Report, arguments: ulb),
               );
             }).toList(),
           );

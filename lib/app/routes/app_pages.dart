@@ -2,7 +2,8 @@ import 'package:get/get.dart';
 import 'package:vlts_swc/features/splash/viewModels/splash_view_model.dart';
 import 'package:vlts_swc/features/splash/views/splash_screen.dart';
 import '../../features/home/home_screen.dart';
-import '../../features/home/modules/ulb_wise_progress_report.dart';
+import '../../features/home/modules/ulb_wise_report_screen.dart';
+import '../../features/home/modules/ulb_progress_report_screen.dart';
 import '../../features/login/views/login_view.dart';
 import '../../features/overview/view/overview_screen.dart';
 import '../../features/signUp/view/signup_screen.dart';
@@ -43,8 +44,13 @@ class AppPages {
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name: Routes.ulb_wise_progress_Report,
-      page: () => const UlbWiseProgressReportScreen(),
+      name: Routes.ulb_progress_Report,
+      page: () => const UlbProgressReportScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: Routes.ulb_wise_Report,
+      page: () => const UlbWiseReportScreen(),
       transition: Transition.rightToLeft,
     ),
   ];

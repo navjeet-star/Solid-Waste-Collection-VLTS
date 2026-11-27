@@ -7,7 +7,8 @@ class CommonButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData? icon;
   final double height;
-  final bool isLoading;
+  final double width;
+  final double font_size;
 
   const CommonButton({
     super.key,
@@ -15,7 +16,8 @@ class CommonButton extends StatelessWidget {
     this.onPressed,
     this.icon,
     this.height = 52,
-    this.isLoading = false,
+    this.width = double.infinity,
+    this.font_size=16,
   });
 
   @override
@@ -23,10 +25,10 @@ class CommonButton extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return SizedBox(
-      width: double.infinity,
+      width: width,
       height: height,
       child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
+        onPressed:  onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: colorScheme.primary,
           foregroundColor: colorScheme.onPrimary,
@@ -38,16 +40,7 @@ class CommonButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(14),
           ),
         ),
-        child: isLoading
-            ? SizedBox(
-                width: 22,
-                height: 22,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2.5,
-                  valueColor: AlwaysStoppedAnimation<Color>(colorScheme.onPrimary),
-                ),
-              )
-            : Row(
+        child:  Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -56,8 +49,8 @@ class CommonButton extends StatelessWidget {
                       text,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style: TextStyle(
+                        fontSize: font_size,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.3,
                       ),

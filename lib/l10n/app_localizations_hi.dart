@@ -312,6 +312,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get ulbProgressReport => 'निकायवार प्रगति रिपोर्ट';
 
   @override
+  String get ulbWiseReport => 'निकायवार रिपोर्ट';
+
+  @override
   String get ulbProgressReportToday => 'आज का ULB प्रदर्शन - ULB के अनुसार';
 
   @override
@@ -476,4 +479,43 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get changeLanguage => 'भाषा बदलें';
+
+  @override
+  String get ulbWiseDetails => 'निकायवार विवरण';
+
+  @override
+  String get allUlb => 'सभी यूएलबी';
+
+  @override
+  String get getDetails => 'विवरण प्राप्त करें';
+
+  @override
+  String get selectUlb => 'यूएलबी चुनें';
+
+  @override
+  String get wards => 'वार्ड';
+
+  @override
+  String get vehiclesRegistered => 'पंजीकृत वाहन';
+
+  @override
+  String get d2dVehicles => 'डोर-टू-डोर वाहन';
+
+  @override
+  String get registered => 'पंजीकृत';
+
+  @override
+  String get target => 'लक्ष्य';
+
+  @override
+  String get sanitaryInspector => 'सफाई निरीक्षक';
+
+  @override
+  String get environmentInspector => 'पर्यावरण निरीक्षक';
+
+  @override
+  String get employee => 'कर्मचारी';
+
+  @override
+  String get noDataFound => 'कोई डेटा नहीं मिला';
 }

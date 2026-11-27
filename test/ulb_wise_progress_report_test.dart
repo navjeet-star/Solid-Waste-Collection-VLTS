@@ -6,7 +6,7 @@ import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
 import 'package:vlts_swc/features/home/items/ulb_progress_card_item.dart';
-import 'package:vlts_swc/features/home/modules/ulb_wise_progress_report.dart';
+import 'package:vlts_swc/features/home/modules/ulb_progress_report_screen.dart';
 import 'package:vlts_swc/features/home/viewModels/home_view_model.dart';
 import 'package:vlts_swc/l10n/app_localizations.dart';
 import 'package:vlts_swc/models/ulb_model.dart';
@@ -56,7 +56,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // AppBar title
-      expect(find.text('ULB-wise Progress Report'), findsOneWidget);
+      expect(find.text('ULB Progress Report'), findsOneWidget);
 
       // KPI card metrics
       expect(find.text('Total ULB(s)'), findsWidgets);

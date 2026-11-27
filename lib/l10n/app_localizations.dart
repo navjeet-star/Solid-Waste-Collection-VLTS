@@ -689,8 +689,14 @@ abstract class AppLocalizations {
   /// No description provided for @ulbProgressReport.
   ///
   /// In en, this message translates to:
-  /// **'ULB-wise Progress Report'**
+  /// **'ULB Progress Report'**
   String get ulbProgressReport;
+
+  /// No description provided for @ulbWiseReport.
+  ///
+  /// In en, this message translates to:
+  /// **'ULB wise Report'**
+  String get ulbWiseReport;
 
   /// No description provided for @ulbProgressReportToday.
   ///
@@ -1021,6 +1027,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change Language'**
   String get changeLanguage;
+
+  /// No description provided for @ulbWiseDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'ULB-wise Details'**
+  String get ulbWiseDetails;
+
+  /// No description provided for @allUlb.
+  ///
+  /// In en, this message translates to:
+  /// **'All ULB'**
+  String get allUlb;
+
+  /// No description provided for @getDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Details'**
+  String get getDetails;
+
+  /// No description provided for @selectUlb.
+  ///
+  /// In en, this message translates to:
+  /// **'Select ULB'**
+  String get selectUlb;
+
+  /// No description provided for @wards.
+  ///
+  /// In en, this message translates to:
+  /// **'Wards'**
+  String get wards;
+
+  /// No description provided for @vehiclesRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicles Registered'**
+  String get vehiclesRegistered;
+
+  /// No description provided for @d2dVehicles.
+  ///
+  /// In en, this message translates to:
+  /// **'D2D Vehicles'**
+  String get d2dVehicles;
+
+  /// No description provided for @registered.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered'**
+  String get registered;
+
+  /// No description provided for @target.
+  ///
+  /// In en, this message translates to:
+  /// **'Target'**
+  String get target;
+
+  /// No description provided for @sanitaryInspector.
+  ///
+  /// In en, this message translates to:
+  /// **'Sanitary Inspector'**
+  String get sanitaryInspector;
+
+  /// No description provided for @environmentInspector.
+  ///
+  /// In en, this message translates to:
+  /// **'Environment Inspector'**
+  String get environmentInspector;
+
+  /// No description provided for @employee.
+  ///
+  /// In en, this message translates to:
+  /// **'Employee'**
+  String get employee;
+
+  /// No description provided for @noDataFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No data found'**
+  String get noDataFound;
 }
 
 class _AppLocalizationsDelegate

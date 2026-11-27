@@ -310,7 +310,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get attendanceSubtitle => 'Staff & Driver Records';
 
   @override
-  String get ulbProgressReport => 'ULB-wise Progress Report';
+  String get ulbProgressReport => 'ULB Progress Report';
+
+  @override
+  String get ulbWiseReport => 'ULB wise Report';
 
   @override
   String get ulbProgressReportToday => 'ULB Performance today - by ULB';
@@ -478,4 +481,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get changeLanguage => 'Change Language';
+
+  @override
+  String get ulbWiseDetails => 'ULB-wise Details';
+
+  @override
+  String get allUlb => 'All ULB';
+
+  @override
+  String get getDetails => 'Get Details';
+
+  @override
+  String get selectUlb => 'Select ULB';
+
+  @override
+  String get wards => 'Wards';
+
+  @override
+  String get vehiclesRegistered => 'Vehicles Registered';
+
+  @override
+  String get d2dVehicles => 'D2D Vehicles';
+
+  @override
+  String get registered => 'Registered';
+
+  @override
+  String get target => 'Target';
+
+  @override
+  String get sanitaryInspector => 'Sanitary Inspector';
+
+  @override
+  String get environmentInspector => 'Environment Inspector';
+
+  @override
+  String get employee => 'Employee';
+
+  @override
+  String get noDataFound => 'No data found';
 }

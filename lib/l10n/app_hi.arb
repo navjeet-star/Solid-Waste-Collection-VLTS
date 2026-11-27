@@ -105,6 +105,7 @@
   "attendanceDashboard": "उपस्थिति डैशबोर्ड",
   "attendanceSubtitle": "कर्मी एवं चालक रिकॉर्ड",
   "ulbProgressReport": "निकायवार प्रगति रिपोर्ट",
+   "ulbWiseReport": "निकायवार रिपोर्ट",
   "ulbProgressReportToday": "आज का ULB प्रदर्शन - ULB के अनुसार",
   "ulbProgressSubtitle1": "दैनिक संग्रह केपीआई",
   "ulbProgressSubtitle2": "मासिक विश्लेषण",
@@ -162,5 +163,18 @@
   "officialInformation": "आधिकारिक विवरण",
   "settings": "सेटिंग्स",
   "changeTheme": "थीम बदलें",
-  "changeLanguage": "भाषा बदलें"
+  "changeLanguage": "भाषा बदलें",
+  "ulbWiseDetails": "निकायवार विवरण",
+  "allUlb": "सभी यूएलबी",
+  "getDetails": "विवरण प्राप्त करें",
+  "selectUlb": "यूएलबी चुनें",
+  "wards": "वार्ड",
+  "vehiclesRegistered": "पंजीकृत वाहन",
+  "d2dVehicles": "डोर-टू-डोर वाहन",
+  "registered": "पंजीकृत",
+  "target": "लक्ष्य",
+  "sanitaryInspector": "सफाई निरीक्षक",
+  "environmentInspector": "पर्यावरण निरीक्षक",
+  "employee": "कर्मचारी",
+  "noDataFound": "कोई डेटा नहीं मिला"
 }

@@ -7,6 +7,9 @@ abstract class Routes {
   static const main = '/home';
   static const overview = '/overview';
   static const attendance = '/attendance';
-  static const ulb_wise_progress_Report = '/ulb_wise_progress_Report';
+  static const ulb_progress_Report = '/ulb_progress_Report';
+  static const ulb_wise_Report = '/ulb_wise_Report';
+  static const ulb_wise_progress_Report = '/ulb_progress_Report';
+  static const ulb_wise_details = '/ulb_wise_Report';
   static const signUp = '/signUp';
 }
