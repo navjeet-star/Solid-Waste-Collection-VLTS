@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart' as SharedPreferences;
 import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/core/aes_encypt.dart';
 import 'package:vlts_swc/core/base/base_view_model.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
-import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
 import 'package:vlts_swc/features/login/repositories/LoginRepositoryImpl.dart';
-import '../models/LoginModel.dart';
 import '../repositories/login_repository.dart';
 
 /// MVVM ViewModel for the Login screen.

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
@@ -205,8 +206,7 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
         title: strings.ulbProgressReport,
         icon: Icons.bar_chart_rounded,
         color: colorScheme.tertiary,
-        onTap: () =>
-            CommonFunctions.showSnackBar(context, strings.ulbProgressReport),
+        onTap: () => Get.toNamed(Routes.ulb_wise_progress_Report),
       ),
       ModuleItem(
         title: strings.ulbProgressReport,
@@ -388,15 +388,22 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
               ),
             ),
             const SizedBox(width: 8),
-            Text(
-              strings.viewAll,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-                color: colorScheme.primary,
+            InkWell(
+              onTap: () => Get.toNamed(Routes.ulb_wise_progress_Report),
+              borderRadius: BorderRadius.circular(8),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                child: Text(
+                  strings.viewAll,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: colorScheme.primary,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
@@ -417,9 +424,9 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
               return UlbProgressListItem(
                 item: ulb,
                 rank: index + 1,
-                onTap: () => CommonFunctions.showSnackBar(
-                  context,
-                  '${ulb.ulbName} • ${strings.score}: ${ulb.score}',
+                onTap: () => Get.toNamed(
+                  Routes.ulb_wise_progress_Report,
+                  arguments: ulb,
                 ),
               );
             }).toList(),

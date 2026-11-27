@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
 
 /// Reusable AppBar with static height and configurable actions:
@@ -46,7 +47,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
         tooltip: MaterialLocalizations
             .of(context)
             .backButtonTooltip,
-        onPressed: onBackTap ?? () => Navigator.maybePop(context),
+        onPressed: onBackTap ?? () => Get.back(),
       );
     } else if (showDrawerButton || onMenuTap != null) {
       effectiveLeading = IconButton(

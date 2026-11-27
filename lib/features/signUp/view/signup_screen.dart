@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
-import 'package:vlts_swc/features/home/home_screen.dart';
 import 'package:vlts_swc/widgets/LanguageSelector.dart';
 import 'package:vlts_swc/widgets/common_button.dart';
 import 'package:vlts_swc/widgets/common_text.dart';
@@ -47,12 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
     CommonFunctions.showSnackBar(context, strings.signUpSuccessfully);
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
-      ),
-    );
+    Get.offAllNamed(Routes.home);
   }
 
   @override
@@ -104,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => Get.back(),
                           icon: Icon(
                             Icons.arrow_back_ios_new_rounded,
                             color: colorScheme.onSurface,
@@ -347,7 +343,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                               TextButton(
-                                onPressed: () => Navigator.pop(context),
+                                onPressed: () => Get.back(),
                                 style: TextButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(horizontal: 4),
                                   minimumSize: Size.zero,

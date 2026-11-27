@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
+import '../../../app/routes/app_pages.dart';
 import '../../../core/app_locale.dart';
 import '../../../widgets/LanguageSelector.dart';
 import '../../../widgets/common_button.dart';
 import '../../../widgets/common_text.dart';
 import '../../../widgets/common_text_field.dart';
 import '../../../widgets/theme_toggle_button.dart';
-import '../../signUp/view/signup_screen.dart';
 import '../viewModels/login_view_model.dart';
 
 class LoginView extends StatelessWidget {
@@ -330,12 +330,7 @@ class LoginView extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const SignUpScreen(),
-                                    ),
-                                  );
+                                  Get.toNamed(Routes.signUp);
                                 },
                                 style: TextButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(horizontal: 4),
