@@ -518,4 +518,49 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noDataFound => 'कोई डेटा नहीं मिला';
+
+  @override
+  String get getReport => 'रिपोर्ट प्राप्त करें';
+
+  @override
+  String get coveredWards => 'कवर किए गए वार्ड';
+
+  @override
+  String get notCovered => 'कवर नहीं किए गए';
+
+  @override
+  String get totalVehicles => 'कुल वाहन';
+
+  @override
+  String get activeVehicles => 'सक्रिय वाहन';
+
+  @override
+  String get inactiveVehicles => 'निष्क्रिय वाहन';
+
+  @override
+  String get neverSentData => 'कभी डेटा नहीं भेजा';
+
+  @override
+  String get reachedWard => 'पहुंचे वार्ड';
+
+  @override
+  String get notReached => 'नहीं पहुंचे';
+
+  @override
+  String get assignedRoute => 'आवंटित रूट (किमी)';
+
+  @override
+  String get matchedRoute => 'मैच रूट (किमी)';
+
+  @override
+  String get uncoveredRoute => 'अनकवर्ड रूट (किमी)';
+
+  @override
+  String get coveragePercent => 'कवरेज %';
+
+  @override
+  String get selectDate => 'तारीख चुनें';
+
+  @override
+  String get nicFooter => 'राष्ट्रीय सूचना विज्ञान केंद्र, उत्तराखंड';
 }

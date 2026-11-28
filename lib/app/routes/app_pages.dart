@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vlts_swc/features/home/tabs/complaints_tab.dart';
 import 'package:vlts_swc/features/splash/viewModels/splash_view_model.dart';
 import 'package:vlts_swc/features/splash/views/splash_screen.dart';
 import '../../features/home/home_screen.dart';
@@ -51,6 +52,11 @@ class AppPages {
     GetPage(
       name: Routes.ulb_wise_Report,
       page: () => const UlbWiseReportScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: Routes.complaints,
+      page: () => const ComplaintsTab(),
       transition: Transition.rightToLeft,
     ),
   ];

@@ -133,14 +133,17 @@ class CommonGroupedDropdown<T> extends StatelessWidget {
 
               return Row(
                 children: [
-                  Text(
-                    displayText,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: colorScheme.onSurface,
+                  Expanded(
+                    child: Text(
+                      displayText,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: colorScheme.onSurface,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               );

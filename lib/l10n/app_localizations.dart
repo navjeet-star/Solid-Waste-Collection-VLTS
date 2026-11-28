@@ -1105,6 +1105,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No data found'**
   String get noDataFound;
+
+  /// No description provided for @getReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Report'**
+  String get getReport;
+
+  /// No description provided for @coveredWards.
+  ///
+  /// In en, this message translates to:
+  /// **'Covered Wards'**
+  String get coveredWards;
+
+  /// No description provided for @notCovered.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Covered'**
+  String get notCovered;
+
+  /// No description provided for @totalVehicles.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Vehicles'**
+  String get totalVehicles;
+
+  /// No description provided for @activeVehicles.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Vehicles'**
+  String get activeVehicles;
+
+  /// No description provided for @inactiveVehicles.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive Vehicles'**
+  String get inactiveVehicles;
+
+  /// No description provided for @neverSentData.
+  ///
+  /// In en, this message translates to:
+  /// **'Never Sent Data'**
+  String get neverSentData;
+
+  /// No description provided for @reachedWard.
+  ///
+  /// In en, this message translates to:
+  /// **'Reached Ward'**
+  String get reachedWard;
+
+  /// No description provided for @notReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Reached'**
+  String get notReached;
+
+  /// No description provided for @assignedRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned Route (KM)'**
+  String get assignedRoute;
+
+  /// No description provided for @matchedRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Matched Route (KM)'**
+  String get matchedRoute;
+
+  /// No description provided for @uncoveredRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Uncovered Route (KM)'**
+  String get uncoveredRoute;
+
+  /// No description provided for @coveragePercent.
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage %'**
+  String get coveragePercent;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date'**
+  String get selectDate;
+
+  /// No description provided for @nicFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'National Informatics Centre, Uttarakhand'**
+  String get nicFooter;
 }
 
 class _AppLocalizationsDelegate

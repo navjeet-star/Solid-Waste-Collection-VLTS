@@ -8,7 +8,8 @@ import 'package:vlts_swc/widgets/common_empty_view.dart';
 import 'package:vlts_swc/widgets/common_grouped_dropdown.dart';
 
 class UlbWiseReportScreen extends StatefulWidget {
-  const UlbWiseReportScreen({super.key});
+  final VoidCallback? onMenuTap;
+  const UlbWiseReportScreen({super.key,this.onMenuTap});
 
   @override
   State<UlbWiseReportScreen> createState() => _UlbWiseReportScreenState();

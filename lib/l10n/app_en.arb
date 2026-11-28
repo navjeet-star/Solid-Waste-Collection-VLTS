@@ -168,5 +168,20 @@
   "sanitaryInspector": "Sanitary Inspector",
   "environmentInspector": "Environment Inspector",
   "employee": "Employee",
-  "noDataFound": "No data found"
+  "noDataFound": "No data found",
+  "getReport": "Get Report",
+  "coveredWards": "Covered Wards",
+  "notCovered": "Not Covered",
+  "totalVehicles": "Total Vehicles",
+  "activeVehicles": "Active Vehicles",
+  "inactiveVehicles": "Inactive Vehicles",
+  "neverSentData": "Never Sent Data",
+  "reachedWard": "Reached Ward",
+  "notReached": "Not Reached",
+  "assignedRoute": "Assigned Route (KM)",
+  "matchedRoute": "Matched Route (KM)",
+  "uncoveredRoute": "Uncovered Route (KM)",
+  "coveragePercent": "Coverage %",
+  "selectDate": "Select Date",
+  "nicFooter": "National Informatics Centre, Uttarakhand"
 }

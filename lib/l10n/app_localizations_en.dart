@@ -520,4 +520,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noDataFound => 'No data found';
+
+  @override
+  String get getReport => 'Get Report';
+
+  @override
+  String get coveredWards => 'Covered Wards';
+
+  @override
+  String get notCovered => 'Not Covered';
+
+  @override
+  String get totalVehicles => 'Total Vehicles';
+
+  @override
+  String get activeVehicles => 'Active Vehicles';
+
+  @override
+  String get inactiveVehicles => 'Inactive Vehicles';
+
+  @override
+  String get neverSentData => 'Never Sent Data';
+
+  @override
+  String get reachedWard => 'Reached Ward';
+
+  @override
+  String get notReached => 'Not Reached';
+
+  @override
+  String get assignedRoute => 'Assigned Route (KM)';
+
+  @override
+  String get matchedRoute => 'Matched Route (KM)';
+
+  @override
+  String get uncoveredRoute => 'Uncovered Route (KM)';
+
+  @override
+  String get coveragePercent => 'Coverage %';
+
+  @override
+  String get selectDate => 'Select Date';
+
+  @override
+  String get nicFooter => 'National Informatics Centre, Uttarakhand';
 }

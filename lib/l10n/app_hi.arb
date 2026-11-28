@@ -176,5 +176,20 @@
   "sanitaryInspector": "सफाई निरीक्षक",
   "environmentInspector": "पर्यावरण निरीक्षक",
   "employee": "कर्मचारी",
-  "noDataFound": "कोई डेटा नहीं मिला"
+  "noDataFound": "कोई डेटा नहीं मिला",
+  "getReport": "रिपोर्ट प्राप्त करें",
+  "coveredWards": "कवर किए गए वार्ड",
+  "notCovered": "कवर नहीं किए गए",
+  "totalVehicles": "कुल वाहन",
+  "activeVehicles": "सक्रिय वाहन",
+  "inactiveVehicles": "निष्क्रिय वाहन",
+  "neverSentData": "कभी डेटा नहीं भेजा",
+  "reachedWard": "पहुंचे वार्ड",
+  "notReached": "नहीं पहुंचे",
+  "assignedRoute": "आवंटित रूट (किमी)",
+  "matchedRoute": "मैच रूट (किमी)",
+  "uncoveredRoute": "अनकवर्ड रूट (किमी)",
+  "coveragePercent": "कवरेज %",
+  "selectDate": "तारीख चुनें",
+  "nicFooter": "राष्ट्रीय सूचना विज्ञान केंद्र, उत्तराखंड"
 }

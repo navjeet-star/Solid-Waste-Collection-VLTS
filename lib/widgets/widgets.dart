@@ -1,6 +1,7 @@
 export 'common_app_bar.dart';
 export 'common_bottom_nav_bar.dart';
 export 'common_button.dart';
+export 'common_date_picker.dart';
 export 'common_dropdown.dart';
 export 'common_empty_view.dart';
 export 'common_grouped_dropdown.dart';

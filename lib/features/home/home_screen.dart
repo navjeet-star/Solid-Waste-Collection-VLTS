@@ -5,6 +5,7 @@ import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
 import 'package:vlts_swc/core/theme/CustomColorScheme.dart';
+import 'package:vlts_swc/features/home/modules/ulb_wise_report_screen.dart';
 import 'package:vlts_swc/features/home/viewModels/home_view_model.dart';
 import 'package:vlts_swc/models/module_item.dart';
 import 'package:vlts_swc/models/ulb_model.dart';
@@ -21,7 +22,6 @@ import 'package:vlts_swc/features/login/models/ProfileDetail.dart';
 
 import 'tabs/complaints_tab.dart';
 import 'tabs/profile_tab.dart';
-import 'tabs/reports_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -158,7 +158,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           // Tab 1: Reports
-          ReportsTab(onMenuTap: () => _scaffoldKey.currentState?.openDrawer()),
+          UlbWiseReportScreen(
+            onMenuTap: () => _scaffoldKey.currentState?.openDrawer(),
+          ),
 
           // Tab 2: Complaints
           ComplaintsTab(
@@ -218,10 +220,7 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
         title: strings.swachhtaAppComplaints,
         icon: Icons.mark_chat_unread_rounded,
         color: colorScheme.tertiary,
-        onTap: () => CommonFunctions.showSnackBar(
-          context,
-          strings.swachhtaAppComplaints,
-        ),
+        onTap: () => Get.toNamed(Routes.complaints),
       ),
     ];
 
