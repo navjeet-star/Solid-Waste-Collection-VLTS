@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/features/home/items/attendance_card_item.dart';
 import 'package:vlts_swc/features/home/viewModels/home_view_model.dart';
@@ -24,7 +25,29 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
 
   DateTime _selectedDate = DateTime.now();
   String? _selectedOption = 'all';
+  String _selectedUlbId = '';
   String _searchQuery = '';
+
+  /// Option code mapping to ULB IDs
+  static const Map<String, String> _optionToUlbId = {
+    'nn_1': '248441', // Kotdwar
+    'nn_2': '248459', // Haldwani
+    'nn_3': '248485', // Haridwar
+    'nn_4': '248440', // Dehradun
+    'npp_1': '248449', // Almora
+    'npp_2': '248450',
+    'npp_3': '248451',
+    'npp_4': '248452',
+    'np_1': '248460',
+    'np_2': '248461',
+    'np_3': '248462',
+    'np_4': '248463',
+  };
+
+  String _resolveUlbId(String? val) {
+    if (val == null || val == 'all') return '';
+    return _optionToUlbId[val] ?? val;
+  }
 
   @override
   void initState() {
@@ -33,10 +56,34 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         ? Get.find<HomeViewModel>()
         : Get.put(HomeViewModel());
 
-    // Fetch live API data using GetAttendanceStatus endpoint if not yet loaded
+    // Fetch live API data passing selected date and selected ULB ID
     if (_homeViewModel.attendanceStatusList.isEmpty) {
-      _homeViewModel.fetchAttendanceStatus();
+      _homeViewModel.fetchAttendanceStatus(
+        date: _selectedDate,
+        ulbId: _selectedUlbId,
+      );
     }
+  }
+
+  void _onDateChanged(DateTime newDate) {
+    setState(() {
+      _selectedDate = newDate;
+    });
+    _homeViewModel.fetchAttendanceStatus(
+      date: newDate,
+      ulbId: _selectedUlbId,
+    );
+  }
+
+  void _onUlbChanged(String? name) {
+    setState(() {
+      _selectedOption = name;
+      _selectedUlbId = _resolveUlbId(name);
+    });
+    _homeViewModel.fetchAttendanceStatus(
+      date: _selectedDate,
+      ulbId: _selectedUlbId,
+    );
   }
 
   @override
@@ -196,11 +243,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                           borderRadius: BorderRadius.circular(10),
                           backgroundColor: colorScheme.surfaceContainerHighest.withValues(alpha: 0.35),
                           borderColor: colorScheme.outline.withValues(alpha: 0.20),
-                          onChanged: (val) {
-                            setState(() {
-                              _selectedOption = val;
-                            });
-                          },
+                          onChanged: _onUlbChanged,
                         ),
                       ),
 
@@ -217,11 +260,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                               .withValues(alpha: 0.35),
                           borderColor:
                               colorScheme.outline.withValues(alpha: 0.20),
-                          onDateSelected: (newDate) {
-                            setState(() {
-                              _selectedDate = newDate;
-                            });
-                          },
+                          onDateSelected: _onDateChanged,
                         ),
                       ),
                     ],
@@ -293,9 +332,14 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                               onTap: () {
                                 setState(() {
                                   _selectedOption = 'all';
+                                  _selectedUlbId = '';
                                   _searchController.clear();
                                   _searchQuery = '';
                                 });
+                                _homeViewModel.fetchAttendanceStatus(
+                                  date: _selectedDate,
+                                  ulbId: '',
+                                );
                               },
                               child: Text(
                                 strings.resetFilters,
@@ -321,16 +365,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                         (item) => AttendanceCardItem(
                           record: item,
                           onTap: () {
-                            // Optional feedback on tap
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  '${item.ulbName}: ${item.present} ${strings.present}, ${item.absent} ${strings.absent}',
-                                ),
-                                duration: const Duration(seconds: 1),
-                                behavior: SnackBarBehavior.floating,
-                              ),
-                            );
+
                           },
                         ),
                       ),

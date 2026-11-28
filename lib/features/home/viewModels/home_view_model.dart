@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/aes_encypt.dart';
 import 'package:vlts_swc/core/base/base_view_model.dart';
-import 'package:vlts_swc/core/network/base_api_response.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
 import 'package:vlts_swc/models/AttendanceStatusList.dart';
 import 'package:vlts_swc/models/ulb_model.dart';
@@ -84,20 +83,44 @@ class HomeViewModel extends BaseViewModel {
   }
 
   /// Fetches the attendance status list using the GetAttendanceStatus API
-  Future<void> fetchAttendanceStatus({String? loginId}) async {
+  /// Accepts [loginId], [ulbId], and [date] (or formatted [attendanceDate])
+  Future<void> fetchAttendanceStatus({
+    String? loginId,
+    String? ulbId,
+    DateTime? date,
+    String? attendanceDate,
+  }) async {
     try {
       setLoading();
 
       final profile = await SharedPrefsService.getProfile();
       final encryptionHelper = AESENCRYPTION();
 
-      final encryptedLoginId =encryptionHelper.aesEncryption(plainText: profile?.loginID ??'',);
-      final encryptedUlbID   =encryptionHelper.aesEncryption(plainText: profile?.ulbid ??'',);
+      final encryptedLoginId = encryptionHelper.aesEncryption(
+        plainText: profile?.loginID ?? '',
+      );
 
+      final encryptedUlbID = encryptionHelper.aesEncryption(
+        plainText: profile?.ulbid ?? '',
+      );
+
+      // Determine effective AttendanceDate
+      final String formattedDate;
+      if (attendanceDate != null && attendanceDate.isNotEmpty) {
+        formattedDate = attendanceDate;
+      } else if (date != null) {
+        formattedDate =
+            '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+      } else {
+        formattedDate = '';
+      }
+      final encryptedDate = encryptionHelper.aesEncryption(
+        plainText:formattedDate,
+      );
       final requestBody = {
         "LoginID": encryptedLoginId,
         "ULBID": encryptedUlbID,
-        "AttendanceDate":""
+        "AttendanceDate": encryptedDate,
       };
 
       final result = await repository.getAttendanceStatus(

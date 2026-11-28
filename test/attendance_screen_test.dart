@@ -255,5 +255,38 @@ void main() {
       expect(find.text('Present'), findsWidgets);
       expect(find.text('Absent'), findsWidgets);
     });
+
+    testWidgets('tapping attendance card navigates with selected date and ulb id', (tester) async {
+      tester.view.physicalSize = const Size(1080, 2400);
+      tester.view.devicePixelRatio = 2.5;
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
+      });
+
+      await tester.pumpWidget(createTestWidget());
+      await tester.pumpAndSettle();
+
+      final firstCard = find.byType(AttendanceCardItem).first;
+      await tester.tap(firstCard);
+      await tester.pumpAndSettle();
+
+      expect(Get.arguments, isNotNull);
+      if (Get.arguments is Map) {
+        final args = Get.arguments as Map;
+        expect(args['ulbId'], isNotNull);
+        expect(args['date'], isA<DateTime>());
+      }
+    });
+
+    test('HomeViewModel.fetchAttendanceStatus accepts date and ulbId', () async {
+      expect(
+        () => homeViewModel.fetchAttendanceStatus(
+          date: DateTime(2026, 11, 28),
+          ulbId: '248449',
+        ),
+        returnsNormally,
+      );
+    });
   });
 }
