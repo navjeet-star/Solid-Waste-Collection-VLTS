@@ -201,8 +201,7 @@ class _HomeBodyContentState extends State<_HomeBodyContent> {
         title: strings.attendanceDashboard,
         icon: Icons.how_to_reg_rounded,
         color: colorScheme.tertiary,
-        onTap: () =>
-            CommonFunctions.showSnackBar(context, strings.attendanceDashboard),
+        onTap: () => Get.toNamed(Routes.attendance),
       ),
       ModuleItem(
         title: strings.ulbWiseReport,

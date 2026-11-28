@@ -565,4 +565,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nicFooter => 'National Informatics Centre, Uttarakhand';
+
+  @override
+  String get present => 'Present';
+
+  @override
+  String get absent => 'Absent';
+
+  @override
+  String get leave => 'Leave';
+
+  @override
+  String get notMarked => 'Not Marked';
+
+  @override
+  String get totalStaff => 'Total Staff';
+
+  @override
+  String get attendanceOverview => 'Attendance Overview';
+
+  @override
+  String get searchUlb => 'Search ULB...';
 }

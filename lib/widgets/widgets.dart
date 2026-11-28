@@ -5,6 +5,7 @@ export 'common_date_picker.dart';
 export 'common_dropdown.dart';
 export 'common_empty_view.dart';
 export 'common_grouped_dropdown.dart';
+export 'common_search_bar.dart';
 export 'common_simple_dropdown.dart';
 export 'common_stat_card.dart';
 export 'common_text.dart';

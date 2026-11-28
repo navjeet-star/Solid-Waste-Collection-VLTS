@@ -191,5 +191,12 @@
   "uncoveredRoute": "अनकवर्ड रूट (किमी)",
   "coveragePercent": "कवरेज %",
   "selectDate": "तारीख चुनें",
-  "nicFooter": "राष्ट्रीय सूचना विज्ञान केंद्र, उत्तराखंड"
+  "nicFooter": "राष्ट्रीय सूचना विज्ञान केंद्र, उत्तराखंड",
+  "present": "उपस्थित",
+  "absent": "अनुपस्थित",
+  "leave": "अवकाश",
+  "notMarked": "चिह्नित नहीं",
+  "totalStaff": "कुल कर्मचारी",
+  "attendanceOverview": "उपस्थिति विवरण",
+  "searchUlb": "यूएलबी खोजें..."
 }

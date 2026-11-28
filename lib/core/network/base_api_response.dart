@@ -56,16 +56,30 @@ class ApiResponse<T> extends BaseApiResponse {
 
   factory ApiResponse.fromJson(
     Map<String, dynamic> json,
-    T Function(dynamic json) fromJsonT,
-  ) {
+    T Function(dynamic json) fromJsonT, {
+    String? dataKey,
+  }) {
+    dynamic rawData;
+    if (dataKey != null && json.containsKey(dataKey)) {
+      rawData = json[dataKey];
+    } else if (json.containsKey('Data')) {
+      rawData = json['Data'];
+    } else if (json.containsKey('data')) {
+      rawData = json['data'];
+    } else {
+      for (final key in json.keys) {
+        final lower = key.toLowerCase();
+        if (lower != 'code' && lower != 'message' ) {
+          rawData = json[key];
+          break;
+        }
+      }
+    }
+
     return ApiResponse<T>(
-      code: json['Code']?.toString() ??
-          json['code']?.toString() ??
-          json['status']?.toString(),
+      code: json['Code']?.toString() ?? json['code']?.toString() ,
       message: json['Message']?.toString() ?? json['message']?.toString(),
-      data: json['Data'] != null
-          ? fromJsonT(json['Data'])
-          : (json['data'] != null ? fromJsonT(json['data']) : null),
+      data: rawData != null ? fromJsonT(rawData) : null,
     );
   }
 

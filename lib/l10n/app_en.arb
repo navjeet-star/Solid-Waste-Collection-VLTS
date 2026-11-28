@@ -183,5 +183,12 @@
   "uncoveredRoute": "Uncovered Route (KM)",
   "coveragePercent": "Coverage %",
   "selectDate": "Select Date",
-  "nicFooter": "National Informatics Centre, Uttarakhand"
+  "nicFooter": "National Informatics Centre, Uttarakhand",
+  "present": "Present",
+  "absent": "Absent",
+  "leave": "Leave",
+  "notMarked": "Not Marked",
+  "totalStaff": "Total Staff",
+  "attendanceOverview": "Attendance Overview",
+  "searchUlb": "Search ULB..."
 }

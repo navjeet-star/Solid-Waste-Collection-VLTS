@@ -23,7 +23,7 @@ class LightColors {
   static const Color accent = Color(0xFF6366F1); // Indigo / Attendance & Analytics
 
 
-  static const Color blue = Color(0xFF2563EB);
+  static const Color blue = Color(0xFF1E88E5);
   static const Color green = Color(0xFF16A34A);
   static const Color red = Color(0xFFDC2626);
   static const Color yellow = Color(0xFFEAB308);

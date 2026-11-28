@@ -2,7 +2,9 @@ import 'package:get/get.dart';
 import 'package:vlts_swc/common_utils/common_functions.dart';
 import 'package:vlts_swc/core/aes_encypt.dart';
 import 'package:vlts_swc/core/base/base_view_model.dart';
+import 'package:vlts_swc/core/network/base_api_response.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
+import 'package:vlts_swc/models/AttendanceStatusList.dart';
 import 'package:vlts_swc/models/ulb_model.dart';
 
 import '../repositories/home_repository.dart';
@@ -23,6 +25,9 @@ class HomeViewModel extends BaseViewModel {
   // Reactive UI States
   final Rxn<UlbModel> ulbModel = Rxn<UlbModel>();
   final RxList<UlbProgressData> ulbList = <UlbProgressData>[].obs;
+
+  final RxList<AttendanceStatusList> attendanceStatusList =
+      <AttendanceStatusList>[].obs;
 
   /// Fetches the ULB wise progress list using stored user credentials
   Future<void> fetchUlbWiseProgress() async {
@@ -71,6 +76,58 @@ class HomeViewModel extends BaseViewModel {
       );
     } catch (e) {
       setError(e.toString());
+    } finally {
+      if (isLoading.value && !isError && !isSuccess) {
+        resetState();
+      }
+    }
+  }
+
+  /// Fetches the attendance status list using the GetAttendanceStatus API
+  Future<void> fetchAttendanceStatus({String? loginId}) async {
+    try {
+      setLoading();
+
+      final profile = await SharedPrefsService.getProfile();
+      final encryptionHelper = AESENCRYPTION();
+
+      final encryptedLoginId =encryptionHelper.aesEncryption(plainText: profile?.loginID ??'',);
+      final encryptedUlbID   =encryptionHelper.aesEncryption(plainText: profile?.ulbid ??'',);
+
+      final requestBody = {
+        "LoginID": encryptedLoginId,
+        "ULBID": encryptedUlbID,
+        "AttendanceDate":""
+      };
+
+      final result = await repository.getAttendanceStatus(
+        requestBody: requestBody,
+      );
+
+      result.fold(
+        (failure) {
+          setError(failure.message);
+          Log.d("HomeViewModel", "Attendance API error: ${failure.message}");
+          if (attendanceStatusList.isEmpty) {
+            attendanceStatusList.assignAll(AttendanceStatusList.sampleList);
+          }
+        },
+        (response) {
+          setSuccess();
+          final items = response.data;
+          if (items != null && items.isNotEmpty) {
+            Log.d("HomeViewModel", "AttendanceStatusList fetched: ${items.length} items",);
+            attendanceStatusList.assignAll(items);
+          } else {
+            attendanceStatusList.assignAll(AttendanceStatusList.sampleList);
+          }
+        },
+      );
+    } catch (e) {
+      setError(e.toString());
+      if (attendanceStatusList.isEmpty) {
+        attendanceStatusList.assignAll(AttendanceStatusList.sampleList);
+      }
     } finally {
       if (isLoading.value && !isError && !isSuccess) {
         resetState();

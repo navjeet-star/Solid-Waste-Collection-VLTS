@@ -563,4 +563,25 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get nicFooter => 'राष्ट्रीय सूचना विज्ञान केंद्र, उत्तराखंड';
+
+  @override
+  String get present => 'उपस्थित';
+
+  @override
+  String get absent => 'अनुपस्थित';
+
+  @override
+  String get leave => 'अवकाश';
+
+  @override
+  String get notMarked => 'चिह्नित नहीं';
+
+  @override
+  String get totalStaff => 'कुल कर्मचारी';
+
+  @override
+  String get attendanceOverview => 'उपस्थिति विवरण';
+
+  @override
+  String get searchUlb => 'यूएलबी खोजें...';
 }

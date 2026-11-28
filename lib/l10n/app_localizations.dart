@@ -1195,6 +1195,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'National Informatics Centre, Uttarakhand'**
   String get nicFooter;
+
+  /// No description provided for @present.
+  ///
+  /// In en, this message translates to:
+  /// **'Present'**
+  String get present;
+
+  /// No description provided for @absent.
+  ///
+  /// In en, this message translates to:
+  /// **'Absent'**
+  String get absent;
+
+  /// No description provided for @leave.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave'**
+  String get leave;
+
+  /// No description provided for @notMarked.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Marked'**
+  String get notMarked;
+
+  /// No description provided for @totalStaff.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Staff'**
+  String get totalStaff;
+
+  /// No description provided for @attendanceOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendance Overview'**
+  String get attendanceOverview;
+
+  /// No description provided for @searchUlb.
+  ///
+  /// In en, this message translates to:
+  /// **'Search ULB...'**
+  String get searchUlb;
 }
 
 class _AppLocalizationsDelegate

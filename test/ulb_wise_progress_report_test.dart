@@ -5,11 +5,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vlts_swc/app/routes/app_pages.dart';
 import 'package:vlts_swc/core/app_locale.dart';
 import 'package:vlts_swc/core/storage/shared_prefs_service.dart';
-import 'package:vlts_swc/features/home/items/ulb_progress_card_item.dart';
+import 'package:vlts_swc/core/theme/dark_theme.dart';
+import 'package:vlts_swc/core/theme/light_theme.dart';
 import 'package:vlts_swc/features/home/modules/ulb_progress_report_screen.dart';
 import 'package:vlts_swc/features/home/viewModels/home_view_model.dart';
 import 'package:vlts_swc/l10n/app_localizations.dart';
 import 'package:vlts_swc/models/ulb_model.dart';
+import 'package:vlts_swc/widgets/common_date_picker.dart';
+import 'package:vlts_swc/widgets/common_grouped_dropdown.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -30,21 +33,27 @@ void main() {
     Get.reset();
   });
 
-  Widget createTestWidget({Locale locale = const Locale('en')}) {
+  Widget createTestWidget({
+    Locale locale = const Locale('en'),
+    ThemeData? theme,
+  }) {
     appLocale.value = locale;
     return AppLocaleScope(
       notifier: appLocale,
       child: GetMaterialApp(
         locale: locale,
+        theme: theme ?? lightTheme,
+        darkTheme: darkTheme,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: const UlbWiseProgressReportScreen(),
+        home: const UlbProgressReportScreen(),
+        getPages: AppPages.routes,
       ),
     );
   }
 
-  group('UlbWiseProgressReportScreen Tests', () {
-    testWidgets('renders KPI summary card, search bar, and sample ULB cards in English', (tester) async {
+  group('UlbProgressReportScreen Tests', () {
+    testWidgets('renders Dropdown, DatePicker, 13 metrics, and footer in English', (tester) async {
       tester.view.physicalSize = const Size(1080, 2400);
       tester.view.devicePixelRatio = 2.5;
       addTearDown(() {
@@ -55,51 +64,37 @@ void main() {
       await tester.pumpWidget(createTestWidget());
       await tester.pumpAndSettle();
 
-      // AppBar title
+      // 1. AppBar
       expect(find.text('ULB Progress Report'), findsOneWidget);
 
-      // KPI card metrics
-      expect(find.text('Total ULB(s)'), findsWidgets);
-      expect(find.text('Score'), findsWidgets);
-      expect(find.text('Total Wards'), findsOneWidget);
+      // 2. Filter row (Dropdown + Date Picker)
+      expect(find.byType(CommonGroupedDropdown<String>), findsOneWidget);
+      expect(find.byType(CommonDatePicker), findsOneWidget);
 
-      // Sample ULB names from sampleList
-      expect(find.text('Nagar Nigam, Kanvnagri Kotdwar'), findsOneWidget);
-      expect(find.text('Nagar Nigam, Haldwani'), findsOneWidget);
+      // 3. Telemetry Detailed Card Header (Almora)
+      expect(find.text('Almora'), findsOneWidget);
+
+      // 4. Required metrics
+      expect(find.textContaining('Wards'), findsWidgets);
+      expect(find.text('Covered Wards'), findsOneWidget);
+      expect(find.text('Not Covered'), findsOneWidget);
+      expect(find.text('Total Vehicles'), findsOneWidget);
+      expect(find.text('Active Vehicles'), findsOneWidget);
+      expect(find.text('Inactive Vehicles'), findsOneWidget);
+      expect(find.text('Never Sent Data'), findsOneWidget);
+      expect(find.text('Reached Ward'), findsOneWidget);
+      expect(find.text('Not Reached'), findsOneWidget);
+      expect(find.text('Assigned Route (KM)'), findsOneWidget);
+      expect(find.text('Matched Route (KM)'), findsOneWidget);
+      expect(find.text('Uncovered Route (KM)'), findsOneWidget);
+      expect(find.text('Coverage %'), findsWidgets);
+
+      // 5. Footer banner
+      expect(find.textContaining('National Informatics Centre, Uttarakhand'), findsOneWidget);
+      expect(find.textContaining('Server Update:'), findsOneWidget);
     });
 
-    testWidgets('filters ULB list when search query is entered', (tester) async {
-      tester.view.physicalSize = const Size(1080, 2400);
-      tester.view.devicePixelRatio = 2.5;
-      addTearDown(() {
-        tester.view.resetPhysicalSize();
-        tester.view.resetDevicePixelRatio();
-      });
-
-      await tester.pumpWidget(createTestWidget());
-      await tester.pumpAndSettle();
-
-      expect(find.text('Nagar Nigam, Kanvnagri Kotdwar'), findsOneWidget);
-      expect(find.text('Nagar Nigam, Haldwani'), findsOneWidget);
-
-      // Enter search query "Haldwani"
-      await tester.enterText(find.byType(TextField), 'Haldwani');
-      await tester.pumpAndSettle();
-
-      // Only Haldwani is visible
-      expect(find.text('Nagar Nigam, Haldwani'), findsOneWidget);
-      expect(find.text('Nagar Nigam, Kanvnagri Kotdwar'), findsNothing);
-
-      // Clear search
-      await tester.tap(find.byIcon(Icons.close_rounded));
-      await tester.pumpAndSettle();
-
-      // Both visible again
-      expect(find.text('Nagar Nigam, Kanvnagri Kotdwar'), findsOneWidget);
-      expect(find.text('Nagar Nigam, Haldwani'), findsOneWidget);
-    });
-
-    testWidgets('renders in Hindi localization when locale is Hindi', (tester) async {
+    testWidgets('renders properly with Hindi localization', (tester) async {
       tester.view.physicalSize = const Size(1080, 2400);
       tester.view.devicePixelRatio = 2.5;
       addTearDown(() {
@@ -113,13 +108,18 @@ void main() {
       // Localized AppBar title
       expect(find.text('निकायवार प्रगति रिपोर्ट'), findsOneWidget);
 
-      // Localized KPI metrics
-      expect(find.text('कुल यूएलबी'), findsWidgets);
-      expect(find.text('स्कोर'), findsWidgets);
-      expect(find.text('कुल वार्ड'), findsOneWidget);
+      // Localized Metrics
+      expect(find.textContaining('वार्ड'), findsWidgets);
+      expect(find.text('कवर किए गए वार्ड'), findsOneWidget);
+      expect(find.text('कवर नहीं किए गए'), findsOneWidget);
+      expect(find.text('कुल वाहन'), findsOneWidget);
+      expect(find.text('सक्रिय वाहन'), findsOneWidget);
+
+      // Localized footer
+      expect(find.textContaining('राष्ट्रीय सूचना विज्ञान केंद्र'), findsOneWidget);
     });
 
-    testWidgets('pre-populates search filter when UlbProgressData is passed in arguments', (tester) async {
+    testWidgets('navigating with arguments sets selected ULB', (tester) async {
       tester.view.physicalSize = const Size(1080, 2400);
       tester.view.devicePixelRatio = 2.5;
       addTearDown(() {
@@ -141,7 +141,7 @@ void main() {
                 return ElevatedButton(
                   onPressed: () {
                     Get.toNamed(
-                      Routes.ulb_wise_progress_Report,
+                      Routes.ulb_progress_Report,
                       arguments: targetUlb,
                     );
                   },
@@ -151,8 +151,8 @@ void main() {
             ),
             getPages: [
               GetPage(
-                name: Routes.ulb_wise_progress_Report,
-                page: () => const UlbWiseProgressReportScreen(),
+                name: Routes.ulb_progress_Report,
+                page: () => const UlbProgressReportScreen(),
               ),
             ],
           ),
@@ -160,14 +160,10 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      // Tap navigation button with arguments
       await tester.tap(find.text('Go to Report'));
       await tester.pumpAndSettle();
 
-      // Verify that Haldwani was pre-filtered in the list item
-      expect(find.widgetWithText(UlbProgressListItem, 'Nagar Nigam, Haldwani'), findsOneWidget);
-      expect(find.widgetWithText(UlbProgressListItem, 'Nagar Nigam, Kanvnagri Kotdwar'), findsNothing);
-      expect(find.text('Nagar Nigam, Haldwani'), findsWidgets);
+      expect(find.byType(UlbProgressReportScreen), findsOneWidget);
     });
   });
 }

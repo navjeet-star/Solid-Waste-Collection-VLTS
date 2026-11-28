@@ -28,6 +28,9 @@ class _UlbProgressReportScreenState extends State<UlbProgressReportScreen> {
   @override
   void initState() {
     super.initState();
+    _homeViewModel = Get.isRegistered<HomeViewModel>()
+        ? Get.find<HomeViewModel>()
+        : Get.put(HomeViewModel());
   }
 
   @override

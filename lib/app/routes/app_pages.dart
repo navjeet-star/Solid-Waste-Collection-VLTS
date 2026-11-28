@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:vlts_swc/features/home/modules/attendance_screen.dart';
 import 'package:vlts_swc/features/home/tabs/complaints_tab.dart';
 import 'package:vlts_swc/features/splash/viewModels/splash_view_model.dart';
 import 'package:vlts_swc/features/splash/views/splash_screen.dart';
@@ -57,6 +58,11 @@ class AppPages {
     GetPage(
       name: Routes.complaints,
       page: () => const ComplaintsTab(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: Routes.attendance,
+      page: () => const AttendanceScreen(),
       transition: Transition.rightToLeft,
     ),
   ];
